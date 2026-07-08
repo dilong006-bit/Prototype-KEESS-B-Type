@@ -24,7 +24,8 @@
       "Bash(node -e ' *)",
       "Bash(node run.js /c/Users/NT-0127/AppData/Local/Temp/playwright-test-keess.js)",
       "Bash(git add *)",
-      "Bash(git commit -q -m 'feat\\(shell\\): common shell + components + 부정훈련 report modal *)"
+      "Bash(git commit -q -m 'feat\\(shell\\): common shell + components + 부정훈련 report modal *)",
+      "Bash(node run.js /c/Users/NT-0127/AppData/Local/Temp/playwright-home.js)"
     ]
   }
 }

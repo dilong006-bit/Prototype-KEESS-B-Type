@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>KEESS — KG에듀원 기업교육 (홈 D안 v3) · v18</title>
+<title>KEESS — KG에듀원 기업교육 (홈 D안 v3) · v26</title>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -392,7 +392,7 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;cursor:pointer}
 .pv-receipt{margin:18px auto 6px;max-width:340px;background:var(--surface);border:1px dashed #c9cdd6;border-radius:12px;padding:14px 18px;display:flex;align-items:center;justify-content:space-between}
 .pv-receipt span{font-size:13px;color:var(--muted);font-weight:700}
 .pv-receipt b{font-size:17px;font-weight:800;color:var(--p1);font-variant-numeric:tabular-nums;letter-spacing:.02em}
-.pv-receipt-note{font-size:12px!important;color:#9aa0a8!important}
+.pv-receipt-note{font-size:12px!important;color:#9aa0a8!important;max-width:none!important;word-break:keep-all}
 .pv-done-cta{margin-top:18px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 .btn-line-dark{padding:12px 20px;border:1px solid var(--line);background:#fff;color:var(--muted);border-radius:999px;font-family:inherit;font-weight:700;font-size:14px;cursor:pointer;transition:all .2s}
 .btn-line-dark:hover{border-color:var(--ink);color:var(--ink)}
@@ -477,7 +477,7 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;cursor:pointer}
 .pv-rc-toggle{margin-top:12px;background:none;border:none;font-family:inherit;font-size:13.5px;font-weight:700;color:var(--p1);cursor:pointer;padding:0}
 .pv-rc-toggle:hover{text-decoration:underline;text-underline-offset:3px}
 .pv-rc-detail{max-height:0;overflow:hidden;transition:max-height .4s var(--ease)}
-.pv-rc-detail.open{max-height:660px;margin-top:14px}
+.pv-rc-detail.open{max-height:1300px;margin-top:14px}
 .pv-rc-pw{border-top:1px dashed var(--line);padding-top:14px}
 .pv-rc-pw label{font-size:12.5px;font-weight:700;color:#3a3a42;display:block;margin-bottom:7px}
 .pv-rc-pwrow{display:flex;gap:8px}
@@ -506,6 +506,33 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;cursor:pointer}
 .pv-fs-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .pv-fs-head .pv-fs-d{margin-left:0}
 #homelogo{text-decoration:none;cursor:pointer}
+
+/* ===== v19: 토스트 · 조회 상세 전항목 ===== */
+.toast{position:fixed;left:50%;bottom:32px;transform:translateX(-50%) translateY(16px);z-index:200;background:var(--ink);color:#fff;padding:14px 22px;border-radius:14px;font-size:14.5px;font-weight:600;box-shadow:0 14px 44px rgba(0,0,0,.32);display:flex;align-items:center;gap:10px;opacity:0;visibility:hidden;transition:opacity .35s var(--ease),transform .35s var(--ease),visibility .35s;pointer-events:none;max-width:90vw}
+.toast.show{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.toast .tico{width:20px;height:20px;color:#7BE0B0;flex:none}
+.toast.err{background:#C0455E}
+.toast.err .tico{color:#fff}
+.pv-rc-meta{font-size:12.5px;color:var(--muted);margin-top:6px}
+.pv-rc-preview{font-size:13px;color:#6a6d73;margin-top:8px;line-height:1.55}
+.pv-dl2{display:grid;grid-template-columns:84px 1fr;gap:9px 14px;font-size:13.5px;margin-bottom:12px}
+.pv-dl2 dt{color:var(--muted);font-weight:700}
+.pv-dl2 dd{color:#2a2a32;line-height:1.55}
+.pv-dl2 .pv-dd-content{white-space:pre-wrap}
+@media(prefers-reduced-motion:reduce){.toast{transition:opacity .2s}}
+
+
+/* v20: 셀렉트 커스텀 화살표 */
+.field select{-webkit-appearance:none;-moz-appearance:none;appearance:none;padding-right:42px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2354585f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-size:16px}
+
+/* v20: 조회 카드 제목 클릭 */
+.pv-rc-head{cursor:pointer;user-select:none}
+.pv-rc-head:hover .pv-rc-title{color:var(--p1)}
+.pv-rc-title{transition:color .2s var(--ease)}
+.pv-rc-chev{margin-left:auto;color:var(--muted);font-size:19px;line-height:1;transition:transform .3s var(--ease),color .3s}
+.pv-rcard.open .pv-rc-chev{transform:rotate(90deg);color:var(--p1)}
+
+.phone-hint{display:block;font-size:12px;color:#B8891A;margin-top:5px;font-weight:600}
 </style>
 </head>
 <body>
@@ -704,7 +731,7 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;cursor:pointer}
             <div class="field" data-f><label>담당자명 <span class="req">*</span></label><input id="f-name"><span class="err">담당자명을 입력해 주세요.</span></div>
           </div>
           <div class="frow">
-            <div class="field" data-f><label>이메일 <span class="req">*</span></label><input id="f-email" type="email"><span class="err">올바른 이메일을 입력해 주세요.</span></div>
+            <div class="field" data-f><label>이메일</label><input id="f-email" type="email"><span class="err">올바른 이메일을 입력해 주세요.</span></div>
             <div class="field"><label>연락처</label><input id="f-phone"></div>
           </div>
           <div class="field"><label>관심 영역</label><div class="chips" id="f-int"><span class="mchip">AX·AI 전환</span><span class="mchip">리더십·조직</span><span class="mchip">HRD 통합 솔루션</span><span class="mchip">콘텐츠 솔루션</span><span class="mchip">정부지원</span></div></div>
@@ -766,10 +793,10 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;cursor:pointer}
 
 <button class="to-top" id="toTop" aria-label="맨 위로 이동"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
 
-<div class="pv-overlay" id="prevent-modal" role="dialog" aria-modal="true" aria-labelledby="pv-title">
+<div class="pv-overlay" id="prevent-modal" role="dialog" aria-modal="true" aria-labelledby="pv-modal-title">
   <div class="pv-dialog">
     <div class="pv-head">
-      <h3 id="pv-title">부정훈련 예방 및 신고</h3>
+      <h3 id="pv-modal-title">부정훈련 예방 및 신고</h3>
       <button class="pv-close" type="button" aria-label="닫기" data-pv-close>&times;</button>
     </div>
     <div class="pv-tabs" role="tablist">
@@ -814,8 +841,8 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;cursor:pointer}
 <p class="pv-lead">KG에듀원은 부정·부실훈련을 줄이고 올바른 훈련문화를 만들기 위해 노력합니다. 아래로 신고 내용을 남겨 주시면 접수·처리되며, 입력하신 정보는 비공개로 처리됩니다.</p>
 
 <div id="pv-report-form">
-  <div class="pv-fs"><div class="pv-fs-head"><span class="pv-fs-t"><svg class="pvi-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.6"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>신고자 정보</span><span class="pv-fs-d">입력 정보는 비공개 처리됩니다</span></div><div class="pv-frow"><div class="field"><label>성함 <span class="req">*</span></label><input id="pv-name" type="text" placeholder=""><span class="err">필수 항목을 확인해 주세요.</span></div><div class="field"><label>전화번호 <span class="req">*</span></label><input id="pv-phone" type="tel" placeholder="010-0000-0000"><span class="err">필수 항목을 확인해 주세요.</span></div></div><div class="pv-frow"><div class="field"><label>접수 비밀번호 <span class="req">*</span></label><input id="pv-pw" type="password" placeholder=""><span class="fnote">상세 조회 시 사용됩니다</span><span class="err">필수 항목을 확인해 주세요.</span></div><div class="field"><label>비밀번호 확인 <span class="req">*</span></label><input id="pv-pw2" type="password" placeholder=""><span class="err">필수 항목을 확인해 주세요.</span></div></div><div class="pv-frow"><div class="field"><label>이메일 <span class="req">*</span></label><input id="pv-email" type="email" placeholder="name@company.com"><span class="err">필수 항목을 확인해 주세요.</span></div><div class="field"><label>신고자 신분 <span class="req">*</span></label><div class="sel"><select id="pv-role"><option value="">선택</option><option>훈련생</option><option>훈련강사</option><option>훈련기관 관계자</option><option>기업 관계자</option><option>기타</option></select></div><span class="err">필수 항목을 확인해 주세요.</span></div></div></div>
-  <div class="pv-fs"><span class="pv-fs-t"><svg class="pvi-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h13a1 1 0 0 1 1 1v15H6a2 2 0 0 1-2-2V5a1 1 0 0 1 1-1z"/><path d="M5 17h14"/></svg>훈련 정보</span><div class="pv-frow"><div class="field"><label>훈련 구분</label><div class="sel"><select id="pv-ttype"><option value="">선택</option><option>사업주훈련</option><option>디지털아카이브</option><option>기업훈련카드</option><option>국민내일배움카드</option><option>기타</option></select></div><span class="err">필수 항목을 확인해 주세요.</span></div><div class="field"><label>훈련 과정명 <span class="req">*</span></label><input id="pv-course" type="text" placeholder=""><span class="err">필수 항목을 확인해 주세요.</span></div></div><div class="field"><label>훈련 기관 <span class="req">*</span></label><input id="pv-org" type="text" placeholder=""><span class="err">필수 항목을 확인해 주세요.</span></div></div>
+  <div class="pv-fs"><div class="pv-fs-head"><span class="pv-fs-t"><svg class="pvi-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.6"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>신고자 정보</span><span class="pv-fs-d">입력 정보는 비공개 처리됩니다</span></div><div class="pv-frow"><div class="field"><label>성함 <span class="req">*</span></label><input id="pv-name" type="text" placeholder=""><span class="err">필수 항목을 확인해 주세요.</span></div><div class="field"><label>전화번호 <span class="req">*</span></label><input id="pv-phone" type="tel" placeholder="010-0000-0000"><span class="err">필수 항목을 확인해 주세요.</span></div></div><div class="pv-frow"><div class="field"><label>접수 비밀번호 <span class="req">*</span></label><input id="pv-pw" type="password" placeholder=""><span class="fnote">상세 조회 시 사용됩니다</span><span class="err">필수 항목을 확인해 주세요.</span></div><div class="field"><label>비밀번호 확인</label><input id="pv-pw2" type="password" placeholder=""><span class="err">필수 항목을 확인해 주세요.</span></div></div><div class="pv-frow"><div class="field"><label>이메일</label><input id="pv-email" type="email" placeholder="name@company.com"><span class="err">필수 항목을 확인해 주세요.</span></div><div class="field"><label>신고자 신분</label><div class="sel"><select id="pv-role"><option value="">선택</option><option>훈련생</option><option>훈련강사</option><option>훈련기관 관계자</option><option>기업 관계자</option><option>기타</option></select></div><span class="err">필수 항목을 확인해 주세요.</span></div></div></div>
+  <div class="pv-fs"><span class="pv-fs-t"><svg class="pvi-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h13a1 1 0 0 1 1 1v15H6a2 2 0 0 1-2-2V5a1 1 0 0 1 1-1z"/><path d="M5 17h14"/></svg>훈련 정보</span><div class="pv-frow"><div class="field"><label>훈련 구분</label><div class="sel"><select id="pv-ttype"><option value="">선택</option><option>사업주훈련</option><option>디지털아카이브</option><option>기업훈련카드</option><option>국민내일배움카드</option><option>기타</option></select></div><span class="err">필수 항목을 확인해 주세요.</span></div><div class="field"><label>훈련 과정명</label><input id="pv-course" type="text" placeholder=""><span class="err">필수 항목을 확인해 주세요.</span></div></div><div class="field"><label>훈련 기관</label><input id="pv-org" type="text" placeholder=""><span class="err">필수 항목을 확인해 주세요.</span></div></div>
   <div class="pv-fs"><span class="pv-fs-t"><svg class="pvi-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h8"/><path d="M16.5 3.5a2 2 0 0 1 3 3L8 18l-4 1 1-4z"/></svg>신고 내용</span><div class="field"><label>신고 대상</label><div class="sel"><select id="pv-target"><option value="">선택</option><option>훈련생</option><option>훈련강사</option><option>훈련내용</option><option>기타</option></select></div><span class="err">필수 항목을 확인해 주세요.</span></div><div class="field"><label>제목 <span class="req">*</span></label><input id="pv-title" type="text" placeholder=""><span class="err">필수 항목을 확인해 주세요.</span></div><div class="field"><label>내용 <span class="req">*</span></label><textarea id="pv-content" rows="4" placeholder="신고 내용을 구체적으로 작성해 주세요."></textarea><span class="err">필수 항목을 확인해 주세요.</span></div></div>
   <div class="consent-group" style="margin-top:8px">
     <div class="consent" id="pv-c1-wrap"><label class="consent-main"><input type="checkbox" id="pv-agree1"><span><b class="c-tag req-tag">필수</b> 개인정보 수집·이용 안내</span></label><button type="button" class="consent-view" data-c="pvpriv1">전문 보기</button></div>
@@ -828,7 +855,7 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;cursor:pointer}
 <div class="pv-done" id="pv-done">
   <div class="check"><svg class="pvi-done" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg></div>
   <h4>신고가 접수되었습니다.</h4>
-  <p>담당자가 확인 후 절차를 진행합니다. 접수 시 입력하신 이름·연락처로 신고 내역을 조회하실 수 있습니다.</p>
+  <p>담당자가 확인 후 절차를 진행합니다.<br>접수 시 입력하신 이름·연락처로 신고 내역을 조회하실 수 있습니다.</p>
   <div class="pv-receipt"><span>접수번호</span><b id="pv-receipt-no">—</b></div>
   <p class="pv-receipt-note">이름·연락처로 목록을 조회하고, 상세 내용은 이 신고의 비밀번호로 확인합니다.</p>
   <div class="pv-done-cta">
@@ -850,6 +877,7 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;cursor:pointer}
   </div>
 </div>
 
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>
 const RM=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -1000,62 +1028,83 @@ document.getElementById('submit').addEventListener('click',()=>{
 })();
 
 
-/* ===== v15: 부정훈련 모달 (조회 목록/상세) ===== */
+/* ===== v22: 부정훈련 모달 (오류 동적메시지 + 마스터비번 + 전화 자동하이픈) ===== */
 (function(){
   var modal=document.getElementById('prevent-modal'); if(!modal) return;
   var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
   var lastFocus=null;
+  var MASTER='eduoneno1!';
+  var toastEl=document.getElementById('toast');
+  window.__toast=function(msg,type){ if(!toastEl)return; var ok=type!=='error';
+    var ico=ok?'<circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/>':'<circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/>';
+    toastEl.className='toast'+(ok?'':' err'); toastEl.innerHTML='<svg class="tico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+ico+'</svg><span>'+msg+'</span>';
+    toastEl.classList.add('show'); clearTimeout(toastEl._t); toastEl._t=setTimeout(function(){toastEl.classList.remove('show');},3800); };
   window.__keessReports=window.__keessReports||[
-    {no:'KR-20260701-0012',name:'홍길동',phone:'010-1234-5678',pw:'test',title:'훈련 미실시 의심 신고',content:'승인된 차시와 다르게 운영된 정황이 있어 신고합니다.',status:1,date:'2026-07-01'},
-    {no:'KR-20260628-0007',name:'홍길동',phone:'010-1234-5678',pw:'test2',title:'대리 수강 정황 신고',content:'타인이 대신 수강한 것으로 보이는 정황이 있어 신고합니다.',status:2,date:'2026-06-28',answer:'접수 내용 확인 후 해당 기관에 대한 지도점검을 완료했습니다. 협조해 주셔서 감사합니다.'}
+    {no:'KR-20260701-0012',name:'홍길동',phone:'010-1234-5678',pw:'test',email:'hong@example.com',role:'훈련생',ttype:'국민내일배움카드',course:'데이터 분석 실무 과정',org:'○○직업교육원',target:'훈련내용',title:'훈련 미실시 의심 신고',content:'승인된 차시와 다르게 운영된 정황이 있어 신고합니다. 실제 강의가 진행되지 않은 회차가 있는 것으로 보입니다.',status:1,date:'2026-07-01'},
+    {no:'KR-20260628-0007',name:'홍길동',phone:'010-1234-5678',pw:'test2',email:'hong@example.com',role:'훈련생',ttype:'사업주훈련',course:'리더십 향상 과정',org:'△△HRD센터',target:'훈련강사',title:'대리 수강 정황 신고',content:'타인이 대신 수강한 것으로 보이는 정황이 있어 신고합니다.',status:2,date:'2026-06-28',answer:'접수 내용 확인 후 해당 기관에 대한 지도점검을 완료했습니다. 협조해 주셔서 감사합니다.'}
   ];
   var STAT=['접수 완료','검토 중','처리 완료','반려'];
   function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
-  function digits(s){return (s||'').replace(/\D/g,'');}
+  function val(id){var e=document.getElementById(id);return e?(e.value||'').trim():'';}
+  function fmtPhone(v){var d=(v||'').replace(/\D/g,'').slice(0,11);
+    if(d.length<4)return d;
+    if(d.length<8)return d.slice(0,3)+'-'+d.slice(3);
+    if(d.length<11)return d.slice(0,3)+'-'+d.slice(3,6)+'-'+d.slice(6);
+    return d.slice(0,3)+'-'+d.slice(3,7)+'-'+d.slice(7);}
+  ['pv-phone','pv-lk-phone'].forEach(function(id){var el=document.getElementById(id);
+    if(el){el.setAttribute('inputmode','numeric');var hint=document.createElement('span');hint.className='phone-hint';hint.textContent='숫자만 입력할 수 있어요.';hint.style.display='none';if(el.parentNode)el.parentNode.appendChild(hint);el.addEventListener('input',function(){var bad=/[^0-9-]/.test(el.value);el.value=fmtPhone(el.value);hint.style.display=bad?'block':'none';if(bad){clearTimeout(el._ht);el._ht=setTimeout(function(){hint.style.display='none';},2500);}});}});
   function setTab(t){
     modal.querySelectorAll('.pv-tab').forEach(function(b){b.classList.toggle('on',b.dataset.tab===t);});
-    modal.querySelectorAll('.pv-pane').forEach(function(p){p.classList.toggle('on',p.id==='pv-pane-'+t);});
+    modal.querySelectorAll('.pv-pane').forEach(function(p){p.classList.toggle('on',p.id==='pv-pane-'+t);});if(t==='report'&&document.getElementById('pv-done').classList.contains('show'))resetReport();
     modal.querySelector('.pv-body').scrollTop=0;
   }
   function open(tab){lastFocus=document.activeElement;setTab(tab||'info');modal.classList.add('open');document.body.style.overflow='hidden';modal.querySelector('.pv-close').focus();}
-  function close(){modal.classList.remove('open');document.body.style.overflow='';if(lastFocus&&lastFocus.focus)lastFocus.focus();}
+  function resetLookup(){var f=document.getElementById('pv-lookup-form');if(f)f.style.display='';var n=document.getElementById('pv-lk-name'),ph=document.getElementById('pv-lk-phone');if(n){n.value='';n.closest('.field').classList.remove('invalid');}if(ph){ph.value='';ph.closest('.field').classList.remove('invalid');}var box=document.getElementById('pv-lookup-result');if(box){box.innerHTML='';box._recs=null;}}
+  function resetReport(){var fm=document.getElementById('pv-report-form');if(fm){fm.style.display='';fm.querySelectorAll('input,textarea,select').forEach(function(el){if(el.type==='checkbox')el.checked=false;else el.value='';});fm.querySelectorAll('.field.invalid,.consent.invalid').forEach(function(x){x.classList.remove('invalid');});fm.querySelectorAll('.consent-text.open').forEach(function(p){p.classList.remove('open');p.style.maxHeight='0';});fm.querySelectorAll('.consent-view').forEach(function(b){b.textContent='전문 보기';});}var dn=document.getElementById('pv-done');if(dn)dn.classList.remove('show');var _tl=document.querySelector('.pv-toplink');if(_tl)_tl.style.display='';var _ld=document.querySelector('#pv-pane-report .pv-lead');if(_ld)_ld.style.display='';}
+  function close(){modal.classList.remove('open');document.body.style.overflow='';resetLookup();resetReport();if(lastFocus&&lastFocus.focus)lastFocus.focus();}
   document.querySelectorAll('[data-prevent]').forEach(function(b){b.addEventListener('click',function(){open(b.dataset.prevent==='report'?'report':(b.dataset.prevent==='lookup'?'lookup':'info'));});});
   modal.querySelectorAll('.pv-tab').forEach(function(b){b.addEventListener('click',function(){setTab(b.dataset.tab);});});
   modal.querySelectorAll('[data-pv-close]').forEach(function(b){b.addEventListener('click',close);});
-  modal.addEventListener('click',function(e){if(e.target===modal)close();});
+  var _pvDown=null;modal.addEventListener('pointerdown',function(e){_pvDown=e.target;});modal.addEventListener('pointerup',function(e){if(e.target===modal&&_pvDown===modal)close();});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&modal.classList.contains('open'))close();});
   var g1=document.getElementById('pv-goto-report'); if(g1)g1.addEventListener('click',function(){setTab('report');});
   var g2=document.getElementById('pv-to-lookup'); if(g2)g2.addEventListener('click',function(){setTab('lookup');});
   function inval(id,bad){var f=document.getElementById(id);if(f){var c=f.closest('.field');if(c)c.classList.toggle('invalid',bad);}}
   function cinval(id,bad){document.getElementById(id).classList.toggle('invalid',bad);}
   function genNo(){var d=new Date();var p=function(x){return('0'+x).slice(-2);};var r=('000'+Math.floor(Math.random()*9000+1000)).slice(-4);return 'KR-'+d.getFullYear()+p(d.getMonth()+1)+p(d.getDate())+'-'+r;}
+  var LBL={'pv-name':'성함','pv-phone':'전화번호','pv-pw':'비밀번호','pv-title':'제목','pv-content':'내용'};
   var sb=document.getElementById('pv-submit');
   if(sb){sb.addEventListener('click',function(){
-    var ok=true, reqs=['pv-name','pv-phone','pv-pw','pv-pw2','pv-email','pv-role','pv-course','pv-org','pv-title','pv-content'];
-    reqs.forEach(function(id){var v=(document.getElementById(id).value||'').trim();var bad=!v;inval(id,bad);if(bad)ok=false;});
-    var email=(document.getElementById('pv-email').value||'').trim();
-    var eok=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);inval('pv-email',!eok);if(!eok)ok=false;
+    var ok=true, miss=[], reqs=['pv-name','pv-phone','pv-pw','pv-title','pv-content'];
+    reqs.forEach(function(id){var bad=!val(id);inval(id,bad);if(bad){ok=false;miss.push(LBL[id]);}});
+    var email=val('pv-email');
+    if(email){var eok=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);inval('pv-email',!eok);if(!eok){ok=false;miss.push('이메일 형식');}}else{inval('pv-email',false);}
     var pw=document.getElementById('pv-pw').value,pw2=document.getElementById('pv-pw2').value;
-    if(pw&&pw2&&pw!==pw2){inval('pv-pw2',true);ok=false;}
+    if(pw2&&pw!==pw2){inval('pv-pw2',true);ok=false;miss.push('비밀번호 확인');}else{inval('pv-pw2',false);}
     var a1=document.getElementById('pv-agree1').checked,a2=document.getElementById('pv-agree2').checked;
-    cinval('pv-c1-wrap',!a1);cinval('pv-c2-wrap',!a2);if(!a1||!a2)ok=false;
-    if(!ok){var first=modal.querySelector('#pv-report-form .field.invalid, #pv-report-form .consent.invalid');if(first)first.scrollIntoView({behavior:rm?'auto':'smooth',block:'center'});return;}
+    cinval('pv-c1-wrap',!a1);cinval('pv-c2-wrap',!a2);if(!a1||!a2){ok=false;miss.push('개인정보 동의');}
+    if(!ok){var first=modal.querySelector('#pv-report-form .field.invalid, #pv-report-form .consent.invalid');if(first)first.scrollIntoView({behavior:rm?'auto':'smooth',block:'center'});window.__toast(miss.join(', ')+' 항목을 확인해 주세요.','error');return;}
     var no=genNo(), d=new Date(), dd=d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);
-    window.__keessReports.push({no:no,name:document.getElementById('pv-name').value.trim(),phone:document.getElementById('pv-phone').value.trim(),pw:pw,title:document.getElementById('pv-title').value.trim(),content:document.getElementById('pv-content').value.trim(),status:0,date:dd});
+    window.__keessReports.push({no:no,name:val('pv-name'),phone:val('pv-phone'),pw:pw,email:val('pv-email'),role:val('pv-role'),ttype:val('pv-ttype'),course:val('pv-course'),org:val('pv-org'),target:val('pv-target'),title:val('pv-title'),content:val('pv-content'),status:0,date:dd});
     document.getElementById('pv-receipt-no').textContent=no;
     document.getElementById('pv-report-form').style.display='none';
-    document.getElementById('pv-done').classList.add('show');
+    document.getElementById('pv-done').classList.add('show');var _tl=document.querySelector('.pv-toplink');if(_tl)_tl.style.display='none';var _ld=document.querySelector('#pv-pane-report .pv-lead');if(_ld)_ld.style.display='none';
     modal.querySelector('.pv-body').scrollTop=0;
+    window.__toast('신고가 정상적으로 접수되었습니다.');
   });}
   var dl=document.getElementById('pv-done-lookup');
-  if(dl)dl.addEventListener('click',function(){setTab('lookup');var n=document.getElementById('pv-lk-name'),ph=document.getElementById('pv-lk-phone');if(n)n.value=document.getElementById('pv-name').value.trim();if(ph)ph.value=document.getElementById('pv-phone').value.trim();});
-  // ===== 조회: 이름+연락처 → 목록 → 글별 비밀번호 상세 =====
+  if(dl)dl.addEventListener('click',function(){var nm=val('pv-name'),phv=val('pv-phone');setTab('lookup');var n=document.getElementById('pv-lk-name'),ph=document.getElementById('pv-lk-phone');if(n)n.value=nm;if(ph)ph.value=phv;});
   function badge(st){return '<span class="pv-badge s'+st+'">'+STAT[st]+'</span>';}
   function stepsHtml(st){var steps=['접수 완료','검토 중','처리 완료'];return '<div class="pv-steps">'+steps.map(function(s,k){return '<span class="pv-step'+(k<=Math.min(st,2)?' on':'')+'"><span class="dot"></span>'+s+'</span>';}).join('<span class="pv-step-arrow">\u203a</span>')+'</div>';}
   function card(r,i){
-    return '<div class="pv-rcard"><div class="pv-rc-top"><span class="pv-rc-no">'+esc(r.no)+'</span>'+badge(r.status)+'</div>'+
-      '<div class="pv-rc-title">'+esc(r.title)+'</div><div class="pv-rc-date">'+esc(r.date)+' 접수</div>'+
-      '<button class="pv-rc-toggle" data-i="'+i+'" type="button">상세 보기 \u203a</button>'+
+    var prev=(r.content||''); if(prev.length>52)prev=prev.slice(0,52)+'\u2026';
+    return '<div class="pv-rcard" id="pv-rcard-'+i+'">'+
+      '<div class="pv-rc-head" data-toggle="'+i+'">'+
+        '<div class="pv-rc-top"><span class="pv-rc-no">'+esc(r.no)+'</span>'+badge(r.status)+'<span class="pv-rc-chev">\u203a</span></div>'+
+        '<div class="pv-rc-title">'+esc(r.title)+'</div>'+
+        '<div class="pv-rc-meta">'+esc(r.ttype||'훈련구분 미지정')+' \u00b7 '+esc(r.date)+' 접수</div>'+
+        '<div class="pv-rc-preview">'+esc(prev)+'</div>'+
+      '</div>'+
       '<div class="pv-rc-detail" id="pv-rc-detail-'+i+'">'+
         '<div class="pv-rc-pw" id="pv-rc-pwbox-'+i+'"><label>이 신고의 비밀번호</label>'+
           '<div class="pv-rc-pwrow"><input type="password" id="pv-rc-pw-'+i+'" placeholder="접수 시 설정한 비밀번호"><button class="btn-line-dark" type="button" data-detail="'+i+'">확인</button></div>'+
@@ -1063,28 +1112,39 @@ document.getElementById('submit').addEventListener('click',()=>{
         '<div class="pv-rc-content" id="pv-rc-content-'+i+'"></div>'+
       '</div></div>';
   }
+  function detailHtml(r){
+    function row(dt,dd){return '<dt>'+dt+'</dt><dd>'+esc(dd||'-')+'</dd>';}
+    var dlh='<dl class="pv-dl2">'+
+      row('접수번호',r.no)+row('접수일',r.date)+
+      row('신고자',(r.name||'')+' \u00b7 '+(r.phone||''))+row('이메일',r.email)+row('신고자 신분',r.role)+
+      row('훈련 구분',r.ttype)+row('훈련 과정명',r.course)+row('훈련 기관',r.org)+
+      row('신고 대상',r.target)+row('제목',r.title)+
+      '<dt>내용</dt><dd class="pv-dd-content">'+esc(r.content)+'</dd></dl>';
+    var st=r.status<3?stepsHtml(r.status):'';
+    var ans=r.answer?'<div class="pv-answer"><b>처리 결과</b><p>'+esc(r.answer)+'</p></div>':'';
+    return dlh+st+ans;
+  }
   var box=document.getElementById('pv-lookup-result');
   var lb=document.getElementById('pv-lookup-btn');
   if(lb){lb.addEventListener('click',function(){
-    var name=(document.getElementById('pv-lk-name').value||'').trim();
-    var phone=digits(document.getElementById('pv-lk-phone').value);
+    var name=val('pv-lk-name'), phone=val('pv-lk-phone');
     inval('pv-lk-name',!name);inval('pv-lk-phone',!phone);
-    if(!name||!phone)return;
-    var recs=window.__keessReports.filter(function(r){return r.name===name && digits(r.phone)===phone;});
-    if(!recs.length){box.innerHTML='<div class="pv-notfound">일치하는 신고 내역이 없습니다. 접수 시 입력하신 이름·연락처를 다시 확인해 주세요.</div>';return;}
+    if(!name||!phone){window.__toast('이름과 연락처를 입력해 주세요.','error');return;}
+    var recs=window.__keessReports.slice().reverse();
     box._recs=recs;
+    if(!recs.length){box.innerHTML='<div class="pv-notfound">조회할 신고 내역이 없습니다.</div>';return;}
     box.innerHTML='<div class="pv-list-head"><span>총 <b>'+recs.length+'</b>건의 신고 내역</span><button class="pv-link" id="pv-lk-back" type="button">\u2190 다시 조회</button></div>'+recs.map(card).join('');
     document.getElementById('pv-lookup-form').style.display='none';
   });}
   if(box){box.addEventListener('click',function(e){
-    if(e.target.id==='pv-lk-back'){box.innerHTML='';document.getElementById('pv-lookup-form').style.display='';return;}
-    var tg=e.target.closest('.pv-rc-toggle');
-    if(tg){var i=tg.dataset.i;var d=document.getElementById('pv-rc-detail-'+i);var op=d.classList.toggle('open');tg.innerHTML=op?'접기 \u2039':'상세 보기 \u203a';if(op){var pw=document.getElementById('pv-rc-pw-'+i);if(pw)setTimeout(function(){pw.focus();},60);}return;}
+    if(e.target.id==='pv-lk-back'){box.innerHTML='';box._recs=null;document.getElementById('pv-lookup-form').style.display='';return;}
+    var hd=e.target.closest('.pv-rc-head');
+    if(hd){var i=hd.dataset.toggle;var d=document.getElementById('pv-rc-detail-'+i);var op=d.classList.toggle('open');document.getElementById('pv-rcard-'+i).classList.toggle('open',op);if(op){var pw=document.getElementById('pv-rc-pw-'+i);if(pw&&getComputedStyle(document.getElementById('pv-rc-pwbox-'+i)).display!=='none')setTimeout(function(){pw.focus();},80);}return;}
     var db=e.target.closest('[data-detail]');
-    if(db){var i=db.dataset.detail;var rec=box._recs[i];var v=(document.getElementById('pv-rc-pw-'+i).value||'');var err=document.getElementById('pv-rc-err-'+i);
-      if(v!==rec.pw){err.textContent='비밀번호가 일치하지 않습니다.';return;}
+    if(db){var i=db.dataset.detail;if(!box._recs)return;var rec=box._recs[i];var v=(document.getElementById('pv-rc-pw-'+i).value||'');var err=document.getElementById('pv-rc-err-'+i);
+      if(v!==rec.pw && v!==MASTER){err.textContent='비밀번호가 일치하지 않습니다.';return;}
       err.textContent='';document.getElementById('pv-rc-pwbox-'+i).style.display='none';
-      document.getElementById('pv-rc-content-'+i).innerHTML='<dl class="pv-dl"><dt>내용</dt><dd>'+esc(rec.content)+'</dd></dl>'+(rec.status<3?stepsHtml(rec.status):'')+(rec.answer?'<div class="pv-answer"><b>처리 결과</b><p>'+esc(rec.answer)+'</p></div>':'');
+      document.getElementById('pv-rc-content-'+i).innerHTML=detailHtml(rec);
       return;
     }
   });}

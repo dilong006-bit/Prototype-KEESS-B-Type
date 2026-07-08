@@ -1,8 +1,86 @@
+import type { Metadata } from 'next';
+import '@/styles/home.css';
+import Nav from '@/components/common/Nav';
+import RevealInit from '@/components/common/RevealInit';
+import HeroCarousel from '@/components/sections/home/HeroCarousel';
+import HomePillars from '@/components/sections/home/HomePillars';
+import HomeStats from '@/components/sections/home/HomeStats';
+import HomeManifesto from '@/components/sections/home/HomeManifesto';
+import HomeFaq from '@/components/sections/home/HomeFaq';
+import HomeInquiry from '@/components/sections/home/HomeInquiry';
+import { INTRO, REFERENCES, CERTS } from '@/data/home';
+
+export const metadata: Metadata = {
+  title: 'KEESS — KG에듀원 기업교육 | 진단으로 설계하고, 효과로 증명합니다.',
+  description:
+    '진단으로 설계하고, 효과로 증명합니다. KG에듀원 HRD사업본부의 기업·기관 교육 도입 채널 — AX·AI 전환·리더십·HRD 통합·콘텐츠 솔루션.',
+};
+
 export default function HomePage() {
   return (
-    <main className="wrap section">
-      <h1 className="sec-title">KEESS 홈 — scaffolding</h1>
-      <p className="eyebrow" style={{ marginTop: 16 }}>STEP 1 · 스캐폴딩 검증</p>
+    <main>
+      <Nav current="home" consultHref="#inq" />
+      <RevealInit />
+
+      <HeroCarousel />
+
+      {/* 인트로 — 조직을 먼저 진단 */}
+      <section className="section intro">
+        <div className="wrap">
+          <p className="eyebrow r" style={{ marginBottom: 22 }}>{INTRO.eyebrow}</p>
+          <p className="lead r" dangerouslySetInnerHTML={{ __html: INTRO.lead }} />
+          <p className="leadsub r">{INTRO.sub}</p>
+          <div className="midrule" />
+        </div>
+      </section>
+
+      <HomePillars />
+
+      <HomeStats />
+
+      <HomeManifesto />
+
+      {/* References */}
+      <section className="section">
+        <div className="wrap">
+          <p className="eyebrow r">{REFERENCES.eyebrow}</p>
+          <h2 className="sec-title r" style={{ marginTop: 12 }}>{REFERENCES.title}</h2>
+          {REFERENCES.blocks.map((b) => (
+            <div className="ref-block r" key={b.label}>
+              <p className="ref-label">{b.label}</p>
+              <div className="ref-grid stagger">
+                {b.items.map((it) => (
+                  <div className="ref" key={it.org}>
+                    <div className="org">{it.org}</div>
+                    <div className="role">{it.role}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+          <p className="ref-cap r">{REFERENCES.cap}</p>
+        </div>
+      </section>
+
+      {/* 인증 */}
+      <section className="section" id="cert" style={{ background: 'var(--surface)' }}>
+        <div className="wrap">
+          <p className="eyebrow r">{CERTS.eyebrow}</p>
+          <h2 className="sec-title r" style={{ marginTop: 12 }}>{CERTS.title}</h2>
+          <div className="cert-grid stagger">
+            {CERTS.items.map((c) => (
+              <div className="cert" key={c.main}>
+                {c.main}
+                <small>{c.small}</small>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <HomeFaq />
+
+      <HomeInquiry />
     </main>
   );
 }

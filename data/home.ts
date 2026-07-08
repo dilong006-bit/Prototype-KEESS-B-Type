@@ -1,0 +1,278 @@
+// 홈 카피 — keess_home_C_v18 정본 verbatim (하드코딩 금지 · 여기서 주입)
+
+// ── 히어로 캐러셀 5슬라이드 (원본 535) ──
+export interface HeroSlide {
+  theme: 'brand' | 'event' | 'new' | 'gov' | 'case';
+  img: string;
+  tag?: string;
+  eyebrow: string;
+  title: string; // <br> 허용
+  sub: string; // <br> 허용
+  cta: { label: string; scroll: string };
+  eager?: boolean;
+}
+
+export const HERO_SLIDES: HeroSlide[] = [
+  {
+    theme: 'brand',
+    img: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2000&auto=format&fit=crop',
+    eyebrow: 'KG에듀원 기업교육 · B2B · B2G',
+    title: '진단으로 설계하고, 효과로 증명합니다.',
+    sub: '조직을 먼저 진단해 무엇을 키울지 특정하고, 효과를 숫자로 증명합니다.<br>AX·AI 전환·리더십·HRD 통합·콘텐츠까지, 진단부터 결과보고까지 직접 책임집니다.',
+    cta: { label: '교육 상담 신청', scroll: '#inq' },
+    eager: true,
+  },
+  {
+    theme: 'event',
+    img: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2000&auto=format&fit=crop',
+    tag: 'EVENT · 예시',
+    eyebrow: '신규 도입 기업 대상',
+    title: '지금 도입하면,<br>조직 진단 무료',
+    sub: '오픈 기념, 신규 도입 기업에 조직 역량 진단을 무상 제공합니다. 진단 결과로 꼭 맞는 교육을 설계해 드립니다.',
+    cta: { label: '이벤트 신청', scroll: '#inq' },
+  },
+  {
+    theme: 'new',
+    img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2000&auto=format&fit=crop',
+    tag: 'NEW · 예시',
+    eyebrow: '2026 신규 과정',
+    title: '생성형 AI 실무 과정,<br>새로 열렸습니다',
+    sub: 'ChatGPT 업무 적용부터 데이터 분석·자동화까지. 현업에 바로 적용하는 AI 과정을 새롭게 선보입니다.',
+    cta: { label: '과정 살펴보기', scroll: '#p1' },
+  },
+  {
+    theme: 'gov',
+    img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2000&auto=format&fit=crop',
+    tag: '정부지원 · 예시',
+    eyebrow: '사업주훈련 환급 과정',
+    title: '교육비 부담은 낮추고,<br>역량은 높이고',
+    sub: '정부지원 요건을 충족하면 훈련비를 지원받을 수 있습니다. 필요한 절차는 담당 컨설턴트가 안내해 드립니다.',
+    cta: { label: '지원 상담', scroll: '#inq' },
+  },
+  {
+    theme: 'case',
+    img: 'https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=2000&auto=format&fit=crop',
+    tag: 'CASE · 예시',
+    eyebrow: '고객 성공 사례',
+    title: '○○기업, AI 전환 교육으로<br>실무를 바꾸다',
+    sub: '전 직원 AI 리터러시 교육 도입 후 업무 자동화가 확산됐습니다. 진단–설계–운영–성과까지 함께 만들었습니다.',
+    cta: { label: '사례 문의', scroll: '#inq' },
+  },
+];
+
+// ── 인트로 (원본 537-544) ──
+export const INTRO = {
+  eyebrow: 'KG에듀원 교육체계',
+  lead: '과정을 고르기 전에,<br>조직을 먼저 진단합니다.',
+  sub: '7대 교육체계 위에 8,000여 콘텐츠를 갖추고 매월 새 과정을 더합니다. 진단으로 설계하고, 운영으로 책임지고, 숫자로 증명합니다.',
+};
+
+// ── 4필러 (원본 546-614) ──
+export interface PillarStep {
+  num: string;
+  title: string;
+  desc: string;
+}
+export interface Pillar {
+  id: string;
+  ac: string; // --ac 변수값
+  pg: string; // --pg 그라디언트
+  img: string;
+  badge: string;
+  idx: string;
+  name: string;
+  headLines: string[]; // 줄 단위
+  steps: PillarStep[];
+  close?: string;
+  reverse?: boolean;
+  dot: string; // pdots aria-label
+}
+
+export const PILLARS: Pillar[] = [
+  {
+    id: 'p1',
+    ac: 'var(--p1)',
+    pg: 'linear-gradient(135deg,#2E1A6B,#5a3fb0)',
+    img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1600&auto=format&fit=crop',
+    badge: 'AI Transformation',
+    idx: '01',
+    name: 'AX·AI 전환',
+    headLines: ['AI 교육을 진단에서 시작해,', '성과로 끝냅니다.'],
+    steps: [
+      { num: '01', title: '진단으로 시작', desc: 'AI 성숙도 4단계로 현 위치를 봅니다.' },
+      { num: '02', title: '직무로 좁히고', desc: '5단계 역량모델·Skill Matrix로 직무별 설계.' },
+      { num: '03', title: '성과로 확인', desc: '전후 비교 리포트로 변화를 증명.' },
+    ],
+    dot: 'AX·AI',
+  },
+  {
+    id: 'p2',
+    ac: 'var(--p2)',
+    pg: 'linear-gradient(135deg,#E91E63,#ff7aa8)',
+    img: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1600&auto=format&fit=crop',
+    badge: 'Leadership Development',
+    idx: '02',
+    name: '리더십·조직',
+    headLines: ['리더십을 감이 아니라', '진단으로 키웁니다.'],
+    steps: [
+      { num: '01', title: '격차를 보고', desc: '텐트진단으로 자가·타인 인식의 격차를 드러냅니다.' },
+      { num: '02', title: '역량을 좁히고', desc: '우선 개발 역량부터 키웁니다.' },
+      { num: '03', title: '단계로 키우고', desc: '신임부터 임원까지 생애주기 파이프라인.' },
+    ],
+    reverse: true,
+    dot: '리더십',
+  },
+  {
+    id: 'p3',
+    ac: 'var(--p3)',
+    pg: 'linear-gradient(135deg,#8B27A8,#c44fd8)',
+    img: 'https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=1600&auto=format&fit=crop',
+    badge: 'Customized HRD Solution',
+    idx: '03',
+    name: 'HRD 통합 솔루션',
+    headLines: ['진단부터 시스템·운영·결과보고까지,', '한 곳에서 책임집니다.'],
+    steps: [
+      { num: '01', title: '시스템 안정', desc: '동시접속 2만·ISMS 전용 시스템.' },
+      { num: '02', title: '운영 밀착', desc: '알림톡·전담 핫라인·강사 품질관리체계로 밀착.' },
+      { num: '03', title: '성과 보고', desc: '만족도·수료율·현업 적용 정량 리포트.' },
+    ],
+    close: '국민건강보험공단·한국전기안전공사가 위탁운영을 맡깁니다.',
+    dot: 'HRD 통합',
+  },
+  {
+    id: 'p4',
+    ac: 'var(--p4)',
+    pg: 'linear-gradient(135deg,#F58220,#ffb15e)',
+    img: 'https://images.unsplash.com/photo-1581090700227-1e37b190418e?q=80&w=1600&auto=format&fit=crop',
+    badge: 'Content Solution',
+    idx: '04',
+    name: '콘텐츠 솔루션',
+    headLines: ['직무역량부터 자격증·외국어·', '조직문화까지,', '한 곳에서.'],
+    steps: [
+      { num: '01', title: '직무·비즈니스', desc: '직무 역량·비즈니스 스킬 3,500여 과정.' },
+      { num: '02', title: '외국어·자격', desc: '외국어 4,100여, 자격증 490여 과정.' },
+      { num: '03', title: '조직·교양·법정', desc: '조직문화·교양·법정의무교육까지.' },
+    ],
+    close: '필요한 콘텐츠는 직접 제작하고, 매월 새 과정을 더합니다.',
+    reverse: true,
+    dot: '콘텐츠',
+  },
+];
+
+// ── 성과 지표 (원본 616-625) ──
+export interface StatRing {
+  ac: string;
+  pct: number;
+  count: number;
+  suffix?: string;
+  label: string;
+}
+export const STATS: StatRing[] = [
+  { ac: '#8a6bff', pct: 0.82, count: 8000, suffix: '+', label: '보유 교육 콘텐츠' },
+  { ac: '#ff5e92', pct: 0.55, count: 100, suffix: '+', label: '매월 신규 과정' },
+  { ac: '#c067e0', pct: 0.7, count: 4146, label: '외국어 콘텐츠' },
+  { ac: '#ffa24d', pct: 0.9, count: 2, suffix: '만', label: '동시접속 · ISMS' },
+];
+
+// ── 매니페스토 (원본 627-632) ──
+export const MANIFESTO = {
+  img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2400&auto=format&fit=crop',
+  heading: '교육의 효과를, 이제 숫자로 증명합니다.',
+};
+
+// ── References (원본 634-656) ──
+export const REFERENCES = {
+  eyebrow: 'References',
+  title: '이미 이렇게 함께하고 있습니다.',
+  blocks: [
+    {
+      label: '위탁 운영',
+      items: [
+        { org: '국민건강보험공단', role: '위탁 운영' },
+        { org: '한국전기안전공사', role: '위탁 운영' },
+        { org: '그랜드코리아레저(GKL)', role: '위탁 운영' },
+      ],
+    },
+    {
+      label: '맞춤 제작 사례',
+      items: [
+        { org: 'KG그룹', role: '핵심가치·윤리교육' },
+        { org: '코오롱', role: '개인정보 온라인 콘텐츠' },
+        { org: 'KG제로인', role: '퇴직연금 시리즈' },
+      ],
+    },
+  ],
+  cap: '레퍼런스·사례 (노출 협의 기준)',
+};
+
+// ── 인증 (원본 658-669) ──
+export const CERTS = {
+  eyebrow: '정부지원 · 인증',
+  title: '정부가 인증하고, 보안으로 지킵니다.',
+  items: [
+    { main: '정부 3년 인증 훈련기관', small: '2026.01 – 2028.12' },
+    { main: 'ISMS', small: '정보보호 관리체계 인증' },
+    { main: '국무총리 표창', small: '정부 표창' },
+    { main: '고용노동부장관 표창', small: '정부 표창' },
+  ],
+};
+
+// ── FAQ (원본 672-684) ──
+export interface FaqItem {
+  type: string;
+  qn: string;
+  qt: string;
+  a: string;
+  acta?: { label: string; href: string };
+}
+export const FAQ_TABS = [
+  { type: '1', label: '교육 도입' },
+  { type: '2', label: '교육과정' },
+  { type: '3', label: 'LMS·운영' },
+  { type: '4', label: '비용·지원' },
+  { type: '5', label: 'KG에듀원 강점' },
+];
+export const FAQ = {
+  eyebrow: 'FAQ · 자주 묻는 질문',
+  title: '궁금한 점을 미리 확인하세요.',
+  sub: '도입 전 담당자가 가장 많이 묻는 질문을 모았습니다.<br>더 궁금한 점은 바로 문의해 주세요.',
+  foot: '필요한 답을 못 찾으셨나요?',
+  items: [
+    { type: '1', qn: 'Q01', qt: 'KG에듀원에서는 어떤 기업교육 서비스를 제공하나요?', a: '온라인 기업교육을 콘텐츠부터 운영까지 한 곳에서 지원합니다. AI·AX, 직무, 리더십, 법정의무, OA, 어학 과정에 기업 맞춤 제작과 LMS 운영을 더합니다.' },
+    { type: '1', qn: 'Q02', qt: '우리 회사도 온라인 기업교육을 도입할 수 있나요?', a: '규모나 업종과 무관하게 도입할 수 있습니다. 소규모 기업부터 중견·대기업, 공공기관까지 운영해 왔고, 목적과 예산에 맞춰 방안을 제안해 드립니다.' },
+    { type: '1', qn: 'Q03', qt: '우리 회사에 맞는 교육과정을 추천받을 수 있나요?', a: '네. 업종·직무·직급·목적을 확인해 맞는 과정을 추천해 드립니다. 필요하시면 연간 교육체계와 로드맵까지 함께 설계해 드립니다.', acta: { label: '맞춤 추천 상담', href: '#inq' } },
+    { type: '1', qn: 'Q04', qt: 'KG에듀원의 교육 운영 절차는 어떻게 되나요?', a: '상담 → 과정 제안 → 계약 → 개설 → 운영 → 결과 리포트 순으로 진행됩니다. 전담 운영 담당자가 시작부터 종료까지 함께합니다.' },
+    { type: '1', qn: 'Q05', qt: '교육과정 리스트를 받아볼 수 있나요?', a: '네. 아래로 문의를 남겨 주시면 최신 전체 과정 리스트를 보내드립니다.', acta: { label: '과정 리스트 요청', href: '#inq' } },
+    { type: '2', qn: 'Q06', qt: '어떤 교육 콘텐츠를 운영하고 있나요?', a: 'AI·AX, DX, 직무, 리더십, 법정의무, OA, 어학, ESG, 인문·교양까지 8,400여 개 과정을 운영합니다.' },
+    { type: '2', qn: 'Q07', qt: 'AI·AX 교육도 운영하나요?', a: '네. 생성형 AI 활용, ChatGPT 업무 적용, AI 업무 생산성 등 최신 과정을 운영합니다. 조직 진단을 바탕으로 현업에 맞는 AI 활용 과정을 설계해 드립니다.' },
+    { type: '2', qn: 'Q08', qt: '법정의무교육도 함께 운영할 수 있나요?', a: '네. 성희롱 예방, 개인정보보호, 장애인 인식개선, 퇴직연금 등을 온라인으로 운영합니다. 매년 새 시리즈로 제작해 이수율과 몰입을 높입니다.' },
+    { type: '2', qn: 'Q09', qt: '직급별 또는 직무별 교육도 가능한가요?', a: '가능합니다. 신입부터 팀장·관리자까지 직급별 과정과 영업·기획·생산·서비스 등 직무별 체계를 제공합니다.' },
+    { type: '2', qn: 'Q10', qt: '우리 회사 맞춤형 교육 콘텐츠도 제작할 수 있나요?', a: '가능합니다. 조직문화·업무 프로세스·사내 규정을 반영해 맞춤 콘텐츠를 제작합니다. 자체 스튜디오와 AI 제작으로 기획부터 제작까지 직접 진행합니다.', acta: { label: '맞춤 제작 문의', href: '#inq' } },
+    { type: '3', qn: 'Q11', qt: '기업 전용 LMS도 제공하나요?', a: '네. 운영·진도 관리·시험·설문·수료 관리를 지원하는 기업 전용 LMS를 제공합니다.' },
+    { type: '3', qn: 'Q12', qt: '교육 진행 현황을 확인할 수 있나요?', a: '네. 관리자 페이지에서 진도·수료율·시험·설문 결과를 실시간으로 확인할 수 있습니다.' },
+    { type: '3', qn: 'Q13', qt: 'PC와 모바일 모두 수강할 수 있나요?', a: '네. PC와 모바일 어디서든 수강할 수 있고, 기기를 바꿔도 이어보기가 됩니다.' },
+    { type: '3', qn: 'Q14', qt: '교육 종료 후 수료증 발급이 가능한가요?', a: '네. 수료 기준을 충족하면 과정 종료 시점에 온라인으로 수료증을 발급받을 수 있습니다.' },
+    { type: '4', qn: 'Q15', qt: '기업교육 비용은 어떻게 산정되나요?', a: '교육 인원·과정 수·운영 방식에 따라 맞춤 견적으로 안내해 드립니다. 상담을 남겨 주시면 예산에 맞는 운영 방안을 제안해 드립니다.', acta: { label: '견적 상담', href: '#inq' } },
+    { type: '4', qn: 'Q16', qt: '사업주훈련 과정과 일반 교육과정의 차이는 무엇인가요?', a: '사업주훈련은 기준을 충족하면 제도에 따라 훈련비를 지원받을 수 있는 과정입니다. 일반 과정은 지원과 무관하게 자유롭게 운영합니다. 지원 대상·기준은 관련 법령과 제도에 따라 달라질 수 있습니다.' },
+    { type: '4', qn: 'Q17', qt: '사업주훈련은 어떻게 신청하나요?', a: '상담 후 과정 선정 → 일정 협의 → 서류 제출 순으로 진행됩니다. 필요한 행정 절차는 담당 컨설턴트가 안내해 드립니다.' },
+    { type: '4', qn: 'Q18', qt: '교육 종료 후 지원 절차도 안내받을 수 있나요?', a: '네. 교육 운영뿐 아니라 지원 관련 절차까지 안내해, 담당자의 행정 부담을 덜어 드립니다.' },
+    { type: '5', qn: 'Q19', qt: '온라인 기업교육의 장점은 무엇인가요?', a: '시간과 장소에 매이지 않고 운영할 수 있고, 학습 이력과 수료 현황을 한눈에 관리할 수 있습니다. 집합교육보다 운영 부담과 비용이 적어 더 많은 임직원에게 교육을 제공할 수 있습니다.' },
+    { type: '5', qn: 'Q20', qt: '왜 KG에듀원을 선택해야 하나요?', a: '콘텐츠, 맞춤 설계, LMS 운영, 학습관리, 성과 분석까지 한 곳에서 지원합니다. 8,400여 개 과정과 자체 제작 역량, 전담 운영으로 기업의 인재 성장을 함께합니다.', acta: { label: '도입 문의', href: '#inq' } },
+  ] as FaqItem[],
+};
+
+// ── 문의 #inq (원본 686-731) ──
+export const INQ = {
+  side: {
+    lead: '교육 도입, 진단부터 상담해 드립니다.',
+    sub: '기업·기관 교육 도입 문의를 남겨 주시면, 담당자가 영업일 기준 1일 내 회신드립니다. 제안서·요건 자료가 있으시면 첨부해 주세요.',
+    trust: ['정부 3년 인증', 'ISMS', '동시접속 2만 운영'],
+  },
+  sectors: ['기업 (B2B)', '공공·기관 (B2G)'],
+  sizes: ['~50명', '50~300명', '300~1,000명', '1,000명+'],
+  interests: ['AX·AI 전환', '리더십·조직', 'HRD 통합 솔루션', '콘텐츠 솔루션', '정부지원'],
+  success: {
+    title: '상담 신청이 접수되었습니다.',
+    msg: '담당자가 영업일 기준 1일 내 회신드립니다.',
+  },
+};
