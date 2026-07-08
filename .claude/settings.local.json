@@ -18,7 +18,13 @@
       "Bash(npm install *)",
       "Bash(curl -sL \"https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/packages/pretendard/dist/web/variable/woff2/PretendardVariable.woff2\" -o public/fonts/PretendardVariable.woff2)",
       "Bash(xxd)",
-      "Bash(node -e \"console.log\\(require\\('next/package.json'\\).version\\)\")"
+      "Bash(node -e \"console.log\\(require\\('next/package.json'\\).version\\)\")",
+      "Bash(git commit -q -m 'chore: scaffold Next.js 14 + Tailwind v3.4 + self-host Pretendard, design tokens, 5 empty routes *)",
+      "Bash(mkdir -p public/images)",
+      "Bash(node -e ' *)",
+      "Bash(node run.js /c/Users/NT-0127/AppData/Local/Temp/playwright-test-keess.js)",
+      "Bash(git add *)",
+      "Bash(git commit -q -m 'feat\\(shell\\): common shell + components + 부정훈련 report modal *)"
     ]
   }
 }

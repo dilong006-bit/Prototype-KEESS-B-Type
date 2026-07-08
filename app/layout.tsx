@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import '@/styles/components.css';
 import { pretendard, gowun } from './fonts';
+import Footer from '@/components/common/Footer';
+import ToTop from '@/components/common/ToTop';
 
 export const metadata: Metadata = {
   title: 'KEESS — KG에듀원 기업교육',
@@ -14,7 +17,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko" className={`${pretendard.variable} ${gowun.variable}`}>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Footer />
+        <ToTop />
+      </body>
     </html>
   );
 }
