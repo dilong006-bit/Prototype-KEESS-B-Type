@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="ko"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>콘텐츠 솔루션 (B안 · 6축 체계) — KG에듀원 KEESS</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" rel="stylesheet">
+<style>
+:root{
+  --bg:#FCFCFE;--ink:#15131D;--muted:#65616F;--line:#ECE9F0;--surface:#F7F4EF;
+  --or:#F58220;--or2:#DE6A0C;--or3:#F4B83A;--orInk:#8A3F05;--orsoft:#FFF3E6;
+  --law:#2F6F5B;--lawsoft:#E9F4EF;--lawink:#1E4C3E;--rp:#2E1A6B;--rpsoft:#F0ECFA;
+  --ease:cubic-bezier(.22,.61,.36,1);--maxw:1180px;--gut:24px;--shadow:0 18px 44px -22px rgba(120,60,10,.34);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"Pretendard Variable",Pretendard,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.62;letter-spacing:-.01em;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gut)}
+.section{padding:80px 0;position:relative}
+@media(max-width:720px){.section{padding:48px 0}}
+.eyebrow{font-size:12px;letter-spacing:.15em;text-transform:uppercase;font-weight:800;color:var(--or2);display:flex;align-items:center;gap:9px}
+.eyebrow .no{font-size:12px;font-weight:900;color:#fff;background:var(--or2);border-radius:6px;padding:2px 7px}
+.eyebrow svg{width:16px;height:16px}
+h1,h2,h3{letter-spacing:-.025em;line-height:1.18;font-weight:800}
+h2{font-size:clamp(24px,3.2vw,38px)}
+.lead{color:var(--muted);font-size:clamp(15px,1.7vw,18px);max-width:56ch}
+:focus-visible{outline:2.5px solid var(--or2);outline-offset:2px;border-radius:6px}
+.btn{display:inline-flex;align-items:center;gap:8px;justify-content:center;border-radius:12px;font-weight:700;transition:transform .3s var(--ease),box-shadow .45s,background .3s,border-color .3s}
+.btn svg{width:16px;height:16px}
+.btn-or{padding:14px 24px;background:linear-gradient(120deg,var(--or),var(--or2));color:#fff;font-size:15px;box-shadow:0 14px 30px -14px rgba(222,106,12,.6)}
+.btn-or:hover{transform:translateY(-2px);box-shadow:0 22px 46px -16px rgba(222,106,12,.7)}
+.btn-sec{padding:13px 22px;background:#fff;border:1.5px solid var(--line);color:var(--or2);font-size:14.5px}
+.btn-sec:hover{border-color:var(--or);transform:translateY(-1px)}
+.btn-line{padding:9px 17px;border:1px solid #e2ddd3;background:transparent;font-size:13.5px;border-radius:999px}
+.btn-line:hover{border-color:var(--or);color:var(--or2)}
+.substep{font-size:11.5px;font-weight:800;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin:32px 0 14px;display:flex;align-items:center;gap:10px}
+.substep:before{content:"";width:20px;height:2px;background:var(--or)}
+
+.nav{position:fixed;top:0;left:0;right:0;z-index:70;transition:background .5s,border-color .5s;border-bottom:1px solid transparent}
+.nav.solid{background:rgba(252,252,254,.85);backdrop-filter:saturate(160%) blur(16px);border-bottom-color:var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-weight:900;letter-spacing:-.04em;font-size:21px}.logo b{color:var(--or2)}
+.gnav{display:flex;gap:26px}.gnav a{font-size:14px;color:var(--muted);font-weight:600}.gnav a.on{color:var(--or2);font-weight:800}
+.gnav a:hover{color:var(--ink)}.ncta{display:flex;gap:8px}
+@media(max-width:900px){.gnav{display:none}}@media(max-width:520px){.ncta .btn-line:first-child{display:none}}
+
+/* hero + 6축 hex map */
+.hero{padding:120px 0 50px;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:0;background:radial-gradient(760px 400px at 88% -12%,rgba(245,130,32,.16),transparent 60%),radial-gradient(520px 300px at 3% 20%,rgba(46,26,107,.08),transparent 60%);pointer-events:none}
+.hero-in{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+@media(max-width:940px){.hero-in{grid-template-columns:1fr;gap:28px}}
+.hero h1{font-size:clamp(28px,4.6vw,49px);margin:16px 0 18px}
+.hero h1 .hl{background:linear-gradient(120deg,var(--or),var(--or2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .lead{margin-bottom:22px}.hero-cta{display:flex;gap:12px;flex-wrap:wrap}.hero-note{margin-top:14px;font-size:12.5px;color:var(--muted)}
+.hexmap{position:relative;background:linear-gradient(155deg,#fff,#FFF8F0);border:1px solid var(--line);border-radius:24px;padding:22px;box-shadow:var(--shadow)}
+.hexmap .core{text-align:center;margin-bottom:14px}
+.hexmap .core b{font-size:clamp(34px,5.4vw,48px);font-weight:900;letter-spacing:-.05em;background:linear-gradient(120deg,var(--or),var(--or2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hexmap .core span{display:block;font-size:12px;color:var(--muted);font-weight:700}
+.hexmap .g6{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px}
+@media(max-width:420px){.hexmap .g6{grid-template-columns:1fr 1fr}}
+.hx{display:flex;flex-direction:column;align-items:center;gap:5px;text-align:center;background:var(--orsoft);border:1px solid #F6DDBE;border-radius:14px;padding:12px 8px;transition:transform .25s var(--ease),box-shadow .3s}
+.hx:hover{transform:translateY(-3px);box-shadow:0 12px 24px -14px rgba(222,106,12,.5)}
+.hx svg{width:22px;height:22px;color:var(--or2)}
+.hx .n{font-size:10px;font-weight:900;color:var(--or2);letter-spacing:.05em}
+.hx .t{font-size:12.5px;font-weight:800;line-height:1.2}
+.hx.law{background:var(--lawsoft);border-color:#CDE7DC}.hx.law svg,.hx.law .n{color:var(--law)}
+.hx.net{background:var(--rpsoft);border-color:#DDD3F2}.hx.net svg,.hx.net .n{color:var(--rp)}
+
+/* image slot (실사 교체용) */
+.imgslot{position:relative;border-radius:18px;overflow:hidden;background:linear-gradient(135deg,#3A2A1A,#8A3F05);display:flex;align-items:center;justify-content:center;min-height:150px}
+.imgslot:after{content:"실사 이미지 (교체 슬롯)";position:absolute;bottom:10px;right:12px;font-size:10.5px;color:rgba(255,255,255,.7);font-weight:600}
+.imgslot svg{width:34px;height:34px;color:rgba(255,255,255,.55)}
+.imgslot .cap{position:absolute;top:12px;left:14px;font-size:12px;font-weight:800;color:rgba(255,255,255,.9)}
+
+.axisnav{position:sticky;top:64px;z-index:50;background:rgba(252,252,254,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.axisnav-in{display:flex;gap:6px;overflow-x:auto;padding:10px 0}
+.axisnav a{flex:0 0 auto;font-size:13px;font-weight:700;color:var(--muted);padding:8px 14px;border-radius:999px;transition:all .25s;white-space:nowrap;display:flex;align-items:center;gap:7px}
+.axisnav a .dot{width:7px;height:7px;border-radius:50%;background:currentColor;opacity:.4}
+.axisnav a:hover{color:var(--ink)}.axisnav a.on{color:#fff;background:linear-gradient(120deg,var(--or),var(--or2))}.axisnav a.on .dot{opacity:1;background:#fff}
+
+.axhead{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:22px}
+.axhead h2{margin:11px 0 7px}
+.axtag{font-size:12.5px;font-weight:800;color:var(--or2);background:var(--orsoft);border:1px solid #F6DDBE;border-radius:999px;padding:6px 14px;white-space:nowrap}
+
+/* 01 직무 맵 */
+.jobgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:860px){.jobgrid{grid-template-columns:1fr 1fr}}@media(max-width:520px){.jobgrid{grid-template-columns:1fr}}
+.jobcard{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;transition:transform .3s var(--ease),box-shadow .4s,border-color .3s}
+.jobcard:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:transparent}
+.jobcard .top{display:flex;align-items:center;gap:11px;margin-bottom:13px}
+.jobcard .ib{width:42px;height:42px;border-radius:12px;background:var(--orsoft);color:var(--or2);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.jobcard .ib svg{width:22px;height:22px}
+.jobcard h3{font-size:16.5px}
+.jobcard .sk{display:flex;gap:6px;flex-wrap:wrap}
+.jobcard .sk span{font-size:12px;color:#463f52;background:var(--surface);border-radius:7px;padding:5px 10px;font-weight:600}
+
+/* 02 어학 프로피션시 매트릭스 */
+.langwrap{background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:0 10px 30px -24px rgba(0,0,0,.4)}
+.profmatrix{overflow-x:auto}
+.pmhead,.pmrow{display:grid;grid-template-columns:110px repeat(4,1fr);gap:8px;min-width:660px;align-items:stretch}
+.pmhead{margin-bottom:8px;align-items:center}
+.pmhead .axis{font-size:10.5px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;display:flex;align-items:center}
+.pmhead .col{font-size:12px;font-weight:800;color:var(--or2);text-align:center;background:var(--orsoft);border:1px solid #F6DDBE;border-radius:9px;padding:9px 6px}
+.pmrow{margin-bottom:8px}
+.pmrow .lang{display:flex;align-items:center;gap:7px;font-size:14px;font-weight:800}
+.pmrow .lang svg{width:16px;height:16px;color:var(--or2);flex-shrink:0}
+.pmcell{border-radius:10px;padding:11px 12px;font-size:12.5px;font-weight:600;color:#4a4356;display:flex;align-items:center;line-height:1.35}
+.pmcell.c1{background:#FFF6EC;border:1px solid #F8E4CB}
+.pmcell.c2{background:#FFEBD6;border:1px solid #F6DBB8}
+.pmcell.c3{background:#FBD9B0;border:1px solid #F1C592}
+.pmcell.c4{background:#F5C088;border:1px solid #EAAE6A;color:#5A2E05;font-weight:700}
+.pmgrow{display:flex;justify-content:flex-end;align-items:center;gap:6px;margin-top:6px;font-size:11px;font-weight:800;color:var(--or2)}
+.pmgrow .bar{width:130px;height:6px;border-radius:3px;background:linear-gradient(90deg,#FFF6EC,#F5C088)}
+.pmnote{font-size:12px;color:var(--muted);margin-top:8px}
+.langfoot{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+.langfoot .lb{font-size:12px;font-weight:800;color:var(--muted)}
+.langfoot span.p{font-size:12px;font-weight:700;color:var(--rp);background:var(--rpsoft);border-radius:999px;padding:5px 12px}
+
+/* 03 IT 마일스톤 로드맵 (자격 매핑) */
+.roadmap{padding:6px 0}
+.rmline{position:relative;display:grid;grid-template-columns:repeat(3,1fr);margin-bottom:20px}
+.rmline:before{content:"";position:absolute;left:16.66%;right:16.66%;top:9px;height:3px;background:linear-gradient(90deg,#FBD9B0,#E86F10);border-radius:2px;z-index:0}
+.rmpt{position:relative;z-index:1;text-align:center}
+.rmpt .dot{width:20px;height:20px;border-radius:50%;background:var(--or2);border:4px solid #fff;box-shadow:0 0 0 3px rgba(222,106,12,.25);margin:0 auto 10px}
+.rmpt .st{font-size:11px;font-weight:900;color:var(--or2);letter-spacing:.06em}
+.rmpt .nm{font-size:15.5px;font-weight:800;margin-top:2px}
+.rmcols{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.rmcard{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px}
+.rmcard .sk{display:flex;flex-direction:column;gap:6px;margin-bottom:13px}
+.rmcard .sk span{font-size:12.5px;font-weight:600;color:#463f52;background:var(--surface);border-radius:8px;padding:8px 11px}
+.rmcard .ct{border-top:1px dashed var(--line);padding-top:12px}
+.rmcard .ct .cl{font-size:10px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.rmcard .ct .cl svg{width:14px;height:14px;color:var(--or2)}
+.rmcard .ct .cb{display:flex;gap:5px;flex-wrap:wrap}
+.rmcard .ct .cb span{font-size:11px;font-weight:700;color:var(--orInk);background:var(--orsoft);border-radius:6px;padding:3px 9px}
+.rmaxis{display:flex;justify-content:space-between;margin-top:14px;font-size:11.5px;font-weight:800;color:var(--muted)}
+.rmaxis .r{color:var(--or2)}
+@media(max-width:720px){.rmline{grid-template-columns:1fr;gap:8px}.rmline:before{display:none}.rmpt{text-align:left;display:flex;align-items:center;gap:10px}.rmpt .dot{margin:0}.rmcols{grid-template-columns:1fr}}
+
+/* 04 성장 티어 프레임워크 (축 명시) */
+.growthfw{display:flex;gap:14px;align-items:stretch}
+.gfaxis{flex:0 0 30px;display:flex;flex-direction:column;align-items:center;padding:4px 0}
+.gfaxis .lab{writing-mode:vertical-rl;font-size:10.5px;font-weight:800;color:var(--muted);letter-spacing:.12em;text-transform:uppercase}
+.gfaxis .arr{width:2px;flex:1;background:linear-gradient(#F4B83A,#B4520A);position:relative;margin:8px 0}
+.gfaxis .arr:after{content:"▼";position:absolute;bottom:-11px;left:50%;transform:translateX(-50%);color:#B4520A;font-size:10px}
+.gftiers{flex:1;display:flex;flex-direction:column;gap:10px}
+.gftier{display:grid;grid-template-columns:1fr 96px;gap:14px;align-items:center;border-radius:16px;padding:17px 20px;color:#fff}
+.gftier.t1{background:linear-gradient(120deg,#F4B83A,#F4A03A)}
+.gftier.t2{background:linear-gradient(120deg,#F4A03A,#E86F10)}
+.gftier.t3{background:linear-gradient(120deg,#E86F10,#B4520A)}
+.gftier .no{font-size:11px;font-weight:900;letter-spacing:.08em;opacity:.9}
+.gftier h3{font-size:17px;margin:2px 0 10px}
+.gftier .items{display:flex;gap:7px;flex-wrap:wrap}
+.gftier .items span{font-size:12px;font-weight:700;background:rgba(255,255,255,.2);border-radius:7px;padding:4px 11px}
+.gftier .stage{text-align:center;background:rgba(255,255,255,.18);border-radius:12px;padding:11px 8px}
+.gftier .stage b{font-size:13.5px;font-weight:800;display:block;line-height:1.2}
+.gftier .stage span{font-size:10px;opacity:.85;letter-spacing:.04em}
+@media(max-width:640px){.growthfw{flex-direction:column}.gfaxis{flex-direction:row;flex:none;height:26px;width:100%}.gfaxis .lab{writing-mode:horizontal-tb}.gfaxis .arr{height:2px;width:auto;flex:1;margin:0 8px}.gfaxis .arr:after{bottom:auto;top:50%;left:auto;right:-11px;transform:translateY(-50%) rotate(-90deg)}.gftier{grid-template-columns:1fr}}
+.culturebar{margin-top:16px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.culturebar .lb{font-size:12.5px;font-weight:800;color:var(--muted)}
+.culturebar span.c{font-size:12.5px;font-weight:700;color:var(--or2);background:var(--orsoft);border-radius:999px;padding:5px 13px}
+
+/* 05 법정 (reuse) */
+.legal{background:var(--lawsoft);border-top:1px solid #D3EADF;border-bottom:1px solid #D3EADF}
+.legal .eyebrow,.legal .eyebrow .no{color:var(--law)}.legal .eyebrow .no{background:var(--law);color:#fff}
+.legal .axtag{color:var(--law);background:#fff;border-color:#CDE7DC}.legal h2 .hl{color:var(--law)}.legal .substep:before{background:var(--law)}
+.timeline{display:flex;margin-bottom:8px}
+.tnode{flex:1;text-align:center;position:relative;padding:0 6px}
+.tnode:before{content:"";position:absolute;top:15px;left:0;right:0;height:2px;background:#CDE7DC}
+.tnode:first-child:before{left:50%}.tnode:last-child:before{right:50%}
+.tnode .dot{position:relative;z-index:1;width:14px;height:14px;border-radius:50%;background:#fff;border:3px solid #9FCFBD;margin:9px auto 12px}
+.tnode.cur .dot{background:var(--law);border-color:var(--law);box-shadow:0 0 0 5px rgba(47,111,91,.18)}
+.tnode .yr{font-size:13px;font-weight:900;color:var(--law)}.tnode .nm{font-size:14.5px;font-weight:800;margin:5px 0 2px}.tnode .cc{font-size:11.5px;color:var(--muted)}
+.tnode .bn{display:inline-block;font-size:10px;font-weight:800;color:#fff;background:var(--law);border-radius:6px;padding:1px 7px;margin-top:6px}
+.lawgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:11px;margin-top:6px}
+@media(max-width:1000px){.lawgrid{grid-template-columns:repeat(3,1fr)}}@media(max-width:640px){.lawgrid{grid-template-columns:1fr 1fr}}
+.lawcard{background:#fff;border:1px solid #D3EADF;border-radius:14px;padding:15px;transition:transform .3s var(--ease),box-shadow .4s}
+.lawcard:hover{transform:translateY(-3px);box-shadow:0 16px 34px -20px rgba(47,111,91,.5)}
+.lawcard .must{font-size:10px;font-weight:800;color:#fff;background:var(--law);border-radius:5px;padding:2px 6px}
+.lawcard h3{font-size:14px;margin:9px 0 11px;min-height:2.6em}
+.lawcard .frow{display:flex;gap:8px;font-size:11.5px;margin-bottom:6px}
+.lawcard .frow dt{flex:0 0 40px;color:var(--law);font-weight:800}.lawcard .frow dd{color:#2A2733;font-weight:600}
+.difftable{margin-top:14px;background:#fff;border:1px solid #CDE7DC;border-radius:16px;overflow:hidden}
+.difftable table{width:100%;border-collapse:collapse}
+.difftable th,.difftable td{padding:12px 16px;font-size:13.5px;text-align:left;border-bottom:1px solid #EAF4EF}
+.difftable thead th{background:var(--lawsoft);font-size:12px;color:var(--lawink);font-weight:800}.difftable thead th:last-child{background:var(--law);color:#fff}
+.difftable tbody td:first-child{font-weight:700;color:#2A2733;width:26%}.difftable tbody td:nth-child(2){color:var(--muted)}
+.difftable tbody td:last-child{font-weight:800;color:var(--lawink);background:rgba(47,111,91,.06)}
+.difftable tr:last-child td{border-bottom:none}
+
+/* 06 제작·파트너 */
+.prod{background:var(--surface);border-top:1px solid var(--line)}
+.infra{display:grid;grid-template-columns:1fr 1.3fr;gap:16px;margin-bottom:8px}
+@media(max-width:820px){.infra{grid-template-columns:1fr}}
+.pipebox{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px}
+.pipebox .lb{font-size:11.5px;font-weight:800;letter-spacing:.08em;color:var(--or2);text-transform:uppercase;margin-bottom:16px}
+.pipe{display:flex;gap:0}
+.pstep{flex:1;text-align:center;position:relative;padding:0 4px}
+.pstep .ic{width:36px;height:36px;border-radius:11px;background:var(--orsoft);color:var(--or2);font-weight:900;font-size:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 9px}
+.pstep .t{font-size:12px;font-weight:800;line-height:1.25}.pstep .dd{font-size:10.5px;color:var(--muted);margin-top:3px}
+.pstep:not(:last-child):after{content:"→";position:absolute;top:8px;right:-6px;color:#E0A56A;font-weight:900}
+@media(max-width:620px){.pipe{flex-direction:column;gap:10px}.pstep:not(:last-child):after{content:"↓";top:auto;bottom:-13px;right:auto;left:50%}}
+.ipgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:820px){.ipgrid{grid-template-columns:1fr 1fr}}@media(max-width:520px){.ipgrid{grid-template-columns:1fr}}
+.ipcard{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;transition:transform .3s var(--ease),box-shadow .4s}
+.ipcard:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.ipcard .ipt{font-size:11px;font-weight:800;color:var(--or2);background:var(--orsoft);border-radius:6px;padding:3px 9px;display:inline-block;margin-bottom:9px}
+.ipcard p{font-size:13.5px;font-weight:700;line-height:1.4}
+.plogos{display:grid;grid-template-columns:repeat(7,1fr);gap:9px}
+@media(max-width:900px){.plogos{grid-template-columns:repeat(4,1fr)}}@media(max-width:560px){.plogos{grid-template-columns:repeat(2,1fr)}}
+.plogo{background:#fff;border:1px solid var(--line);border-radius:11px;padding:14px 8px;text-align:center;font-size:12.5px;font-weight:700;color:#3A3646;transition:all .3s var(--ease)}
+.plogo:hover{border-color:var(--rp);color:var(--rp);transform:translateY(-2px)}
+.counter{margin-top:16px;background:linear-gradient(135deg,var(--rp),#4A2E9E);border-radius:16px;padding:16px 22px;color:#fff;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.counter b{font-size:28px;font-weight:900}.counter span{font-size:13px;color:rgba(255,255,255,.85)}
+
+/* explorer modal */
+.exp-modal{max-width:1060px}
+.exp-modal .mhead{background:linear-gradient(120deg,var(--or),var(--or2))}
+.tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}
+.tab{padding:8px 14px;border-radius:999px;font-size:12.5px;font-weight:700;color:var(--muted);background:#fff;border:1px solid var(--line)}
+.tab .n{font-size:11px;opacity:.7;margin-left:5px}.tab.on{color:#fff;background:linear-gradient(120deg,var(--or),var(--or2));border-color:transparent}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:16px}
+.search{flex:1 1 220px;display:flex;align-items:center;gap:9px;background:var(--surface);border-radius:11px;padding:9px 12px}
+.search input{border:none;background:none;width:100%;font-size:13.5px}.search input:focus{outline:none}.search svg{width:16px;height:16px;color:var(--muted)}
+.sels{display:flex;gap:7px;flex-wrap:wrap}.sel{position:relative}
+.sel select{appearance:none;-webkit-appearance:none;border:1px solid var(--line);background:#fff;border-radius:9px;padding:8px 28px 8px 11px;font-size:12px;font-weight:600;cursor:pointer}
+.sel:after{content:"";position:absolute;right:10px;top:50%;width:6px;height:6px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:translateY(-70%) rotate(45deg);pointer-events:none}
+.count{font-size:12.5px;color:var(--muted);font-weight:600}.count b{color:var(--or2)}.reset{font-size:12px;color:var(--muted);text-decoration:underline}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:820px){.grid{grid-template-columns:1fr 1fr}}@media(max-width:540px){.grid{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;cursor:pointer;display:flex;flex-direction:column;transition:transform .35s var(--ease),box-shadow .45s,border-color .35s}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:transparent}
+.thumb{height:96px;position:relative;display:flex;align-items:flex-end;padding:11px;color:#fff}
+.thumb .cat{position:relative;z-index:2;font-size:10.5px;font-weight:800;background:rgba(255,255,255,.22);border-radius:999px;padding:3px 9px}
+.thumb .hrs{position:absolute;top:11px;right:11px;z-index:2;font-size:11px;font-weight:800;background:rgba(0,0,0,.22);border-radius:999px;padding:3px 8px}
+.card .body{padding:13px 14px 15px;display:flex;flex-direction:column;flex:1}
+.card h3{font-size:14.5px;line-height:1.34;margin-bottom:9px;min-height:2.5em}
+.badges{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:9px}
+.bdg{font-size:10.5px;font-weight:700;border-radius:6px;padding:3px 7px}
+.bdg.tg{background:#F0EEF6;color:#4C485A}.bdg.lv{background:var(--orsoft);color:var(--orInk)}.bdg.bk{background:#EAF6EC;color:#2B7A3D}
+.card .kw{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto}.card .kw span{font-size:10.5px;color:var(--muted)}.card .kw span:before{content:"#";opacity:.5}
+.card .meta{font-size:11.5px;color:var(--muted);margin-bottom:8px;display:flex;gap:10px}
+.empty{grid-column:1/-1;text-align:center;padding:40px 20px;color:var(--muted)}.empty b{color:var(--ink);display:block;font-size:16px;margin-bottom:6px}
+
+/* modal base + form */
+.ov{position:fixed;inset:0;background:rgba(21,19,29,.5);backdrop-filter:blur(4px);z-index:100;display:none;align-items:flex-start;justify-content:center;padding:36px 18px;overflow-y:auto}
+.ov.on{display:flex}
+.modal{background:var(--bg);border-radius:22px;max-width:660px;width:100%;box-shadow:0 40px 90px -30px rgba(0,0,0,.5);animation:pop .4s var(--ease)}
+@keyframes pop{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:none}}
+.mhead{padding:24px 28px 20px;color:#fff;border-radius:22px 22px 0 0;position:relative}
+.mhead .cat{font-size:12px;font-weight:800;background:rgba(255,255,255,.22);border-radius:999px;padding:4px 12px;display:inline-block;margin-bottom:11px}
+.mhead h3{font-size:22px;line-height:1.26}.mhead .mb{display:flex;gap:7px;flex-wrap:wrap;margin-top:13px}.mhead .mb span{font-size:12px;font-weight:700;background:rgba(255,255,255,.18);border-radius:7px;padding:4px 10px}
+.mclose{position:absolute;top:18px;right:18px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.2);color:#fff;font-size:18px;display:flex;align-items:center;justify-content:center}
+.mbody{padding:22px 26px 26px}.mblock{margin-bottom:20px}
+.mblock .lb{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--or2);font-weight:800;margin-bottom:9px}
+.mblock p{color:#332F3D;font-size:14.5px}
+.mblock ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.mblock ul li{font-size:14px;padding-left:24px;position:relative;color:#332F3D}
+.mblock ul.obj li:before{content:"✓";position:absolute;left:0;color:var(--or2);font-weight:900}
+.mblock ol{list-style:none;counter-reset:c;display:flex;flex-direction:column;gap:7px}
+.mblock ol li{counter-increment:c;font-size:14px;padding-left:30px;position:relative;color:#332F3D}
+.mblock ol li:before{content:counter(c,decimal-leading-zero);position:absolute;left:0;font-size:11px;font-weight:800;color:var(--or2);top:3px}
+.mtools{display:flex;gap:6px;flex-wrap:wrap}.mtools span{font-size:12px;font-weight:700;color:var(--orInk);background:var(--orsoft);border-radius:7px;padding:4px 10px}
+.minst{font-size:13.5px;color:var(--muted)}.minst b{color:var(--ink)}
+.mcta{border-top:1px solid var(--line);padding-top:18px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}.mcta .src{font-size:11.5px;color:var(--muted)}
+.form-modal{max-width:480px}.form-modal .mhead{background:linear-gradient(140deg,var(--or2),var(--or))}
+.field{margin-bottom:14px}.field label{display:block;font-size:13px;font-weight:700;margin-bottom:6px}.field label .req{color:var(--or2)}
+.field input,.field textarea{width:100%;border:1px solid var(--line);border-radius:11px;padding:12px 14px;font-family:inherit;font-size:14px;background:#fff;transition:border-color .25s}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--or)}.field textarea{resize:vertical;min-height:78px}
+.ctx{font-size:12.5px;color:var(--or2);font-weight:700;background:var(--orsoft);border-radius:9px;padding:9px 13px;margin-bottom:14px;display:none}.ctx.on{display:block}
+.okmsg{display:none;text-align:center;padding:20px 0}.okmsg.on{display:block}
+.okmsg .ic{width:52px;height:52px;border-radius:50%;background:var(--orsoft);color:var(--or2);font-size:26px;display:flex;align-items:center;justify-content:center;margin:0 auto 12px}
+.samplenote{font-size:12px;color:var(--muted);margin-top:14px}.samplenote b{color:var(--or2)}
+
+.final{background:linear-gradient(150deg,#2A1608,#8A3F05 60%,#DE6A0C);color:#fff;border-radius:28px;padding:52px 44px;text-align:center;position:relative;overflow:hidden}
+.final:before{content:"";position:absolute;inset:0;background:radial-gradient(500px 260px at 80% 0,rgba(244,184,58,.28),transparent 60%)}
+.final h2{position:relative;color:#fff;margin-bottom:12px}.final p{position:relative;color:rgba(255,255,255,.82);max-width:48ch;margin:0 auto 24px}
+.final .fbtns{position:relative;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.final .btn-or{background:#fff;color:var(--or2)}.final .btn-or:hover{background:#FFF3E6}
+.final .btn-ghost{padding:14px 24px;border:1.5px solid rgba(255,255,255,.4);color:#fff;border-radius:12px;font-weight:700}.final .btn-ghost:hover{background:rgba(255,255,255,.12)}
+footer{padding:36px 0;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px}
+footer .fw{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+/* floating explorer btn */
+.fab{position:fixed;right:22px;bottom:22px;z-index:55;padding:14px 20px;border-radius:999px;background:linear-gradient(120deg,var(--or),var(--or2));color:#fff;font-weight:800;font-size:14px;box-shadow:0 16px 34px -12px rgba(222,106,12,.7);display:flex;align-items:center;gap:8px;transition:transform .3s var(--ease)}
+.fab:hover{transform:translateY(-3px)}.fab svg{width:17px;height:17px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+/* ===== 전체 과정 리스트 다운로드 (B안 P4 v2.0 신규) ===== */
+#download{background:linear-gradient(180deg,#fff,var(--orsoft))}
+.dl{display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:24px;padding:34px;box-shadow:var(--shadow)}
+@media(max-width:820px){.dl{grid-template-columns:1fr;gap:22px;padding:26px}}
+.dl h2{margin:12px 0 12px}
+.dl .hl{background:linear-gradient(120deg,var(--or),var(--or2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.dl .lead{margin-bottom:16px}
+.dl-cross{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:800;color:var(--rp);background:var(--rpsoft);border:1px solid #DDD3F2;border-radius:999px;padding:7px 14px;transition:border-color .25s,transform .25s var(--ease)}
+.dl-cross:hover{border-color:var(--rp);transform:translateY(-1px)}
+.dl-cross svg{width:14px;height:14px}
+.dl-act{margin-top:20px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.dl-meta{font-size:12px;color:var(--muted);font-weight:600}
+.dl-file{background:linear-gradient(160deg,var(--surface),#fff);border:1px solid var(--line);border-radius:18px;padding:22px}
+.dl-file .fh{display:flex;align-items:center;gap:11px;margin-bottom:16px}
+.dl-file .xls{width:44px;height:44px;border-radius:11px;background:#1E6B41;color:#fff;font-weight:900;font-size:12.5px;display:flex;align-items:center;justify-content:center;flex-shrink:0;letter-spacing:.02em}
+.dl-file .fh b{font-size:15px;font-weight:800;display:block}
+.dl-file .fh span{font-size:12px;color:var(--muted)}
+.dl-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px}
+@media(max-width:420px){.dl-stats{grid-template-columns:1fr 1fr}}
+.dst{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 10px;text-align:center}
+.dst b{font-size:19px;font-weight:900;letter-spacing:-.03em;color:var(--or2);display:block;font-variant-numeric:tabular-nums}
+.dst.hi{border-color:#DDD3F2;background:var(--rpsoft)}.dst.hi b{color:var(--rp)}
+.dst span{font-size:10.5px;color:var(--muted);font-weight:700}
+.dl-upd{margin-top:12px;font-size:11.5px;color:var(--muted);text-align:center;font-weight:600}
+</style></head><body>
+
+<header class="nav" id="nav"><div class="wrap nav-in">
+  <div class="logo">KE<b>E</b>SS</div>
+  <nav class="gnav"><a href="#">AX·AI 전환</a><a href="#">리더십·조직</a><a href="#">HRD 통합 솔루션</a><a href="#" class="on">콘텐츠 솔루션</a><a href="#">정부지원</a></nav>
+  <div class="ncta"><button class="btn btn-line" data-consult>가이드 받기</button><button class="btn btn-line" data-consult style="border-color:var(--or);color:var(--or2)">도입 문의</button></div>
+</div></header>
+
+<section class="hero"><div class="wrap hero-in">
+  <div>
+    <span class="eyebrow">콘텐츠 솔루션</span>
+    <h1>기업에 필요한 <span class="hl">모든 교육</span>을,<br>한 곳에서 고릅니다</h1>
+    <p class="lead">직무·어학·IT·리더십·법정·제작까지 8,426개 과정. 조직 과제에 맞는 교육을 6개 체계에서 찾습니다.</p>
+    <div class="hero-cta"><a href="#ax1" class="btn btn-or">6개 체계 보기</a><button class="btn btn-or" data-explorer style="background:#fff;color:var(--or2);border:1.5px solid var(--line)"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg> 대표 과정 찾기</button></div>
+    <p class="hero-note">프로토타입 (B안 · 6축 체계형). 체계·규모는 소개서 기준, 대표 과정 34종은 실데이터. 실사 이미지는 교체 슬롯. 가격은 표시하지 않습니다.</p>
+  </div>
+  <div class="hexmap" aria-label="6축 체계 맵">
+    <div class="core"><b>8,426</b><span>개 과정 · 6개 체계 · 매월 100+ 신규</span></div>
+    <div class="g6">
+      <a class="hx" href="#ax1"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="14" height="14" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg><span class="n">01</span><span class="t">직무역량</span></a>
+      <a class="hx" href="#ax2"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg><span class="n">02</span><span class="t">어학·글로벌</span></a>
+      <a class="hx" href="#ax3"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13 5l-2 14"/></svg><span class="n">03</span><span class="t">IT·자격</span></a>
+      <a class="hx" href="#ax4"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5M3 16.5l9 5 9-5"/></svg><span class="n">04</span><span class="t">비즈니스·리더십</span></a>
+      <a class="hx law" href="#ax5"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg><span class="n">05</span><span class="t">법정 헌터스</span></a>
+      <a class="hx net" href="#ax6"><svg class="imgbig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span class="n">06</span><span class="t">제작·파트너</span></a>
+    </div>
+  </div>
+</div></section>
+
+<nav class="axisnav" id="axisnav"><div class="wrap axisnav-in">
+  <a href="#ax1" data-ax="ax1"><span class="dot"></span>01 직무역량</a>
+  <a href="#ax2" data-ax="ax2"><span class="dot"></span>02 어학·글로벌</a>
+  <a href="#ax3" data-ax="ax3"><span class="dot"></span>03 IT·자격</a>
+  <a href="#ax4" data-ax="ax4"><span class="dot"></span>04 비즈니스·리더십</a>
+  <a href="#ax5" data-ax="ax5"><span class="dot"></span>05 법정 헌터스</a>
+  <a href="#ax6" data-ax="ax6"><span class="dot"></span>06 제작·파트너</a>
+</div></nav>
+
+<!-- 01 직무역량 -->
+<section class="section" id="ax1"><div class="wrap">
+  <div class="axhead"><div><span class="eyebrow"><span class="no">01</span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="14" height="14" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg> Job Competency</span>
+    <h2>직무역량 — 6개 직무군을 한 장에</h2>
+    <p class="lead">DX부터 생산·품질까지, 현업 직무 그대로 역량을 묶었습니다.</p></div>
+    <span class="axtag">직무 전문 1,007+ · 직무공통 2,574</span></div>
+  <div class="jobgrid"><div class="jobcard"><div class="top"><div class="ib"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="14" height="14" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg></div><h3>DX·AX</h3></div><div class="sk"><span>생성형 AI</span><span>데이터 분석</span><span>업무 자동화</span><span>AI Agent</span><span>디지털 전환</span></div></div><div class="jobcard"><div class="top"><div class="ib"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/></svg></div><h3>경영·기획</h3></div><div class="sk"><span>경영전략</span><span>사업기획</span><span>프로젝트 관리</span><span>문제해결</span><span>의사결정</span></div></div><div class="jobcard"><div class="top"><div class="ib"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11v2a1 1 0 001 1h2l4 4V6L6 10H4a1 1 0 00-1 1z"/><path d="M15 8a5 5 0 010 8M18 5a9 9 0 010 14"/></svg></div><h3>마케팅·영업</h3></div><div class="sk"><span>디지털 마케팅</span><span>브랜드 마케팅</span><span>B2B 영업</span><span>고객관리</span></div></div><div class="jobcard"><div class="top"><div class="ib"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0112 0"/><circle cx="17" cy="9" r="2.4"/><path d="M15 20a5 5 0 019-3"/></svg></div><h3>인사·조직</h3></div><div class="sk"><span>채용</span><span>평가·보상</span><span>HRD</span><span>조직문화</span></div></div><div class="jobcard"><div class="top"><div class="ib"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V4"/><path d="M4 20h16"/><rect x="7" y="12" width="3" height="5"/><rect x="12" y="8" width="3" height="9"/><rect x="17" y="5" width="3" height="12"/></svg></div><h3>재무·회계</h3></div><div class="sk"><span>회계</span><span>세무</span><span>재무관리</span></div></div><div class="jobcard"><div class="top"><div class="ib"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M4 7.5l8 4.5 8-4.5M12 12v9"/></svg></div><h3>구매·생산·품질</h3></div><div class="sk"><span>생산관리</span><span>SCM</span><span>품질관리</span></div></div></div>
+</div></section>
+
+<!-- 02 어학 -->
+<section class="section" id="ax2" style="background:var(--surface);border-top:1px solid var(--line)"><div class="wrap">
+  <div class="axhead"><div><span class="eyebrow"><span class="no">02</span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg> Language</span>
+    <h2>어학·글로벌 — 입문부터 시험까지, 레벨로</h2>
+    <p class="lead">언어별로 어디서 시작해 어디까지 가는지 한눈에 봅니다.</p></div>
+    <span class="axtag">외국어 4,146 보유</span></div>
+  <div class="langwrap">
+    <div class="profmatrix">
+      <div class="pmhead"><div class="axis">언어 ↓ / 레벨 →</div><div class="col">LV1 · 입문</div><div class="col">LV2 · 일상</div><div class="col">LV3 · 비즈니스</div><div class="col">LV4 · 시험·자격</div></div>
+      <div class="pmrow"><div class="lang"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg>영어</div><div class="pmcell c1">발음·기초회화</div><div class="pmcell c2">일상 회화</div><div class="pmcell c3">비즈니스 영어</div><div class="pmcell c4">TOEIC · OPIc</div></div><div class="pmrow"><div class="lang"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg>중국어</div><div class="pmcell c1">병음·기초</div><div class="pmcell c2">일상 회화</div><div class="pmcell c3">비즈니스 중국어</div><div class="pmcell c4">HSK</div></div><div class="pmrow"><div class="lang"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg>일본어</div><div class="pmcell c1">히라가나·기초</div><div class="pmcell c2">일상 회화</div><div class="pmcell c3">비즈니스 일본어</div><div class="pmcell c4">JLPT</div></div><div class="pmrow"><div class="lang"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg>제2외국어</div><div class="pmcell c1">입문 회화</div><div class="pmcell c2">실용 회화</div><div class="pmcell c3">여행·비즈니스</div><div class="pmcell c4">검정·자격</div></div>
+      <div class="pmgrow">숙련도 심화<span class="bar"></span></div>
+    </div>
+    <p class="pmnote">제2외국어: 스페인어 · 프랑스어 · 독일어 · 베트남어 등</p>
+    <div class="langfoot"><span class="lb">외국어 협력사</span><span class="p">해커스</span><span class="p">파고다</span><span class="p">다락원</span><span class="p">야나두</span><span class="p">당근영어</span></div>
+  </div>
+</div></section>
+
+<!-- 03 IT·자격 -->
+<section class="section" id="ax3"><div class="wrap">
+  <div class="axhead"><div><span class="eyebrow"><span class="no">03</span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13 5l-2 14"/></svg> IT & Certification</span>
+    <h2>IT·자격 — 기초에서 전문까지, 자격과 함께</h2>
+    <p class="lead">단계마다 필요한 기술과 딸 수 있는 자격을 같이 봅니다.</p></div>
+    <span class="axtag">자격증 494 보유</span></div>
+  <div class="substep">단계별 역량과 자격</div>
+  <div class="roadmap">
+    <div class="rmline"><div class="rmpt"><div class="dot"></div><div class="st">STAGE 1</div><div class="nm">디지털 기초</div></div><div class="rmpt"><div class="dot"></div><div class="st">STAGE 2</div><div class="nm">실무 활용</div></div><div class="rmpt"><div class="dot"></div><div class="st">STAGE 3</div><div class="nm">전문·개발</div></div></div>
+    <div class="rmcols"><div class="rmcard"><div class="sk"><span>디지털 리터러시</span><span>OA 활용</span><span>AI 입문</span></div><div class="ct"><div class="cl"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5"/><path d="M9 13l-1.5 8 4.5-2.5L16.5 21 15 13"/></svg>취득 가능 자격</div><div class="cb"><span>컴퓨터활용능력</span><span>MOS</span><span>ITQ</span></div></div></div><div class="rmcard"><div class="sk"><span>데이터 분석</span><span>업무 자동화</span><span>노코드 RAG</span></div><div class="ct"><div class="cl"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5"/><path d="M9 13l-1.5 8 4.5-2.5L16.5 21 15 13"/></svg>취득 가능 자격</div><div class="cb"><span>ADsP</span><span>SQLD</span></div></div></div><div class="rmcard"><div class="sk"><span>생성형 AI 개발(LLM)</span><span>LangChain·RAG</span><span>디지털 보안</span></div><div class="ct"><div class="cl"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5"/><path d="M9 13l-1.5 8 4.5-2.5L16.5 21 15 13"/></svg>취득 가능 자격</div><div class="cb"><span>정보처리기사</span><span>빅데이터분석기사</span><span>AI 자격</span></div></div></div></div>
+    <div class="rmaxis"><span>디지털 리터러시</span><span class="r">역량 심화 · 자격 취득 →</span></div>
+  </div>
+</div></section>
+
+<!-- 04 비즈니스·리더십 -->
+<section class="section" id="ax4" style="background:var(--surface);border-top:1px solid var(--line)"><div class="wrap">
+  <div class="axhead"><div><span class="eyebrow"><span class="no">04</span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5M3 16.5l9 5 9-5"/></svg> Common & Growth</span>
+    <h2>비즈니스·리더십 — 개인에서 조직까지</h2>
+    <p class="lead">혼자 잘하는 법에서 팀을 이끄는 법, 조직을 바꾸는 법까지.</p></div>
+    <span class="axtag">비즈니스 공통역량</span></div>
+  <div class="growthfw">
+    <div class="gfaxis"><span class="lab">영향 범위 · 개인 → 조직</span><span class="arr"></span></div>
+    <div class="gftiers"><div class="gftier t1"><div><div class="no">01</div><h3>자기관리 · 업무 생산성</h3><div class="items"><span>시간관리</span><span>커리어 개발</span><span>셀프리더십</span><span>보고서·프레젠테이션</span></div></div><div class="stage"><b>실무자</b><span>대상</span></div></div><div class="gftier t2"><div><div class="no">02</div><h3>리더십 · 협업</h3><div class="items"><span>신임관리자</span><span>팀장 리더십</span><span>코칭</span><span>성과관리</span><span>커뮤니케이션·협업</span></div></div><div class="stage"><b>팀 리더</b><span>대상</span></div></div><div class="gftier t3"><div><div class="no">03</div><h3>조직문화 · 가치</h3><div class="items"><span>조직문화</span><span>소통·갈등관리</span><span>ESG</span><span>윤리경영</span></div></div><div class="stage"><b>경영·조직</b><span>대상</span></div></div></div>
+  </div>
+  <div class="culturebar"><span class="lb">인문·교양 143</span><span class="c">인문학</span><span class="c">경제·트렌드</span><span class="c">라이프 디자인</span></div>
+</div></section>
+
+<!-- 05 법정 -->
+<section class="section legal" id="ax5"><div class="wrap">
+  <div class="axhead"><div><span class="eyebrow"><span class="no">05</span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg> Compliance</span>
+    <h2>법정 헌터스 — <span class="hl">매년 하는 교육</span>, 매년 새롭게</h2>
+    <p class="lead">근거·대상·주기는 정확하게, 콘텐츠는 지겹지 않게.</p></div>
+    <span class="axtag">법정의무 · 컴플라이언스</span></div>
+  <div class="substep" style="color:var(--law)">연도별 대표 시리즈</div>
+  <div class="timeline"><div class="tnode"><div class="dot"></div><div class="yr">2024</div><div class="nm">뽕뽕 직장 오락실</div><div class="cc">지구오락실 컨셉</div></div><div class="tnode"><div class="dot"></div><div class="yr">2025</div><div class="nm">법정마불</div><div class="cc">지구마블 세계여행 컨셉</div></div><div class="tnode cur"><div class="dot"></div><div class="yr">2026</div><div class="nm">법정 헌터스</div><div class="cc">K-POP Demon Hunters 컨셉</div><div class="bn">현재 시리즈</div></div></div>
+  <div class="substep" style="color:var(--law)">공통 법정의무교육</div>
+  <div class="lawgrid"><div class="lawcard"><span class="must">의무</span><h3>성희롱 예방</h3><div class="frow"><dt>근거</dt><dd>남녀고용평등법 §13</dd></div><div class="frow"><dt>대상</dt><dd>전 직원</dd></div><div class="frow"><dt>주기</dt><dd>연 1회</dd></div></div><div class="lawcard"><span class="must">의무</span><h3>직장 내 괴롭힘</h3><div class="frow"><dt>근거</dt><dd>근로기준법 §76의3</dd></div><div class="frow"><dt>대상</dt><dd>전 직원</dd></div><div class="frow"><dt>주기</dt><dd>연 1회</dd></div></div><div class="lawcard"><span class="must">의무</span><h3>장애인 인식개선</h3><div class="frow"><dt>근거</dt><dd>장애인고용촉진법 §5의2</dd></div><div class="frow"><dt>대상</dt><dd>전 직원</dd></div><div class="frow"><dt>주기</dt><dd>연 1회</dd></div></div><div class="lawcard"><span class="must">의무</span><h3>개인정보보호</h3><div class="frow"><dt>근거</dt><dd>개인정보보호법 §28</dd></div><div class="frow"><dt>대상</dt><dd>취급자</dd></div><div class="frow"><dt>주기</dt><dd>연 1회↑</dd></div></div><div class="lawcard"><span class="must">의무</span><h3>퇴직연금</h3><div class="frow"><dt>근거</dt><dd>근퇴법 §32</dd></div><div class="frow"><dt>대상</dt><dd>가입 근로자</dd></div><div class="frow"><dt>주기</dt><dd>연 1회</dd></div></div></div>
+  <div class="substep" style="color:var(--law)">경쟁사 대비 차별화</div>
+  <div class="difftable"><table><thead><tr><th>구분</th><th>일반 법정교육</th><th>KG에듀원</th></tr></thead><tbody><tr><td>교육 방식</td><td>강의형</td><td>스토리텔링·예능형</td></tr><tr><td>콘텐츠 기획</td><td>법규 중심</td><td>학습 몰입 중심</td></tr><tr><td>최신성</td><td>정기 개정</td><td>매년 신규 시리즈</td></tr><tr><td>학습 경험</td><td>이수 중심</td><td>참여 중심</td></tr><tr><td>맞춤 제작</td><td>제한적</td><td>기업 맞춤 제작</td></tr></tbody></table></div>
+  <p class="samplenote">※ 법적근거·주기는 대표 표기 — 실제 편성 시 최신 법령 기준으로 검증됩니다.</p>
+</div></section>
+
+<!-- 06 제작·파트너 -->
+<section class="section prod" id="ax6"><div class="wrap">
+  <div class="axhead"><div><span class="eyebrow" style="color:var(--rp)"><span class="no" style="background:var(--rp)">06</span><svg class="imgbig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg> Studio & Network</span>
+    <h2>맞춤 제작 & 파트너 네트워크</h2>
+    <p class="lead">기획부터 제작까지 한 팀처럼. 스튜디오·AI로 직접 만들고, 파트너와 넓힙니다.</p></div>
+    <button class="btn btn-sec" data-consult data-axis="맞춤 제작·파트너">제작 문의</button></div>
+  <div class="infra">
+    <div class="imgslot"><span class="cap">자체 스튜디오 3종 (호리즌·크로마키·무빙월)</span><svg class="imgbig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg></div>
+    <div class="pipebox"><div class="lb">AI 제작 파이프라인</div><div class="pipe"><div class="pstep"><div class="ic">1</div><div class="t">촬영</div><div class="dd">전문 스튜디오 3종</div></div><div class="pstep"><div class="ic">2</div><div class="t">AI 강사·아바타</div><div class="dd">AI 강사 생성</div></div><div class="pstep"><div class="ic">3</div><div class="t">음성·립싱크</div><div class="dd">TTS · AI 립싱크</div></div><div class="pstep"><div class="ic">4</div><div class="t">다국어 현지화</div><div class="dd">더빙·번역·자막</div></div><div class="pstep"><div class="ic">5</div><div class="t">완성</div><div class="dd">포맷별 편집</div></div></div></div>
+  </div>
+  <div class="substep">IP 협업 사례 · 네이버·카카오 웹툰 IP</div>
+  <div class="ipgrid"><div class="ipcard"><span class="ipt">신과함께</span><p>지옥에서도 통하는 변화적응 리더십</p></div><div class="ipcard"><span class="ipt">미생 the Real Story</span><p>현장형 세일즈</p></div><div class="ipcard"><span class="ipt">가우스전자</span><p>리얼스토리 리더십 편</p></div><div class="ipcard"><span class="ipt">운명을 보는 회사원</span><p>마음을 움직이는 설득의 기술</p></div><div class="ipcard"><span class="ipt">조조코믹스</span><p>내 커리어의 주인이 되는 셀프리더십</p></div><div class="ipcard"><span class="ipt">먹는 인생 X 직장</span><p>직장인 스트레스를 부탁해</p></div></div>
+  <div class="substep" style="color:var(--rp)">콘텐츠 협력사 (자체 제작 + 파트너 도입)</div>
+  <div class="plogos"><div class="plogo">롯데인재개발원</div><div class="plogo">멀티캠퍼스</div><div class="plogo">휴넷</div><div class="plogo">현대경제연구원</div><div class="plogo">한국사회능력개발원</div><div class="plogo">고려아카데미</div><div class="plogo">인키움</div><div class="plogo">올원에듀</div><div class="plogo">알엠피</div><div class="plogo">DSBL</div><div class="plogo">겟스마트</div><div class="plogo">유밥</div><div class="plogo">알파코</div><div class="plogo">팀스파르타</div></div>
+  <div class="counter"><b>100+</b><span>매월 신규 콘텐츠 업데이트 — 최신 산업 트렌드·직무 변화 대응</span></div>
+</div></section>
+
+<!-- ===== 전체 과정 리스트 다운로드 (B안 신규 · v2.0) ===== -->
+<section class="section" id="download"><div class="wrap">
+  <div class="dl">
+    <div>
+      <span class="eyebrow" style="color:var(--or2)"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h12M8 12h12M8 18h9M4 6h.01M4 12h.01M4 18h.01"/></svg> Download · 전체 과정 리스트</span>
+      <h2>필요한 과정을 한눈에,<br><span class="hl">전체 리스트로</span> 받아보세요</h2>
+      <p class="lead">직무·어학·자격·법정·신규까지 — 매월 갱신되는 전체 과정 리스트를 엑셀 한 파일로 제공합니다.</p>
+      <a class="dl-cross" href="./keess_P3_hrd_B_platform_v2.0.html#gov"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg> 환급 가능 과정 495개 포함 · 정부지원 환급 안내 &rarr;</a>
+      <div class="dl-act">
+        <button class="btn btn-or" data-download><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 11l5 5 5-5M4 20h16"/></svg> 과정 리스트 다운로드 (Excel)</button>
+        <span class="dl-meta">.xlsx · 매월 갱신 · 정기개강일 포함</span>
+      </div>
+    </div>
+    <div class="dl-file" aria-label="과정 리스트 구성">
+      <div class="fh"><span class="xls">XLS</span><div><b>KG에듀원 과정 리스트</b><span>2026년 8월 개강 기준 · 8,000여 과정</span></div></div>
+      <div class="dl-stats">
+        <div class="dst"><b>4,219</b><span>직무</span></div>
+        <div class="dst"><b>3,332</b><span>어학</span></div>
+        <div class="dst"><b>820</b><span>전화외국어</span></div>
+        <div class="dst"><b>25</b><span>법정필수</span></div>
+        <div class="dst"><b>116</b><span>이달 신규</span></div>
+        <div class="dst hi"><b>495+</b><span>환급 과정</span></div>
+      </div>
+      <p class="dl-upd">매월 갱신 · 최신본 = 2026-08 개강 기준</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="section"><div class="wrap"><div class="final">
+  <h2>어느 체계든,<br>필요한 걸 말씀해 주세요</h2>
+  <p>조직 과제에 맞춰 8,426개에서 고르고, 필요하면 직접 만듭니다.</p>
+  <div class="fbtns"><button class="btn btn-or" data-consult>콘텐츠 도입 문의</button><button class="btn btn-ghost" data-explorer>대표 과정 찾기</button></div>
+</div></div></section>
+
+<footer><div class="wrap fw"><div>KG에듀원 · KEESS — 콘텐츠 솔루션 (P4) · B안 6축 체계형 v2.0 · 과정 리스트 다운로드 반영</div><div>체계·규모 소개서 기준 · 대표 34종 실데이터 · 실사 슬롯 · 가격 미노출</div></div></footer>
+
+<button class="fab" data-explorer><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg> 대표 과정 찾기</button>
+
+<!-- explorer modal -->
+<div class="ov" id="ov-explorer" role="dialog" aria-modal="true"><div class="modal exp-modal">
+  <div class="mhead"><button class="mclose" data-close>&times;</button><div class="cat">Featured Lineup</div><h3>대표 과정 · AX·AI 전환 34선</h3><div class="mb"><span>8,426개 중 대표 선별</span></div></div>
+  <div class="mbody">
+    <div class="tabs" id="tabs" role="tablist"></div>
+    <div class="toolbar">
+      <label class="search"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input id="q" type="search" placeholder="과정명·키워드 검색" aria-label="검색"></label>
+      <div class="sels">
+        <div class="sel"><select id="f-target"></select></div><div class="sel"><select id="f-level"></select></div>
+        <div class="sel"><select id="f-band"></select></div><div class="sel"><select id="f-tool"></select></div>
+        <div class="sel"><select id="f-sort"><option value="default">기본순</option><option value="hours-asc">시간 짧은순</option><option value="hours-desc">시간 긴순</option><option value="level">레벨순</option></select></div>
+      </div>
+      <span class="count" id="count"></span><button class="reset" id="reset">초기화</button>
+    </div>
+    <div class="grid" id="grid"></div>
+  </div>
+</div></div>
+
+<div class="ov" id="ov-detail" role="dialog" aria-modal="true"><div class="modal" id="detail"></div></div>
+<div class="ov" id="ov-consult" role="dialog" aria-modal="true"><div class="modal form-modal">
+  <div class="mhead"><button class="mclose" data-close>&times;</button><div class="cat">Inquiry</div><h3>콘텐츠 도입 문의</h3><div class="mb"><span>영업일 1일 내 회신</span></div></div>
+  <div class="mbody"><div id="c-form">
+    <div class="ctx" id="c-ctx"></div>
+    <div class="field"><label>담당자명 <span class="req">*</span></label><input id="cf-name" type="text" placeholder="홍길동"></div>
+    <div class="field"><label>회사/기관 <span class="req">*</span></label><input id="cf-org" type="text" placeholder="회사명"></div>
+    <div class="field"><label>이메일 <span class="req">*</span></label><input id="cf-mail" type="email" placeholder="name@company.com"></div>
+    <div class="field"><label>필요한 콘텐츠·과제</label><textarea id="cf-msg" placeholder="예: 전 직원 법정의무 + 실무자 생성형 AI + 기업 맞춤 제작"></textarea></div>
+    <button class="btn btn-or" id="cf-submit" style="width:100%">문의 보내기</button>
+  </div><div class="okmsg" id="c-ok"><div class="ic">✓</div><h3 style="margin-bottom:6px">문의가 접수되었습니다</h3><p class="lead" style="margin:0 auto">담당자가 영업일 1일 내 회신드립니다.</p></div></div>
+</div></div>
+
+<div class="ov" id="ov-download" role="dialog" aria-modal="true"><div class="modal form-modal">
+  <div class="mhead"><button class="mclose" data-close>&times;</button><div class="cat">Course List</div><h3>전체 과정 리스트 다운로드</h3><div class="mb"><span>Excel · 매월 갱신</span><span>8,000여 과정</span></div></div>
+  <div class="mbody"><div id="d-form">
+    <div class="ctx on">입력하신 메일로 매월 갱신되는 최신 리스트도 함께 안내드립니다.</div>
+    <div class="field"><label>담당자명 <span class="req">*</span></label><input id="df-name" type="text" placeholder="홍길동"></div>
+    <div class="field"><label>회사/기관 <span class="req">*</span></label><input id="df-org" type="text" placeholder="회사명"></div>
+    <div class="field"><label>이메일 <span class="req">*</span></label><input id="df-mail" type="email" placeholder="name@company.com"></div>
+    <button class="btn btn-or" id="df-submit" style="width:100%"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 11l5 5 5-5M4 20h16"/></svg> 리스트 다운로드</button>
+  </div><div class="okmsg" id="d-ok"><div class="ic">&#10003;</div><h3 style="margin-bottom:6px">다운로드가 시작됩니다</h3><p class="lead" style="margin:0 auto 14px">자동으로 저장되지 않으면 아래 버튼을 눌러주세요.</p><a class="btn btn-or" href="./KG에듀원_과정리스트.xlsx" download style="display:inline-flex">지금 다운로드</a></div></div>
+</div></div>
+
+<script>
+const COURSES=[{"id": "c01", "title": "AI 시대, 실전에서 통하는 AI 리터러시", "category": "AI 리터러시·전략", "category_key": "lit", "target": "전사 공통", "level": "입문", "duration": "4주(6시간)", "hours": 6.0, "duration_band": "스탠다드(5–12h)", "book_provided": false, "tools": [], "keywords": ["AI리터러시", "AGI", "멀티에이전트", "사고력"], "instructor": "강양석", "overview": "[사고하는 AI와 함께, 제대로 일하는 방법!] 데이터만 넣는다고 AI가 다 해주지 않습니다. AI가 어떻게 사고하고 판단하는지 이해해야 제대로 활용할 수 있죠. 이 과정에서는 AGI부터 멀티에이전트까지 핵심 개념을 쉽게 배웁니 다. 현실 사례로 AI와 ‘함께 사고하는 법’을 익혀보세요!", "objectives": ["AI가 단순히 데이터를 학습하는 기계가 아니라, 어떻게 사고하고 있는지 AI 리터러시 관점에서 생각할 수 있다.", "AGI와 멀티에이전트 시대에 AI가 왜 필요한지 논리적으로 설명할 수 있다.", "데이터와 규칙을 똑똑하게 다루며, AI를 진짜 협력 파트너로 설계하고 활용할 수 있다."], "curriculum": ["데이터 VS 규칙! AI를 움직이는 진짜 원리는?", "인공지능이 사람처럼 추론할 수 있을까?", "ChatGPT를 넘어선 AGI는 현실이 될 수 있을까?", "멀티 에이전트 일 잘하는 팀은 AI를 어떻게 쓸까?", "실제로 통했다! 멀티 에이전트 베스트 사례5"], "curriculum_count": 5, "thumbnail": null, "detail_pdf": "AI 시대, 실전에서 통하는 AI 리터러시.pdf"}, {"id": "c02", "title": "AI 시대의 CS, 새로 쓰는 고객 응대법", "category": "직무·소프트스킬 특화", "category_key": "job", "target": "실무자", "level": "실무", "duration": "4주(12시간)", "hours": 12.0, "duration_band": "스탠다드(5–12h)", "book_provided": false, "tools": ["ChatGPT"], "keywords": ["고객경험", "CX", "VOC", "불만응대", "CS"], "instructor": null, "overview": "기술은 AI가 돕지만, 여전히 고객의 마음은 사람에게 머뭅니다 ‘AI 시대’에 맞춰 고객응대 방식을 다시 설계합니다. 말 한 마디, 눈빛 하나, 텍스트 몇 줄까지 ㅡ 지금의 고객에게 꼭 맞는 신뢰의 언어와 응대 전략을 배우는 시간! AI가 바꾼 서비스 환경 속에서, 고객의 기억에 남을 수 있는 ‘진짜 CS’를 함께 만들어보세요.", "objectives": ["AI 기반 환경에서 변화한 고객 응대 방식과 고객경험관리 전략을 이해하고 실무에 적용할 수 있다."], "curriculum": ["고객만족에서고객경험관리까지", "AI시대 변화한 고객경험관리", "고객경험 전략: 신뢰를 만드는 언어의 기술", "고객경험 전략: 말보다 강한 비언어 메시지", "VOC 관리 전략: 고객의 목소리를 자산으로", "Wow Point 전략: 고객을 찐팬으로 만들기", "불만고객 응대 전략: 기본이 통한다", "불만고객 응대 전략: 상황별 대응 노하우", "전화 응대 전략: 목소리로 신뢰를 전하라", "온라인 고객 응대 전략: 텍스트에 담기는 인상", "이미지메이킹: 보이는 나, 느껴지는 나", "AI시대의 서비스 마인드 셋"], "curriculum_count": 12, "thumbnail": null, "detail_pdf": "AI 시대의 CS, 새로 쓰는 고객 응대법.pdf"}, {"id": "c03", "title": "AI 시대의 조직 성장을 이끄는 변화관리 전략", "category": "AI 리터러시·전략", "category_key": "lit", "target": "리더·임원", "level": "실무", "duration": "4주(10시간)", "hours": 10.0, "duration_band": "스탠다드(5–12h)", "book_provided": false, "tools": [], "keywords": ["변화관리", "ICE모델", "조직문화", "조직전환"], "instructor": null, "overview": "AI와 함께 일하는 시대, 우리는 변화에 어떻게 반응해야할까? 뉴욕시립대 박종규 교수가 AI 시대 변화관리의 기준과 실행법을 새롭게 제시한다!", "objectives": ["AI 도입이 변화관리와 조직문화에 미치는 영향과 변화 양상을 설명할 수 있다.", "AI 시대에 효과적인 변화관리 전략과 실행 프로세스를 설명할 수 있다.", "조직의 혁신과 성과를 높이기 위한 AI 기반 변화관리 전략을 실제 팀에 적용할 수 있다."], "curriculum": ["AI 시대의 변화, 그 시작은 무엇이어야만 하나?", "우리는 AI 시대의 변화에 어떻게 반응하는가?", "AI 시대, 왜 탑다운 방식만으로는 안 되는가?", "AI 시대 변화관리, 어떤 모델이 필요한가?", "공감과 진단의 힘, ICE 모델의 첫 단계 ‘Inquire’", "설계와 실행의 공동체, ICE 모델의 두 번째 단계 ‘Co-Create’", "ICE 모델의 세번째 단계 ‘Embed ’", "변화의 동력은 어디서 오는가? AI 시대 변화의 열쇠, 수평적 리더십", "ICE 모델을 ‘일하는 방식’으로 정착시키기"], "curriculum_count": 9, "thumbnail": null, "detail_pdf": "AI 시대의 조직 성장을 이끄는 변화관리 전략.pdf"}, {"id": "c04", "title": "AI시대, 일잘러를 위한 데이터 사고와 분석법", "category": "데이터·의사결정", "category_key": "data", "target": "전사 공통", "level": "실무", "duration": "4주(10시간)", "hours": 10.0, "duration_band": "스탠다드(5–12h)", "book_provided": true, "tools": [], "keywords": ["통계적사고", "머신러닝", "회귀", "데이터리터러시"], "instructor": "최재원", "overview": "먼지 쌓인 데이터, 여러분의 조직은 잘 활용하고 있습니까? 데이터와 통계를 모르고, AI 시대의 기술과 비즈니스를 논할 수 없습니다! 통계적 사고를 위해 데이터를 대하는 태도와 소양을 기르고, 프로젝트와 조직의 성공을 위해 데이터 리드가 해야 할 일에 대해 자세하게 알 수 있을 것입니다. 변동성으로 가득한 세상, 그 이면의 패턴을 찾아내봅시다!", "objectives": ["현업에서 통계와 분석 결과에 대해 적절한 의견을 제시할 수 있는 데이터 리터러시 역량을 키울 수 있다.", "머신러닝, 텍스트 분석, 딥러닝 AI의 이면에 숨은 기본 원리와 지식을 파악할 수 있다."], "curriculum": ["데이터란 무엇인가?", "통계적 사고", "가설검정", "상관관계분석", "회귀분석", "머신러닝", "분류모델", "비지도 학습", "데이터를 재료로 활용하는 AI"], "curriculum_count": 9, "thumbnail": null, "detail_pdf": "AI시대, 일잘러를 위한 데이터 사고와 분석법.pdf"}, {"id": "c05", "title": "ChatGPT 프롬프트(지시문)로 신제품 마케팅 기획안 싹 다 하기! 마케팅 전략 기획편", "category": "업무 생산성·문서", "category_key": "prod", "target": "실무자", "level": "실무", "duration": "4주(5시간)", "hours": 5.0, "duration_band": "스탠다드(5–12h)", "book_provided": false, "tools": ["ChatGPT"], "keywords": ["마케팅기획", "4P", "신제품", "프롬프트"], "instructor": null, "overview": "시장에 출시된 신제품 수명이 점점 짧아지면서 빠르고 빈번한 신제품 발굴 및 신제품 마케팅 기획력이 더욱 중요해지고 있다. 이러한 현실 속에서, 생성형 AI는 신속하 고 완성도 높은 신제품마케팅보고서(초안)을 만들어 내는데 개인사업자나 기업의 마케터들에게 매우 중요해지고 있는 현실이다. 본 강의영상은 최근 P&G, 삼성전자, 네슬레, 구글 등 글로벌 마케터들이 쓰는 신제품 마케팅 기획안의 최신 기법과 실무를 학습한 후, 이 내용을 GPT 프롬프트에 반영하는 과정을 담고 있다. 아울러 그 과 정을 통해? 꽤 정교하고도 구체화된 지시문(프롬프트)을 마지막으로 학습한다.", "objectives": ["최근 P&G, 삼성전자, 네슬레, 구글 등 글로벌 마케터들이 쓰는 신제품 마케팅 기획안의 최신 기법과 실무를 학습한 후, 이 내용을 GPT 프롬프트에 반영하는 과정을 담고 있다."], "curriculum": ["Product 기획안 도출 by GPT 프롬프트2. Price 기획안 도출 by GPT 프롬프트3. Promotion 기획안 도출 by GPT 프롬프트4. Place 기획안 도출 by GPT 프롬프트5. 마 케팅 4P MIX 타당성 검토 & 조정 by GPT 프롬프트"], "curriculum_count": 1, "thumbnail": null, "detail_pdf": "ChatGPT 프롬프트(지시문)로 신제품 마케팅 기획안 싹 다 하기! 마케팅 전략 기획편.pdf"}, {"id": "c06", "title": "Next Work, 레이버시프트  디지털 직원과 함께 일하는 법 (인사편)", "category": "직무·소프트스킬 특화", "category_key": "job", "target": "실무자", "level": "실무", "duration": "4주(10시간)", "hours": 10.0, "duration_band": "스탠다드(5–12h)", "book_provided": false, "tools": [], "keywords": ["인사", "HR", "디지털직원", "의사결정"], "instructor": "ai수빈", "overview": "인사편은 인사 업무를 제도 설계나 행정 처리 중심의 작업이 아니라, 사람과 조직의 문제를 이해하고 판단하는 사고 과정으로 재정의한다. 문제 인식, 원인 정리, 실행 전 점검, 의사결 정이라는 인사 업무의 흐름을 중심으로 구성되어 있으며, 각 단계에서 AI를 인사 담당자의 생각을 대신하는 존재가 아니라 정리와 검토를 돕는 디지털 직원으로 활용하는 방법을 다룬 다. 이를 통해 학습자는 인사 업무 전반의 판단 구조를 정리하고, AI와 함께 일하는 인사 업무 방식을 자신의 실무에 적용할 수 있다.", "objectives": ["인사 이슈를 결과가 아닌 원인과 맥락 중심으로 정리할 수 있다.", "인사 데이터를 종합적으로 해석해 판단 근거로 활용할 수 있다.", "제도·정책 실행 전에 영향을 점검하고 우선순위를 정할 수 있다.", "의사결정에 바로 활용 가능한 인사 보고서 구조로 정리할 수 있다."], "curriculum": ["AI로 인사 데이터 읽는 법", "채용 공고와 이력서 분석 자동화", "면접 질문·평가 시트 설계", "직원 몰입도 분석과 피드백 시스템", "AI 기반 업무 역량 지도 만들기", "이직 예측과 유지 전략 세우기", "공정한 평가 프로세스 자동화", "교육 추천 및 성장 경로 설계", "조직 진단 리포트 자동 생성", "인사데이터로 그리는 미래 인재 지도"], "curriculum_count": 10, "thumbnail": null, "detail_pdf": "Next Work, 레이버시프트  디지털 직원과 함께 일하는 법 (인사편).pdf"}, {"id": "c07", "title": "[AI Class] 노코드 RAG 끝판왕, 노트북LM으로 지식관리 마스터하기", "category": "AI 도구·콘텐츠 제작", "category_key": "tool", "target": "실무자", "level": "실무", "duration": "4주(7시간)", "hours": 7.0, "duration_band": "스탠다드(5–12h)", "book_provided": false, "tools": ["NotebookLM"], "keywords": ["지식관리", "RAG", "노코드"], "instructor": null, "overview": "LLM 의 문제점(최신성/정확성/신뢰성)을 극복하는 RAG(검색-증강-생성) AI 기술이 적용된 노트북LM 으로 신뢰도 높은 최신 지식을 관리하고 생성하자! 본 과정은 노코드 RAG 개념과 노트북LM 핵심 기능을 이해하고, 문서·영상·웹사이트 등 다양한 자료를 통합 분석하여 지식 관리에 활용하며, 보고서 작성, 마케팅 전략, 콘텐츠 기획 등 실제 업무 생산성을 극대화하는 실습 중심 과정이다.", "objectives": ["노코드 RAG 개념과 NotebookLM 핵심 기능을 이해하고 활용한다.", "노트북LM 을 활용하여 텍스트·영상·웹사이트 등 다양한 자료를 통합 분석하고, 이를 기반으로 신뢰성 있는 지식 관리를 수행한다.", "단순 요약을 넘어 보고서·콘텐츠 제작 등 실제 업무에 적용 가능한 결과물을 AI로 생산한다."], "curriculum": ["노코드 RAG 이해와 노트북LM 시작하기", "노트북LM 핵심 기능 완전정복", "노트북LM 으로 보고·기획 업무 생산성 높이기", "노트북LM 을 활용한 프로젝트·교육 자료 관리", "노트북LM 기반 마케팅 전략·리서치 실무", "노트북LM 으로 보고서·콘텐츠 글쓰기", "노트북LM 실무 최적화 활용 팁"], "curriculum_count": 7, "thumbnail": null, "detail_pdf": "[AI Class] 노코드 RAG 끝판왕, 노트북LM으로 지식관리 마스터하기.pdf"}, {"id": "c08", "title": "[AI Class] 일잘러 장피엠과 ChatGPT 업무 300% 활용하기", "category": "업무 생산성·문서", "category_key": "prod", "target": "실무자", "level": "실무", "duration": "4주(16시간)", "hours": 16.0, "duration_band": "인텐시브(≥13h)", "book_provided": false, "tools": ["ChatGPT"], "keywords": ["업무활용", "생산성", "자동화"], "instructor": null, "overview": "AI 검색 도구를 활용한 조사 및 분석부터 회사 보고서 양식에 맞춘 결과물 작성까지, ChatGPT를 활용한 체계적이고도 전문적인 보고서 작성 방법을 통해 업무 프로세스를 자동화∙고도 화할 수 있다! 본 과정은 생성형 AI 및 노코드 실무 적용의 선두주자, 일잘러 장피엠의 직강으로, 실무에서 만나는 다양한 케이스를 바탕으로 강의를 듣는 것에 그치지 않고 내 업무에 적용할 수 있 다.", "objectives": ["체계적이고 구조화된 프롬프트를 작성할 수 있다.", "ChatGPT로 전문적이고 완성도 높은 업무 문서를 작성할 수 있다.", "업무 프로세스를 자동화 및 고도화 하여 업무 효율성을 극대화할 수 있다."], "curriculum": ["AI 성능 극대화를 위한 프롬프트 구조화", "ChatGPT 답변의 전문성과 신뢰도를 높이는 참고 자료 제공", "전문적인 문제 해결을 위한 단계적 프롬프팅", "최신 정보를 반영한 Deep Research", "Chat GPT의 데이터 분석 결과를 통한 인사이트 도출", "Chat GPT로 양식에 맞춘 회의록 작성", "생성형 AI를 활용한 데이터 시각화", "생성형 AI를 활용한 발표 자료 제작", "AI Agent와 GPTs 알아보기", "GPTs를 활용한 데이터 수집·정리 자동화", "GPTs를 활용한 보고서 작성 자동화", "GPTs의 Chain of Thought 기법으로 답변 품질 높이기", "지식 기반으로 정확한 응답을 제공하는 GPTs 활용", "GPTs를 AI Agent로 확장하기", "다양한 외부 AI툴을 활용한 업무 자동화"], "curriculum_count": 15, "thumbnail": null, "detail_pdf": "[AI Class] 일잘러 장피엠과 ChatGPT 업무 300% 활용하기.pdf"}, {"id": "c09", "title": "[AI Class] 트렌디한 검색 AI 퍼플렉시티(Perplexity)로 출처 기반 리서치 완성하기", "category": "AI 도구·콘텐츠 제작", "category_key": "tool", "target": "실무자", "level": "실무", "duration": "4주(6시간)", "hours": 6.0, "duration_band": "스탠다드(5–12h)", "book_provided": false, "tools": ["Perplexity"], "keywords": ["검색AI", "리서치", "딥리서치", "워크플로우"], "instructor": null, "overview": "실시간 검색과 인사이트 도출에 강한 퍼플렉시티(Perplexity) AI로 완성하는 리서치 자동화! 뉴스, 학술정보, 트렌드까지 즉시 탐색하고, AI 기반으로 정리·분석·시각화까지 이어지는 “검색 기반 리서치 끝판왕” 퍼플렉시티(Perplexity) AI를 통해 정보 검색부터 페이지 아카이빙, 자동화된 워크플로우 설계까지 완성해보자. 본 강의에서는 ChatGPT 이후 등장한 차세대 검색형 AI 퍼플렉시티를 통해 질문 설계, 딥리서치, 프롬프트 재구성, 팀 공유 기능 등 다양한 고급 기능을 실무에 접목하는 법을 안내한 다.", "objectives": ["퍼플렉시티 정보 탐색부터 자동화 적용까지의 업무를 이해할 수 있다.", "텍스트 분석, 이미지 제작, 반복 업무 자동화를 아우르는 실무 중심 워크플로우를 구성할 수 있다.", "다양한 실무 상황에서 퍼플렉시티를 활용한 리서치를 활용할 수 있다."], "curriculum": ["퍼플렉시티(Perplexity) AI 기본 이해", "퍼플렉시티(Perplexity) AI 기본 기능", "효율적인 프롬프트 작성과 질문 확장법", "퍼플렉시티(Perplexity) AI 고급 기능과 최적화", "퍼플렉시티(Perplexity) AI 심화 기능", "퍼플렉시티(Perplexity) 활용 사례"], "curriculum_count": 6, "thumbnail": null, "detail_pdf": "[AI Class] 트렌디한 검색 AI 퍼플렉시티(Perplexity)로 출처 기반 리서치 완성하기.pdf"}, {"id": "c10", "title": "[AI Class] 회사가 원하는 효율적인 AI 활용 - 회의 준비부터 기록까지", "category": "업무 생산성·문서", "category_key": "prod", "target": "실무자", "level": "실무", "duration": "4주(14시간)", "hours": 14.0, "duration_band": "인텐시브(≥13h)", "book_provided": false, "tools": ["ChatGPT", "구글워크스페이스"], "keywords": ["회의록", "회의준비", "자동화"], "instructor": null, "overview": "반복되는 문서 작업과 비효율적인 회의 준비는 이제 그만! ChatGPT로 회의 준비부터 회의록 작성까지 쉽고 빠르게! 회의로 시작해서 회의로 끝나는 하루 일과.일잘러는 이미 회의 준비도 회의록 작성과 공유도 ChatGPT로 하고 있다는 사실! 본 과정을 통해 생성형AI와 관련하여 꼭! 알아야 할 기본 개념을 이해하고, 실전 사례를 바탕으로 한 실습으로 보다 효율적이고 건설적인 회의를 위한 ChatGPT 활용법을 습득할 수 있 다.", "objectives": ["ChatGPT를 활용하여 회의 준비부터 회의록 작성까지의 전 과정의 효율성을 높일 수 있다.", "ChatGPT를 활용하여 데이터 분석 및 시각화를 수행할 수 있다.", "단순 반복적인 업무를 줄이는 워크플로우를 구축할 수 있다.", "구글 워크스페이스와 VBA 등 AI를 보조하는 도구를 활용하여 업무 생산성을 극대화할 수 있다."], "curriculum": ["생성형 AI, 이것만은 알아두자", "간단한 기본 정리, 프롬프트", "AI를 활용한 회의 준비1. GhatGPT로 자료를 빠르게 읽고 해석하기", "AI를 활용한 회의 준비2. 전문적인 정보 검색, AI Agent 활용", "AI를 활용한 회의 준비3. 이슈를 다각도로 검토하기", "AI를 활용한 회의 준비4. 한 방에 개인화 메일로 회의 안건 보내기", "구글을 활용한 데이터 수집과 시각화", "GPT로 데이터 전처리 및 시각화하기", "프레젠테이션용 인터랙티브 차트 만들기", "설명하기 어려울 땐 퓨샷러닝 프롬프트", "AI 업무 자동화 특급 비결", "예약된 작업을 반복 수행하는 AI", "다채로운 비즈니스 문서 스타일 만들기", "프로페셔널한 회의록 쓰기"], "curriculum_count": 14, "thumbnail": null, "detail_pdf": "[AI Class] 회사가 원하는 효율적인 AI 활용 - 회의 준비부터 기록까지.pdf"}, {"id": "c11", "title": "[AI 부사수] 챗GPT도 남다르게 사용하는 비즈니스 글쓰기 프롬프트 40", "category": "업무 생산성·문서", "category_key": "prod", "target": "실무자", "level": "실무", "duration": "4주(10시간)", "hours": 10.0, "duration_band": "스탠다드(5–12h)", "book_provided": true, "tools": ["ChatGPT"], "keywords": ["비즈니스글쓰기", "보고서", "이메일", "프롬프트"], "instructor": "정태일", "overview": "회의록부터 보고서, 이메일까지 챗GPT 프롬프트 하나로 해결! 더 빠르고, 더 똑똑하게 업무를 처리하는 방법을 지금 만나보세요. 10가지 실전 프롬프트로 직장 내 글쓰기 스트레스에서 벗어나고 업무의 효율을 향상시키는 방법!", "objectives": ["챗GPT 활용 능력 향상: 직장에서 활용할 수 있는 20종의 프롬프트를 통해 챗GPT의 기능을 최대한 활용하는 방법을 익힌다.", "비즈니스 문서 작성 능력 강화: 구조화된 글쓰기 프롬프트를 통해 품격 높은 비즈니스 문서를 효율적으로 작성할 수 있는 능력을 배양한다.", "글쓰기 스트레스 해소: 직장 내에서 자주 사용되는 글쓰기 패턴을 익혀, 문서 작성에 대한 부담을 줄이고 글쓰기 스트레스를 해소한다.", "직장에서의 경쟁력 강화: 신속하고 효과적인 문서 작성 능력을 통해 직장 내에서의 경쟁력을 높이고, 빠른 승진 및 성과 향상을 도모한다."], "curriculum": ["스피치라이터가 챗GPT를 사용하는 이유", "YES를 부르는 비즈니스 라이팅의 절대원칙", "회의록만 잘 써도 스마트 직장인", "직장인의 필수 커뮤니케이션, 이메일과 카톡", "보도자료는 프로포즈처럼", "한방에 컨펌받는 '알잘딱깔센' 보고서", "취업과 커리어 패스 중간 점검을 위한 자기소개서", "직장인이 칼럼과 리뷰를 쓰면 몸값이 달라진다", "거절하거나 질책하는 글은 어떻게 쓸까", "떠내려갈 것인가, 비전을 쓰고 항해할 것인가"], "curriculum_count": 10, "thumbnail": null, "detail_pdf": "[AI 부사수] 챗GPT도 남다르게 사용하는 비즈니스 글쓰기 프롬프트 40.pdf"}, {"id": "c12", "title": "[AI 치트키]업무 순삭의 비밀, Agentic AI", "category": "AI 리터러시·전략", "category_key": "lit", "target": "실무자", "level": "실무", "duration": "4주(10시간)", "hours": 10.0, "duration_band": "스탠다드(5–12h)", "book_provided": false, "tools": ["ChatGPT Agent", "NotebookLM"], "keywords": ["Agentic AI", "에이전트", "업무자동화"], "instructor": null, "overview": "Agentic AI 사용은 선택이 아닌, 경쟁력의 기준입니다. 글로벌 빅테크와 선도 기업들은 Agentic AI를 통해 업무 자동화, 의사결정, 운영 효율의 새로운 기준을 만들어가고 있습니다. 변화의 주도권을 잃지 않기 위해서는 새로운 기술을 ‘알고 있는 것’에서 조직에 ‘적용할 수 있는 것’으로 체득해야 합니다.", "objectives": ["Agentic AI를 활용해 각 직무에서 반복 업무를 줄이고, 의사결정과 실행을 고도화하는 방법을 실제 업무 흐름에 맞춰 이해할 수 있다.", "Agentic AI를 다양한 AI 플랫폼과 도구와 결합해, 보고·기획·관리·운영 등 업무 전반의 흐름을 어떻게 재구성할 수 있는지,또한 오프라인 환경에서도 AI를 실질적으 로 활용하는 방식을 직무 관점에서 이해할 수 있다.", "수강자는 각 직무에서 자동화 가능한 업무를 구체적으로 파악하고, AI에게 위임할 영역과 사람이 집중해야 할 핵심 역량을 명확히 준비할 수 있다."], "curriculum": ["Agentic AI의 등장", "Notebook LM & AI 팟캐스트 활용법", "ChatGPT Agent 기초 : 반복 업무 삭제 노하우", "Claude Skills : Skill 파일로 정확하게 지시하기", "Claude MCP : 데스크탑에서 AI 불러쓰기", "Gemini Side Panel : 메일 한 통으로 끝내는 회의 준비", "Google Opal: 나만의 자동화 Agent 만들기", "Local AI Security : 오프라인 AI 활용법", "Multi-Agent Leadership : 협업 에이전트 시스템 만들기"], "curriculum_count": 9, "thumbnail": null, "detail_pdf": "[AI 치트키]업무 순삭의 비밀, Agentic AI.pdf"}, {"id": "c13", "title": "[AX의 정석-도입전략편] AI전환이라고요 뭐부터 해야 하는 거죠", "category": "AI 리터러시·전략", "category_key": "lit", "target": "리더·임원", "level": "심화", "duration": "4주(10시간)", "hours": 10.0, "duration_band": "스탠다드(5–12h)", "book_provided": true, "tools": [], "keywords": ["AI전환", "AX", "도입전략", "로드맵", "조직문화"], "instructor": "김형택", "overview": "이제 AI는 도입할까 말까의 문제가 아닙니다. 도입은 했는데, 왜 안 쓰이는가?를 고민해야 할 때입니다. 이 과정은 기업의 AI 전환의 본질과 실행 전략을 가장 명확하게 제시하기에 최적 화된 과정입니다. 본 과정은 AI 도입 초기 단기 열풍을 일으킨 기술과 툴, 프롬프트 중심 교육은 답할 수 없는 \"이걸 누가, 어떻게, 조직에 녹여야 하지?\"에 대한 해답을 찾도록 도와드립 니다. AI 도입은 단순한 교육이나 일회성으로 끝나는 컨설팅만으로 완성될 수 없습니다. 이 과정은 도입 → 정착 → 문화화에 이르는 단계별 전략을 구체적으로 제시하며, 이를 통해 기업은 조직 상황에 맞춰 실행 가능한 전환 로드맵을 직접 그릴 수 있습니다. 또한 내용전문가의 오랜 업계 경험과 연구의 결과를 담은 이 과정은 AI 트랜스포메이션을 준비하는 기업과 조직에 유용한 안내서가 될 것입니다.", "objectives": ["단순한 기술 도입이 아닌, 조직문화·가치사슬·업무 방식 변화의 관점에서 AI 전환을 설명할 수 있다.", "단계별 추진 전략을 학습하고, 실제 조직 상황에 맞게 AI 전환 실행 전략을 수립할 수 있다.", "AI 전환 과정에서 발생하는 거부감을 완화하고, 직원들이 AI를 자기 일로 수용하도록 지원할 수 있다.", "글로벌 및 국내 기업의 사례를 통해 성공 요인과 실패 원인을 구분하고, 자사에 맞는 실행 전략을 도출할 수 있다."], "curriculum": ["디지털트랜스포메이션을 넘어 AI트랜스포메이션으로", "AI트랜스포메이션 어떻게 추진할 것인가?", "AI트랜스포메이션 조직문화형성 및 직원 참여 유도 방법", "성공적인 AI트랜스포메이션 기술역량 확보 방법", "AI트랜스포메이션으로 어떻게 일하는 방식이 바뀌는가?", "AI트랜스포메이션은 어떻게 기존 가치사슬을 변화 시키고 있나?", "AI트랜스포메이션으로 어떻게 비즈니스모델을 혁신할 것인가?", "AI트랜스포메이션은 왜 실패하는가?", "성공적인 AI트랜스포메이션 추진을 위한 5가지 법칙", "그들은 어떻게 AI트랜스포메이션에 성공했나?"], "curriculum_count": 10, "thumbnail": null, "detail_pdf": "[AX의 정석-도입전략편] AI전환이라고요 뭐부터 해야 하는 거죠.pdf"}, {"id": "c14", "title": "[AX의 정석-분석편] 감만 믿던 직장인, AI로 노코드 데이터 분석 시작하기", "category": "데이터·의사결정", "category_key": "data", "target": "실무자", "level": "실무", "duration": "4주(10시간)", "hours": 10.0, "duration_band": "스탠다드(5–12h)", "book_provided": true, "tools": ["ChatGPT"], "keywords": ["노코드분석", "데이터", "시각화", "머신러닝"], "instructor": "이기복", "overview": "본 과정은 코딩 한 줄 모르는 비전공자도 AI와 함께 데이터 분석을 시작할 수 있도록 돕는 실무형 과정으로, ChatGPT와 노코드 도구를 활용해 실무 보고서와 문제 해결에 바로 적용 가 능한 데이터 분석 역량을 길러드립니다. 기업들은 다양한 AI/데이터 툴 교육을 시도하지만, 비전공자에게는 진입장벽이 여전히 높습니다. 본 과정은 이 장벽을 낮춰 데이터 기반 의사결정에 임직원들이 참여할 수 있는 환경을 만들어, AI 전환의 가장 큰 과제인 ‘활용 정착’ 문제를 해결하는 해법을 제시합니다.", "objectives": ["코딩 없이도 AI-노코드 도구를 활용해 데이터 분석 과정을 실행할 수 있다.", "데이터 시각화, 통계·확률, 분포·신뢰 구간 등 데이터 기본 개념을 실무 맥락에서 이해하고 적용할 수 있다.", "군집화·머신러닝 등 준전문가 수준의 분석 기법을 AI와 협업해 업무를 수행할 수 있다.", "ChatGPT API와 엑셀 연동을 활용해 데이터 분석 및 보고서 작업을 자동화할 수 있다."], "curriculum": ["AI로 코딩 없이 개발자처럼 일하기", "AI-노코드 데이터 분석을 위한 ChatGPT 맞춤 설정", "AI-노코드 데이터 분석의 첫걸음: 데이터 분석 A to Z", "AI-노코드 데이터 시각화(비교, 관계, 분포 시각화)", "데이터 분포를 위해 가장 쉽게 배우는 통계, 확률 with ChatGPT", "데이터 분포를 위해 가장 쉽게 배우는 분포, 신뢰 with ChatGPT", "스포츠 과학에서 배우는 노코드 데이터 군집화", "누구나 할 수 있는 노코드 머신러닝", "매일 쓰는 말과 글도 데이터 분석이 된다", "엑셀 시트와 ChatGPT를 연동시키는 GPT API 자동화"], "curriculum_count": 10, "thumbnail": null, "detail_pdf": "[AX의 정석-분석편] 감만 믿던 직장인, AI로 노코드 데이터 분석 시작하기.pdf"}, {"id": "c15", "title": "[AX의 정석-실무편] 감을 잃은 직장인, AI로 무결점 보고서 만들기", "category": "업무 생산성·문서", "category_key": "prod", "target": "실무자", "level": "실무", "duration": "4주(12시간)", "hours": 12.0, "duration_band": "스탠다드(5–12h)", "book_provided": true, "tools": ["ChatGPT"], "keywords": ["보고서", "제안서", "기획서", "AI검증", "문서"], "instructor": "김철수", "overview": "이 과정은 AI와 협업하여 논리적 비약까지 잡아내고, 설득력 있는 무결점 보고서를 완성하는 방법을 알려드립니다. 또한 단순히 AI가 대신 써주는 보고서가 아니라, 사람의 전략적 사 고와 AI의 검증 능력을 결합해 실무에서 통하는 문서작성 역량을 길러드립니다. AI 검증 역량을 통해 진짜 “보고할 수 있는 보고서” 작성법에 대한 과정입니다.", "objectives": ["AI 시대 문서 작성 프로세스의 변화를 학습하고, 전략적 문서 작성 원칙을 배워 내 문서에 적용할 수 있다.", "보고서·제안서를 검증하기 위한 프롬프트 기술을 활용하여 내용·형식·수치 오류를 점검할 수 있다.", "문서의 논리적 구조와 설득 요소를 검토하여, 상사의 추가 수정 없는 무결점 보고서를 완성할 수 있다.", "AI 검토 프로세스를 실무에 적용해 보다 효율적인 보고 문화를 정착시킬 수 있다."], "curriculum": ["AI 감수자와 함께 문서의 품질을 관리하세요", "보고서를 빠르고 정확하게 검증하는 능력, AI 보고서 리터러시", "보고서의 완성도를 높이는 AI로 톤앤매너 정돈법", "한 줄의 실수도 허락하지 않는 AI 보고서 감수 활용법", "읽는 사람의 생각까지 맞추는 기획서, AI로 방향을 잡다", "내 기획서의 빈틈을 메워주는 AI 피드백 활용법", "기획서 완성의 핵심, 한 줄의 통찰을 뽑아내는 AI 프롬프트", "제안서를 '읽히는 문장'으로 바꾸는 AI 리라이팅 기법", "제안서의 경쟁력을 설계하고 차별화하는 AI 프롬프트", "설득 버튼이 눌리는 AI 제안서 검토법", "나만의 AI 문서 혁신 전략으로 루틴 업무 효율화하기"], "curriculum_count": 11, "thumbnail": null, "detail_pdf": "[AX의 정석-실무편] 감을 잃은 직장인, AI로 무결점 보고서 만들기.pdf"}, {"id": "c16", "title": "[ChatGPT] 영업제안서 10분만에 생성하고 칼퇴하기", "category": "업무 생산성·문서", "category_key": "prod", "target": "실무자", "level": "실무", "duration": "4주(21시간)", "hours": 21.0, "duration_band": "인텐시브(≥13h)", "book_provided": false, "tools": ["ChatGPT"], "keywords": ["영업제안서", "RFP", "제안", "프레젠테이션"], "instructor": "한동욱", "overview": "이제 영업제안서 작성은 더 이상 복잡하고 시간 소모적인 일이 아닙니다. [ChatGPT]를 활용하여 클라이언트의 마음을 사로잡는 제안요청서 분석 노하우와 계약의 성공을 이끄는 작성 노하우를 알려드립니다. 더불어 영업제안서 작성 이후의 성공 관리와 관련 법규 이해에 대해서도 학습할 수 있습니다.", "objectives": ["영업제안서 작성을 위한 기초 지식을 파악한다.", "영업제안서 작성 절차에 따른 작성 방법을 알아본다.", "ChatGPT 및 인공지능 서비스를 활용하여 다양한 형태의 영업제안서 작성 방법을 살펴본다.", "영업제안서 작성 이후 시스템의 유지·보수를 위한 전략과 영업제안서 관련 법규를 살펴본다."], "curriculum": ["영업제안서 작성을 위한 기초 스킬", "10분 빨라지는 영업제안서 작성 프로세스", "영업제안서 작성의 핵심 키워드 - 2", "잘 팔리는 영업제안서의 성공 비결", "클라이언트의 마음을 사로잡는 제안요청서 분석 노하우 - 1", "클라이언트의 마음을 사로잡는 제안요청서 분석 노하우 - 2", "계약의 성공을 이끄는 영업제안서 작성 노하우 - 1", "계약의 성공을 이끄는 영업제안서 작성 노하우 - 2", "ChatGPT로 영업제안서 작성이 쉬워진다!", "영업제안서 고수가 되는 ChatGPT 사용법 - 1", "영업제안서 고수가 되는 ChatGPT 사용법 - 2", "ChatGPT로 영업제안서 A부터 Z까지", "프레젠테이션의 품격을 높이는 ChatGPT 사용 전략 - 1", "프레젠테이션의 품격을 높이는 ChatGPT 사용 전략 - 2", "가능성 UP! 영업제안서 인공지능 사용 전략", "이제 영업제안서 디자인은 인공지능이 한다!", "동영상 영업제안서 제작은 인공지능으로 쉬워진다!", "영업제안서 작성 이후의 성공 관리 전략", "영업제안서 관련 법규의 이해와 준수 전략"], "curriculum_count": 19, "thumbnail": null, "detail_pdf": "[ChatGPT] 영업제안서 10분만에 생성하고 칼퇴하기.pdf"}, {"id": "c17", "title": "[HD][심화과정]LangChain, LangGraph로 구현하는 텍스트,이미지,그래프 기반 멀티모달 RAG Part.1", "category": "개발·기술·보안", "category_key": "dev", "target": "개발자", "level": "심화", "duration": "4주(12시간)", "hours": 12.0, "duration_band": "스탠다드(5–12h)", "book_provided": false, "tools": ["LangChain", "LangGraph", "Pinecone"], "keywords": ["RAG", "멀티모달", "벡터검색", "OCR"], "instructor": "김종영", "overview": "“LangChain/LangGraph로 구현하는 텍스트·이미지·그래프 기반 멀티모달 RAG 심화 과정”은 텍스트·이미지·지식그래프 등 다양한 데이터 소스를 통합해 고급 RAG 시스템을 구축하 는 방법을 실전적으로 다룹니다. LangChain과 LangGraph를 활용한 멀티모달 파이프라인 설계, 에이전트 오케스트레이션, 단계별 RAG 아키텍처 구현 등을 중심으로 실제 서비스 수준의 멀티모달 RAG를 완성하도록 돕는 심화 과정입니다.", "objectives": ["Pinecone을 활용한 Dense, Sparse, Hybrid 벡터 검색 시스템을 구현할 수 있다.", "BM 25 알고리즘 기반 키워드 검색과 임베딩 기반 의미 검색을 결합할 수 있다.", "unstructured 라이브러리로 비정형 문서의 레이아웃을 분석하고 구조화할 수 있다.", "OCR 기술을 활용하여 이미지 기반 문서에서 텍스트를 추출할 수 있다.", "검색 결과를 LLM 과 통합하여 RAG 기반 질의응답 시스템을 구축할 수 있다."], "curriculum": ["RecursiveCharacterTextSplitter(), Pinecone 인덱스 생성, PineconeVectorStore.from_documents()", "PineconeVectorStore 객체의 similarity_search()와 Index 객체의 query()", "Sparse 검색 - 소개", "Sparse 검색 - BM 25", "Hybrid 검색 1/2", "Hybrid 검색 2/2", "LLM 에 검색 결과 전달하기", "Tesseract, Google Cloud Vision API", "비정형 문서의 처리 방법, partition_pdf의 strategy", "partition_pdf - strategy=\"fast\"", "partition_pdf - strategy=\"hi_res\"", "LLM 을 이용한 테이블 파싱 에러 보정"], "curriculum_count": 12, "thumbnail": null, "detail_pdf": "[HD][심화과정]LangChain, LangGraph로 구현하는 텍스트,이미지,그래프 기반 멀티모달 RAG Part.1.pdf"}, {"id": "c18", "title": "[How2업스킬] 스마트 리더를 위한 데이터로 문제해결과 의사결정하기", "category": "데이터·의사결정", "category_key": "data", "target": "리더·임원", "level": "실무", "duration": "4주(18시간)", "hours": 18.0, "duration_band": "인텐시브(≥13h)", "book_provided": true, "tools": [], "keywords": ["데이터텔링", "시나리오플래닝", "시각화", "의사결정"], "instructor": "김철수", "overview": "향후 10년간 가장 중요한 비즈니스 능력은 데이터 역량! 이제는 데이터를 언어처럼 이해하고 설득의 도구로 활용할 줄 알아야 하는 시대다. 본 과정은 분석보단 활용, 결과가 아닌 결 론을 도출해야 할 리더를 위해 데이터의 쓸모를 넓히는 아주 유용한 데이터 활용서이다.", "objectives": ["경영진 및 의사결정권자의 데이터 활용 역량을 함양할 수 있다.", "데이터를 활용하여 조직 내 문제 해결 및 향후 나아갈 방향을 정립할 수 있다."], "curriculum": ["비즈니스 논리가 당신을 돋보이게 해줄거에요.", "그동안 엉뚱한 자료를 쓰고 있진 않았을까요?", "상사의 표정이 어두운건 쓸데없는 사실만 보고하기 때문이에요.", "올바른 판단 선정, 치밀하게 시나리오 플래닝 해보세요.", "표 하나로 많은 것을 표현할 수 있어요.", "차트를 조심하세요. 왜곡의 온상이 될 수 도 있으니까요.", "데이터도 글로 표현해야 할 때가 있어요.", "데이터텔링으로 보고의 궁극 파워포인트 장표를 구성하세요.", "웹으로 데어터 시각화 보고서를 공개적으로 공유해 보세요.", "차트 패턴을 찾으면 기획도 빨라집니다.", "비즈니스 전략기획도 데이터 기반 5Whys로 하세요.", "차트만 모아놓는다고 다 같은 시각화 대시보드가 아닙니다.", "마이닝, 로그 데이터로 업무 프로세스를 혁신해 보세요.", "데이터를 전적으로 믿으시겠습니까? A/B 테스트로 결정하세요.", "실속 없이 바쁘세요? 데이터 기반 시간관리를 해보세요.", "비즈니스도 데이터로 코칭하면 회사와 나를 밸류업할 수 있어요.", "이제 데이터로 조직의 문화를 정의해 봅시다."], "curriculum_count": 17, "thumbnail": null, "detail_pdf": "[How2업스킬] 스마트 리더를 위한 데이터로 문제해결과 의사결정하기.pdf"}, {"id": "c19", "title": "[ICT 아카이브] 빅데이터 핵심과 비즈니스모델", "category": "데이터·의사결정", "category_key": "data", "target": "전사 공통", "level": "입문", "duration": "4주(8시간)", "hours": 8.0, "duration_band": "스탠다드(5–12h)", "book_provided": false, "tools": [], "keywords": ["빅데이터", "하둡", "머신러닝", "비즈니스모델"], "instructor": "장형석", "overview": "빅데이터 처리와 분석을 통한 Business Insight! 다양한 분석기술의 발전과 방대하고 다양한 유형의 데이터들이 생성되면서, 이러한 빅데이터를 분석하여 비즈니스에 활용하는 경향이 점점 더 두드러지고 있습니다. 이에 본 과정에서는 빅데이터의 기본 개념과 최신 트렌드를 파악하고, 빅데이터 분석 기법의 기술적인 이해를 통해 데이터 패턴을 추출하여 비즈니스에 활용할 수 있는 방법을 제시합니다. 빅데이터를 통해 새로운 비즈니스를 창출하고, 미래의 비즈니스환경에 대한 통찰력을 기를 수 있습니다.", "objectives": ["빅데이터의 기본 개념과 필요성을 이해할 수 있다.", "빅데이터 분석을 위한 핵심 기술들을 이해할 수 있다.", "빅데이터 분석 기법과 머신러닝 알고리즘을 이해할 수 있다.", "빅데이터를 실무에 적용하기 위한 전략과 준비 과정을 이해할 수 있다."], "curriculum": ["빅데이터의 가치와 미래", "빅데이터 플랫폼의 기술과 사례", "빅데이터 핵심 기술 : 하둡의 이해", "빅데이터 분석방법론과 도구", "머신러닝의 이해 및 분류", "머신러닝의 지도학습, 비지도학습 알고리즘과 딥러닝", "빅데이터 시각화의 핵심요소와 도구", "빅데이터 시대를 위한 준비와 미래사회"], "curriculum_count": 8, "thumbnail": null, "detail_pdf": "[ICT 아카이브] 빅데이터 핵심과 비즈니스모델.pdf"}, {"id": "c20", "title": "[구글 올인원 AI] 아날로그 업무 현장, AI 자동화로 시스템 구축하기", "category": "AI 도구·콘텐츠 제작", "category_key": "tool", "target": "실무자", "level": "실무", "duration": "4주(7시간)", "hours": 7.0, "duration_band": "스탠다드(5–12h)", "book_provided": false, "tools": ["Gemini", "NotebookLM", "Colab", "Apps Script"], "keywords": ["구글", "자동화", "스마트워크"], "instructor": "이광희", "overview": "구글 환경 구축에서 출발해 Gemini 활용, 검색 고도화, 메모·할 일·일정 관리, 드라이브·포토 활용, Gmail·M eet·Chat 협업, 문서·스프레드시트·슬라이드 실무, 이미지·영상 제작, 설문지· 사이트 구축, NotebookLM 기반 자료 분석, Colab·Apps Script를 활용한 업무 자동화까지 단계적으로 익히는 실무형 과정이다. 단순 기능 소개가 아니라 실제 업무 장면에 바로 적용할 수 있도록 검색, 문서 작성, 데이터 정리, 발표 자료 제작, 신청 접수, 규정집 챗봇, 일정 등록, 설문 자동 생성 같은 실습 중심으로 구성되었다. 1. 구글 생태계를 하나로 연결하는 통합형 스마트워크 구글은 하나의 계정으로 검색, 메일, 일정, 문서, 드라이브, 협업 도구를 유기적으로 연결해 사용할 수 있고, 본 강좌는 이 연결 구조를 업무 흐름 중심으로 익히게 한다. 2. 바로 써먹는 AI 실무 활용과 자동화 Gemini를 활용한 문서 작성, 요약, 챗봇 구성, 일정 생성, 설문 제작, 메일 발송 자동화까지 다루며, 반복 업무를 실제 업무 자동화로 전환하게 한다. 3. 자료기반 분석과 신뢰도 높은 업무 적용 NotebookLM 을 활용해 업로드한 소스 안에서만 답변을 찾고, 출처 기반으로 요약·분석·학습·리포트 작성을 수행하게 하여 실무 신뢰도를 높인다.", "objectives": ["구글 생태계의 핵심 서비스와 AI 기반 스마트워크 흐름을 이해한다.", "NotebookLM , 예약 페이지, Colab, Apps Script를 활용해 반복 업무를 자동화하는 방법을 알 수 있다."], "curriculum": ["어디서나 작성 가능한 온라인문서도구", "데이터를 분석하고 시각화하는 도구! 스프레드시트", "가장쉽고 공유도 편한 발표도구 Slides", "구글 AI 이미지 생성", "정보를 수집, 분석하는 온라인 설문", "구글의 생성형 AI 서비스 NotebookLM 활용편(1)", "구글의 생성형 AI 서비스 NotebookLM 활용편(2)"], "curriculum_count": 7, "thumbnail": null, "detail_pdf": "[구글 올인원 AI] 아날로그 업무 현장, AI 자동화로 시스템 구축하기.pdf"}, {"id": "c21", "title": "[금융특화] AI 현업 적용 기획", "category": "직무·소프트스킬 특화", "category_key": "job", "target": "실무자", "level": "실무", "duration": "4주(10시간)", "hours": 10.0, "duration_band": "스탠다드(5–12h)", "book_provided": false, "tools": [], "keywords": ["금융", "챗봇", "RPA", "로보어드바이저", "프로세스마이닝"], "instructor": null, "overview": "AI 적용 사례 분석 강의", "objectives": ["AI 기술에 대한 이해를 기반으로 현업에 적용할 요소들을 고민해보고 금융중심의 간단한 AI 적용 사례 만들어 볼 수 있습니다."], "curriculum": ["AI Overview", "AI 적용을 Computational Thinking", "AI 기획을 위한 Business Idea 발굴 프레임워크", "AI 적용 기획을 위한 현업 프로세스 마이닝 I", "AI 적용 기획을 위한 현업 프로세스 마이닝 II", "AI 현업 적용을 위한 서비스 제안", "금융 중심의 AI 적용 사례(챗봇)", "금융 중심의 AI 적용 사례(RPA)", "금융 중심의 AI 적용 사례(Roboadvisor)"], "curriculum_count": 9, "thumbnail": null, "detail_pdf": "[금융특화] AI 현업 적용 기획.pdf"}, {"id": "c22", "title": "[나 혼자만 레벨업] AI도 배우는 SSS급 커뮤니케이션 스킬", "category": "직무·소프트스킬 특화", "category_key": "job", "target": "전사 공통", "level": "입문", "duration": "4주(2시간)", "hours": 2.0, "duration_band": "숏(≤4h)", "book_provided": true, "tools": [], "keywords": ["커뮤니케이션", "소프트스킬", "IP콜라보", "나혼자만레벨업"], "instructor": "박소연", "overview": "143억 뷰 웹툰 <나 혼자만 레벨업> X 소프트 스킬 <커뮤니케이션> AI 습격 시대! 우리에게 매일 주어진 비즈니스 퀘스트들을 어떻게 헤쳐나갈 수 있을까요? 우리는 AI 그리고 사람 간의 협업을 효과적을 해내기 위해서 ‘커뮤니케이션’ 스킬이 필요합니 다. 설득, 경청, 조언, 갈등 해결, 세대간 소통에 대한 커뮤니케이션 퀘스트를 해결해 가다 보면 어느새 AI도 대체할 수 없는 인재가 될 수 있을 거에요. 직장에서 한번쯤은 겪어봤을 법 한 사례들과 그 상황에서 어떻게 말해야 하는지 알려드립니다. SSS급이 되는 커뮤니케이션 방법! 내 것으로 만들어보세요. 퀘스트 완료! 나 혼자만 레벨업하는 커뮤니케이션 스킬 비즈니스에서 마주한 수많은 커뮤니케이션 퀘스트들! 차시별로 주어진 퀘스트를 완료하고, 레벨업 된 나 자신을 발견해보세요. 이건 내 이야기잖아! 사례를 통해 재미있고 몰입감있게! ‘너무 내 이야기인데..?’싶을 정도로 현실 가득 담은 사례들을 담았습니다. 다양한 케이스를 통해 커뮤니케이션 기술을 습득해 봅시다. 어떻게 말해야 할까? 그럴 땐 이렇게 해보세요! 동료들과 효과적으로 대화하고 좋은 관계를 맺을 수 있는지, 어떻게 해야 능숙한 커뮤니케이션을 통해 상사에게 인정받을 수 있을지 고민되시죠? 상황별로 프로답게 어떻게 말해야 할 지 알려드립니다. 그대로 따라해 보세요!", "objectives": ["직장 내 커뮤니케이션의 중요성에 대해 깨닫고 자신의 의견을 명확히 전달하면서도 상대방과의 관계를 원만하게 유지할 수 있는 소통 방법을 설명할 수 있다.", "관계 및 상황별 커뮤니케이션 방법을 설명할 수 있다."], "curriculum": ["조직 내 커뮤니케이션은 왜 중요할까?", "좋은 반응을 받고 싶으면 좋은 자극을 주어라", "회사에 가면 회사어를 사용하라", "커뮤니케이션의 냉정과 온정 사이", "의도를 파악하지 못하면 오해가 된다", "부정적 커뮤니케이션에 긍정 필터링 씌우기", "빠르게 듣지 않고 바르게 듣는 커뮤니케이션", "효과적으로 설득하는 커뮤니케이션", "거절 ‘당했다’가 아닌 거절 ‘받았다’", "메신저, 이메일로 하는 커뮤니케이션 방법"], "curriculum_count": 10, "thumbnail": null, "detail_pdf": "[나 혼자만 레벨업] AI도 배우는 SSS급 커뮤니케이션 스킬.pdf"}, {"id": "c23", "title": "[리더의 AI 워크북] 배치하라-팀 최적화 6단계 프롬프팅(바로 쓰는 템플릿 제공)", "category": "직무·소프트스킬 특화", "category_key": "job", "target": "리더·임원", "level": "실무", "duration": "4주(6시간)", "hours": 6.0, "duration_band": "스탠다드(5–12h)", "book_provided": false, "tools": [], "keywords": ["팀최적화", "인력배치", "프롬프팅", "템플릿", "리더"], "instructor": "이시한", "overview": "프롬프트 하나로, 팀을 전략적으로 재배치하다! \"이 사람한테 맡겨도 될까?\" 확신 없이 배치하고, 잘못되면 혼자 감당해야 합니다. 이 과정은 그 불안을 없애는 것에서 출발합니다. 리더의 AI 프롬프트로 팀원의 역량을 진단하고, 업무와 사람을 매칭하고, 실행 가능한 운영 체계를 완성하세요.", "objectives": ["AI 프롬프팅을 활용해 팀 역량을 진단하고 최적 배치 기준을 설계할 수 있다.", "AI 기반 템플릿으로 협업 구조와 운영 방식을 체계화할 수 있다.", "코칭·피드백 루프를 설계하고 팀 성장 시나리오를 수립할 수 있다."], "curriculum": ["팀 최적화를 위한 배치 로드맵 그리기", "팀 역량을 진단해 활용 가능 자원 정의하기", "업무-사람 매칭 로직 설계하기", "협업 구조와 팀 운영 방식 설계하기", "1:1 코칭·피드백 루프 세팅하기", "역량 향상 실행 시나리오 만들기"], "curriculum_count": 6, "thumbnail": null, "detail_pdf": "[리더의 AI 워크북] 배치하라-팀 최적화 6단계 프롬프팅(바로 쓰는 템플릿 제공).pdf"}, {"id": "c24", "title": "기획, 디자인, 발표까지 다 되는 AI 활용 프레젠테이션", "category": "업무 생산성·문서", "category_key": "prod", "target": "실무자", "level": "실무", "duration": "4주(8시간)", "hours": 8.0, "duration_band": "스탠다드(5–12h)", "book_provided": false, "tools": ["ChatGPT", "Gamma", "Napkin AI", "Genspark", "Copilot"], "keywords": ["프레젠테이션", "PPT", "발표", "디자인"], "instructor": null, "overview": "AI를 잘 쓰면 프레젠테이션 고수가 될 수 있다! 어떤 AI를 어떻게 활용하면 좋을까? 프레젠테이션 기획부터 디자인·발표 준비까지 필요한 AI 도구들의 강점과 사용법을 사례로 빠르게 익히고, 상황별로 적절히 선택하거나 순차적으로 조합하여 활용하는 전략을 배웁니다. 도구 익히기를 넘어 프레젠테이션 수준 향상을 목표로! 더 나은 결과를 이끌어내는 프롬프트 작성법, 효율적 작업을 위한 설정법, 기존 문서의 개선 및 고도화 방법을 배워 한 단계 높은 수준의 프레젠테이션을 완성합니다.", "objectives": ["프레젠테이션 기획부터 디자인·발표 준비까지 필요한 AI 도구들 (ChatGPT, Gamma, Napkin AI, Genspark, Copilot )의 강점과 사용법을 사례로 빠르게 익힐 수 있다.", "다양한 AI 도구들 중 목적에 맞는 도구를 선택하고, 순차적으로 조합하여 활용하는 법을 익혀 나만의 발표 준비를 위한 루틴을 마련할 수 있다.", "도구 익히기를 넘어 프레젠테이션 수준 향상을 목표로 하여 더 나은 결과를 이끌어내는 프롬프트 작성법, 효율적 작업을 위한 설정법, 기존 문서의 개선 및 고도화 방법을 배울 수 있다."], "curriculum": ["왜 AI + PPT인가?", "AI 기획의 힘", "보고서를 슬라이드로 바꾸는 기술", "AI로 시각자료 자동 생성하기", "AI로 기획부터 시각화까지 한 번에", "AI로 슬라이드를 더 잘 다듬는 전략", "Copilot과 PPT 실전 기능 마스터", "AI로 발표력까지 완성하기"], "curriculum_count": 8, "thumbnail": null, "detail_pdf": "기획, 디자인, 발표까지 다 되는 AI 활용 프레젠테이션.pdf"}, {"id": "c25", "title": "데이터 사이언스로 내리는 경영 의사결정 마스터 클래스_매출 2,000억 달성 스토리로 풀어가는 실전 BQ(Business Questions)", "category": "데이터·의사결정", "category_key": "data", "target": "실무자", "level": "심화", "duration": "4주(16시간)", "hours": 16.0, "duration_band": "인텐시브(≥13h)", "book_provided": true, "tools": [], "keywords": ["데이터사이언스", "PBL", "시계열", "회귀", "파레토", "의사결정"], "instructor": "김진", "overview": "현실에서 매일 마주하는 비즈니스 문제들을 스토리를 따라가며 해결해가는 Problem-Based Learning 과정! 실제 데이터셋을 기반으로 도메인 지식, 다양한 분석 모델, 통계를 결합하여 전략적 의사결정을 도출해보자.", "objectives": ["실무 데이터셋 앞에서 헤매지 않고 데이터 전처리, 분석하고 시각화할 수 있다.", "현실에서 마주하는 다양한 비즈니스 문제를 데이터 분석을 기반으로 해결하고 전략적 의사결정을 내릴 수 있다."], "curriculum": ["스토리 소개", "비즈니스 현황 파악하기", "지점 실적 개선하기", "선택과 집중", "고객 세그먼트 분류와 관리하기", "전략적 의사결정하기", "데이터 사이언스 매니지먼트 과정 정리"], "curriculum_count": 7, "thumbnail": null, "detail_pdf": "데이터 사이언스로 내리는 경영 의사결정 마스터 클래스_매출 2,000억 달성 스토리로 풀어가는 실전 BQ(Business Questions).pdf"}, {"id": "c26", "title": "데이터는 답을 알고 있다! 데이터 기반 의사결정 DDDM", "category": "데이터·의사결정", "category_key": "data", "target": "전사 공통", "level": "입문", "duration": "4주(4시간)", "hours": 4.0, "duration_band": "숏(≤4h)", "book_provided": false, "tools": [], "keywords": ["DDDM", "데이터기반의사결정", "EDA", "통계"], "instructor": "신경식", "overview": "데이터 기반 의사결정을 하려면 무엇을? 어떻게? 시작해야 하는가? 데이터를 기반으로 의사결정을 내리면 주관적인 판단과 직관에 의한 결정으로 인한 오류를 최소화할 수 있으며, 다양한 리스크를 사전에 예측하고 빠르게 대처할 수 있습니다. 따라서 데이터 기반 의사결정은 기업이나 조직이 더 나은 의사결정을 내리고 경쟁 우위를 유지할 수 있도록 중요한 요소이기에 해당 과정을 통해 이러한 역량을 강화 시킨다면 데이터를 전략 적 무기로 사용할 수 있을 것입니다.", "objectives": ["데이터 기반 의사결정의 필요성과 기초 개념을 알아본다.", "데이터 기반 의사결정을 위한 데이터 및 시각화 분석 방법에 대한 이해도를 높인다.", "데이터 기반 의사결정을 위한 데이터 모델링, 알고리즘에 대해 파악한다."], "curriculum": ["일상에서 만나는 데이터 기반 의사결정(DDDM )", "데이터 기반 의사결정의 프로세스와 장단점", "탐색적 데이터 분석(EDA)이란 무엇인가?", "기초 통계치 파헤치기 part.1", "기초 통계치 파헤치기 part.2", "붓꽃 데이터로 살펴본 데이터 분석 방법", "데이터 기반 의사결정과 머신러닝", "회귀 알고리즘이란 무엇인가?", "이웃 데이터 따라 분류하는 KNN Classifier", "조건에 따라 값이 변하는 Bayes 정리", "머신러닝에 최적화된 Naïve Bayes Classifier"], "curriculum_count": 11, "thumbnail": null, "detail_pdf": "데이터는 답을 알고 있다! 데이터 기반 의사결정 DDDM.pdf"}, {"id": "c27", "title": "리더(임원)를 위한 생성형 AI 비즈니스 ChatGPT 전략", "category": "AI 리터러시·전략", "category_key": "lit", "target": "리더·임원", "level": "입문", "duration": "4주(2시간)", "hours": 2.0, "duration_band": "숏(≤4h)", "book_provided": true, "tools": ["ChatGPT"], "keywords": ["생성형AI", "비즈니스전략", "프롬프트엔지니어링"], "instructor": "김진", "overview": "비즈니스 현장의 필수 역량이 된 생성형 인공지능! 내 업무와 사업에 생성형 인공지능 제대로 활용하기!", "objectives": ["생성형 인공지능 도구를 활용한 다양한 방법을 익혀, 비즈니스에 실질적으로 적용할 수 있다.", "AI와의 상호작용을 최적화하는 프롬프트 엔지니어링 기법을 배워, 생산성을 극대화할 수 있다.", "AI를 활용한 비즈니스 전략을 이해하고, 이를 통해 혁신적인 비즈니스 환경을 구축할 수 있다.", "최신 AI 기술을 활용해, 창의적인 결과물을 효과적으로 생성하는 능력을 갖출 수 있다."], "curriculum": ["생성형 AI는 증강 역량 도구", "생성형 AI 활용 전략", "생성형 AI 생태계의 이해", "주요 생성형 AI 실무 적용 실습"], "curriculum_count": 4, "thumbnail": null, "detail_pdf": "리더(임원)를 위한 생성형 AI 비즈니스 ChatGPT 전략.pdf"}, {"id": "c28", "title": "미드저니와 캡컷으로 완성하는 시네마틱 AI 영상 제작 바이블", "category": "AI 도구·콘텐츠 제작", "category_key": "tool", "target": "실무자", "level": "실무", "duration": "4주(4시간)", "hours": 4.0, "duration_band": "숏(≤4h)", "book_provided": false, "tools": ["Midjourney", "CapCut"], "keywords": ["AI영상", "시네마틱", "스타일코드", "영상제작"], "instructor": null, "overview": "\"감각적인 비주얼 스토리텔링을 완성하는 미드저니와 캡컷의 시너지\" 미드저니(Midjourney)와 캡컷(CapCut)의 결합은 영상 제작의 진입 장벽을 허물고 누구나 시네마틱한 결과물을 만들게 해줍니다. 압도적인 화질의 생성형 AI와 직관적 인 편집 도구의 만남을 통해, 사용자는 상상 속의 장면을 현실의 콘텐츠로 생생하게 구현할 수 있습니다. 이제 기술적 한계 없이 오직 감각만으로 관객을 사로잡는 영 상 제작의 묘미를 탐구해봅시다.", "objectives": ["미드저니 영상 흐름을 완성하는 핵심 연출 기능 프롬프트를 익힐 수 있다.", "이미지 생성부터 모션 영상까지 AI를 활용하여 자연스럽게 발전시킬 수 있다.", "색감, 톤, 무드를 일관되게 유지하는 스타일 코드로 나만의, 우리 브랜드의 영상 스타일을 전략적으로 구축할 수 있다."], "curriculum": ["미드저니 인터페이스 및 동영상 기능 핵심 사용법", "영상 생성 응용&영상 편집", "평범한 이미지를 특별한 영상으로 만드는 스타일 코드", "다양한 스타일 프롬프트와 업종 별 영상 제작 사례"], "curriculum_count": 4, "thumbnail": null, "detail_pdf": "미드저니와 캡컷으로 완성하는 시네마틱 AI 영상 제작 바이블.pdf"}, {"id": "c29", "title": "비즈니스를 움직이는 DX INSIGHT  NEW TREND", "category": "AI 리터러시·전략", "category_key": "lit", "target": "기획·전략", "level": "입문", "duration": "4주(7시간)", "hours": 7.0, "duration_band": "스탠다드(5–12h)", "book_provided": false, "tools": [], "keywords": ["DX", "트렌드", "버티컬AI", "유통", "물류", "엔터테크"], "instructor": null, "overview": "“DX를 ‘아는 사람’에서 DX로 비즈니스 기회를 ‘만드는 사람’으로” DX Insight 과정은 산업 전반에서 가속화되는 디지털 전환 흐름을 한 코스에서 빠르게 이해하도록 설계된 실무 중심 DX 트렌드 과정입니다.", "objectives": ["유통·물류·엔터테크·AI 등 주요 산업의 최신 트렌드와 기술 변화를 구조적으로 이해하고, 산업 간 경계가 허물어지는 융합 흐름까지 읽어낼 수 있다.", "글로벌 선도 기업들의 실제 DX 전략, 비즈니스 모델, 기술 투자 흐름을 기반으로 우리 조직의 기회 영역을 진단하고 전략 기획의 관점을 확장할 수 있다.", "트렌드–기술–고객 경험을 연결해 새로운 사업 아이디어, 프로세스 혁신, 상품·서비스 전략 등을 도출할 수 있는 실무적 기획 역량을 강화한다."], "curriculum": ["AI 기술 트렌드 전망/AI 대중화, 누구나 AI를 쉽게 활용하는 시대/AI 에이전트 시대 개막", "모든 것을 이해하는 멀티모달 AI / 산업 맞춤형 AI가 시장을 주도, 버티컬 AI", "물류 DT Trend Overview / 물류 Trend 전망", "유통 산업의 현황 및 주요분야", "엔터/미디어 산업의 현황 및 시장환경 변화/엔터/미디어 산업의 주요 성장 동인/엔터/미디어 산업 내 주요 Trend", "생성형 AI 확산 따른 소셜미디어 및 개인화 모델 진화/엔터/미디어 산업 내 AI 활용 사례/엔터/미디어 산업 경쟁 우위 요건"], "curriculum_count": 6, "thumbnail": null, "detail_pdf": "비즈니스를 움직이는 DX INSIGHT  NEW TREND.pdf"}, {"id": "c30", "title": "생성형 AI 시대! ChatGPT를 활용한 HR", "category": "직무·소프트스킬 특화", "category_key": "job", "target": "실무자", "level": "실무", "duration": "4주(8시간)", "hours": 8.0, "duration_band": "스탠다드(5–12h)", "book_provided": false, "tools": ["ChatGPT"], "keywords": ["HR", "채용", "성과관리", "직원경험"], "instructor": "김기진", "overview": "HR의 혁신! ChatGPT로 패러다임의 전환을 경험하라! ChatGPT 등장은 HR 분야에 새로운 변화를 가져왔습니다. ChatGPT는 기업의 조직, 프로세스, 시스템, 비즈니스 모델, 조직문화 등을 근본적으로 변화시키는 디지털 전환을 가져오고 있습니다. 이 과정은 ChatGPT를 활용하여 인재 확보, 유지, 개발 등과 같은 중요한 이슈에 접근하는 실질적인 가이드 라인을 제공합니다. 우리 기업에 ChatGPT를 어떻게 적용해야 할 지, ChatGPT를 올바르게 사용하기 위해 HR 담당자는 어떤 역량을 갖춰야 할지 함께 알아봅시다.", "objectives": ["디지털 전환 시대에 대응하기 위해, HR 담당자는 어떤 역량을 갖춰야 하는지 알 수 있다.", "ChatGPT로 인사 관리의 효율을 높이고, 불필요한 업무를 줄일 수 있다.", "ChatGPT를 통해 바람직한 조직문화를 조성하고 세대 간 대화를 도울 수 있다.", "ChatGPT로 대량의 데이터를 분석하여 직무 불만족, 이직의 잠재적 원인을 식별하고 사전에 대책을 세울 수 있다."], "curriculum": ["COT와 FTP 질문 기법", "HR 분야에서의 ChatGPT 적용 사례", "채용 과정에서의 ChatGPT의 역할과 기능", "성과 관리에서의 ChatGPT의 역할과 적용", "직원 경험과 참여도 향상을 위한 ChatGPT의 활용", "기업 문화 형성과 ChatGPT의 역할", "HR 전략 수립을 위한 ChatGPT 활용 워크숍"], "curriculum_count": 7, "thumbnail": null, "detail_pdf": "생성형 AI 시대! ChatGPT를 활용한 HR.pdf"}, {"id": "c31", "title": "업스킬, 프로젝트로 배우는 생성형 AI", "category": "AI 리터러시·전략", "category_key": "lit", "target": "전사 공통", "level": "입문", "duration": "4주(30시간)", "hours": 30.0, "duration_band": "인텐시브(≥13h)", "book_provided": false, "tools": ["GPTs", "Gemini"], "keywords": ["AI윤리", "AI리터러시", "업무자동화", "프로젝트"], "instructor": "이미선", "overview": "AI의 기본 이해를 시작으로 비즈니스에 활용하는 방법과 윤리적인 문제를 다루는 AI 리터러시, 그리고 실무와 다양한 프로젝트 수행에 생산성 향상에 도움을 주는 생성형 AI 활용법에 대한 내용을 다루고 있습니다.", "objectives": ["AI윤리와 AI리터러시의 필요성에 대해 이해할 수 있다.", "생성형 AI의 다양한 툴을 알아보고 업무에 적용할 수 있다."], "curriculum": ["처음 만나는 AI", "직무에 맞는 생성형 AI 가이드", "AI에게 효과적으로 질문하기", "업무에 적용하는 프롬프트 기초 실습", "자기홍보를 위한 프롬프트 심화 실습", "업무자동화의 이해", "제미나이를 활용한 업무자동화", "GPTs를 활용한 업무자동화", "GPTs를 활용한 업무자동화 심화", "데이터 분석의 기본", "데이터 수집 및 분석 실습", "데이터 시각화로 보는 AI 인사이트", "인사이트 도출을 위한 데이터 심화", "AI를 활용한 문서 생성", "AI 스마트 문서 작성법", "퀄리티 있는 PPT 만들기", "AI로 완성하는 PPT 보고서", "이미지 생성형 AI의 이해", "AI로 만드는 효과적인 이미지", "프롬프트로 창작하는 이미지"], "curriculum_count": 30, "thumbnail": null, "detail_pdf": "업스킬, 프로젝트로 배우는 생성형 AI.pdf"}, {"id": "c32", "title": "처음 배우는 생성형AI 프로그램개발(LLM)", "category": "개발·기술·보안", "category_key": "dev", "target": "개발자", "level": "심화", "duration": "4주(8시간)", "hours": 8.0, "duration_band": "스탠다드(5–12h)", "book_provided": true, "tools": ["LLM", "RAG"], "keywords": ["트랜스포머", "sLLM", "멀티모달", "LLM개발"], "instructor": "허정준", "overview": "LLM 애플리케이션이 사람들의 관심을 끌 수밖에 없는 이유는 무엇일까요? 현재까지 수많은 기술들이 등장했다 사라져 갔는데, 오늘날에도 여전히 사용되고 있는 주요 기술은 개발이나 사용 패러다임을 크게 발전시켰다는 특징이 있습니다. LLM 애플리케이션이 주력으로 자리 잡아 개발자 두뇌 속의 필수 공구상자에 들어갈지를 판단하기 위해, 우선 어떤 변화가 일어나고 있는지를 전문 강사님의 강의를 통해 알아봅시 다!", "objectives": ["LLM 아키텍처에 대해 기초를 다질 수 있다.", "RAG라는 LLM 의 대표적인 애플리케이션을 만드는 방법에 대해 파악할 수 있다.", "멀티 모달과 에이전트 고급 주제 다루는 기술까지 확인할 수 있다."], "curriculum": ["LLM 지도", "트랜스포머 아키텍처와 말 잘듣는 모델 학습", "효율적인 GPU 활용과 sLLM 학습", "모델 가볍게 만드는 방법과 sLLM 서빙", "LLM 애플리케이션 개발과 임베딩 모델 활용", "RAG 개선과 구현", "멀티 모달 생성 실습", "멀티 모달 LLM 과 에이전트"], "curriculum_count": 8, "thumbnail": null, "detail_pdf": "처음 배우는 생성형AI 프로그램개발(LLM).pdf"}, {"id": "c33", "title": "회사가 원하는 효율적인 AI 활용 - 자료 분석과 딥리서치 보고서", "category": "데이터·의사결정", "category_key": "data", "target": "실무자", "level": "실무", "duration": "4주(14시간)", "hours": 14.0, "duration_band": "인텐시브(≥13h)", "book_provided": false, "tools": ["ChatGPT"], "keywords": ["STP", "리서치자동화", "머신러닝예측", "보고서", "딥리서치"], "instructor": "최정아", "overview": "타깃 시장 분석, 경쟁사 비교, 보고서 작성까지 안심하고 AI에게 맡기는 방법! AI를 활용한 자동화 STP 프레임워크 리서치로 조사 시간을 줄이고, 더 빠르고 깊이 있는 전략을 만들어보세요!", "objectives": ["프롬프트 한 줄로 자료 조사부터 정리까지 완성하는 실무형 리서치 스킬을 확보할 수 있다.", "거래 패턴, 고객 특성, 예측 결과를 기반으로 기획에 바로 활용할 수 있는 분석력을 얻을 수 있다.", "고객 반응을 수치로만 보지 않고, 텍스트 · 영상 속 숨은 의미를 찾아내는 능력을 함양할 수 있다.", "폭넓은 업무 과정을 AI로 자동화하며 실무 속도와 완성도 모두 업그레이드할 수 있다."], "curriculum": ["최소한의 프롬프트 엔지니어링", "마켓 리서치 프레임워크", "기존 고객 거래 빈도 분석과 차트 시각화_1", "기존 고객 거래 빈도 분석과 차트 시각화_2", "프롬프트 한 줄로 머신러닝 예측하기", "데이터 기반 고객 세그멘테이션", "석사급 연구 비서, GPT 딥리서치", "API를 활용하는 3rd party AI 툴의 이해", "조사부터 보고서까지 일사천리, Felo AI", "리서치 Assistant 생성 프롬프트, Playground", "AI를 활용한 동영상 자료 조사", "AI로 목표 시장 규모 추산하기", "텍스트에 담긴 고객의 마음 AI로 읽어내기", "연예인 광고 모델 기용 선정과 보고서 검토 프로젝트"], "curriculum_count": 14, "thumbnail": null, "detail_pdf": "회사가 원하는 효율적인 AI 활용 - 자료 분석과 딥리서치 보고서.pdf"}, {"id": "c34", "title": "흑백해커  이븐하게 배우는 디지털 보안 상식", "category": "개발·기술·보안", "category_key": "dev", "target": "전사 공통", "level": "입문", "duration": "4주(9시간)", "hours": 9.0, "duration_band": "스탠다드(5–12h)", "book_provided": true, "tools": [], "keywords": ["보안", "해킹", "피싱", "스미싱", "딥페이크", "랜섬웨어"], "instructor": "이재윤", "overview": "직장인들은 업무와 일상에서 다양한 사이버 위협에 노출되고 있으며, 특히 재택근무, 출장, 협업 툴 사용의 증가로 위협이 더욱 커짐에 따라 보안의 중요성도 강조되고 있습니다. 한순간의 실수가 큰 보안사고로 이어질 수 있는 만큼, 보안사고 사례를 통해 다양한 사이버 위협을 인지하고 보안 역량을 강화해야 합니다.", "objectives": ["해킹, 피싱, 스미싱, 딥페이크 등 다양한 사이버 공격 유형과 원리를 이해하고, 실질적인 대응 방법을 습득한다.", "직장 내에서 실천할 수 있는 정보보호 수칙을 익혀 보안 습관을 형성한다."], "curriculum": ["해킹이란?", "일상 속에서 발생하는 피싱", "문자에 숨겨진 위험 스미싱", "공용 네트워크 안전하게 사용하기", "스마트 기기 보안의 중요성", "아무도 모르게 침입하는 악성코드", "직장에서 꼭 알아야 하는 랜섬웨어 예방법"], "curriculum_count": 7, "thumbnail": null, "detail_pdf": "흑백해커  이븐하게 배우는 디지털 보안 상식.pdf"}];
+const CATS=[{key:"all",label:"전체"},{key:"lit",label:"AI 리터러시·전략",grad:"linear-gradient(135deg,#F58220,#DE6A0C)"},{key:"data",label:"데이터·의사결정",grad:"linear-gradient(135deg,#E8912A,#C25A08)"},{key:"prod",label:"업무 생산성·문서",grad:"linear-gradient(135deg,#F4A03A,#E0680C)"},{key:"job",label:"직무·소프트스킬 특화",grad:"linear-gradient(135deg,#F09A2E,#D9640F)"},{key:"tool",label:"AI 도구·콘텐츠 제작",grad:"linear-gradient(135deg,#F4B83A,#E8912A)"},{key:"dev",label:"개발·기술·보안",grad:"linear-gradient(135deg,#C25A08,#8A3F05)"}];
+const GRAD=Object.fromEntries(CATS.filter(c=>c.grad).map(c=>[c.key,c.grad]));
+const LO={"입문":0,"실무":1,"심화":2};
+const state={cat:"all",target:"",level:"",band:"",tool:"",q:"",sort:"default"};
+function esc(s){return(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+// explorer
+function uniq(f){const s=new Set();COURSES.forEach(c=>{const v=c[f];if(Array.isArray(v))v.forEach(x=>s.add(x));else if(v)s.add(v)});return[...s];}
+function fillSel(id,label,vals){document.getElementById(id).innerHTML='<option value="">'+label+' 전체</option>'+vals.map(v=>'<option value="'+v+'">'+v+'</option>').join('');}
+fillSel("f-target","대상",uniq("target"));fillSel("f-level","레벨",["입문","실무","심화"]);fillSel("f-band","기간",["숏(≤4h)","스탠다드(5–12h)","인텐시브(≥13h)"]);fillSel("f-tool","툴",uniq("tools").sort());
+const tabsEl=document.getElementById("tabs");
+function cc(k){return k==="all"?COURSES.length:COURSES.filter(c=>c.category_key===k).length;}
+tabsEl.innerHTML=CATS.map(c=>'<button class="tab'+(c.key==="all"?" on":"")+'" data-cat="'+c.key+'">'+c.label+'<span class="n">'+cc(c.key)+'</span></button>').join('');
+function match(c){if(state.cat!=="all"&&c.category_key!==state.cat)return false;if(state.target&&c.target!==state.target)return false;if(state.level&&c.level!==state.level)return false;if(state.band&&c.duration_band!==state.band)return false;if(state.tool&&!(c.tools||[]).includes(state.tool))return false;if(state.q){const q=state.q.toLowerCase();const h=(c.title+" "+(c.keywords||[]).join(" ")+" "+(c.overview||"")+" "+(c.tools||[]).join(" ")).toLowerCase();if(!h.includes(q))return false;}return true;}
+function srt(a){const r=[...a];if(state.sort==="hours-asc")r.sort((x,y)=>(x.hours||0)-(y.hours||0));else if(state.sort==="hours-desc")r.sort((x,y)=>(y.hours||0)-(x.hours||0));else if(state.sort==="level")r.sort((x,y)=>(LO[x.level]||0)-(LO[y.level]||0));return r;}
+function cardHTML(c){const g=GRAD[c.category_key]||GRAD.lit;const kw=(c.keywords||[]).slice(0,3).map(k=>'<span>'+esc(k)+'</span>').join('');const bk=c.book_provided?'<span class="bdg bk">도서</span>':'';return '<article class="card" tabindex="0" role="button" data-id="'+c.id+'"><div class="thumb" style="background:'+g+'"><span class="cat">'+esc(c.category)+'</span><span class="hrs">'+esc(c.duration)+'</span></div><div class="body"><h3>'+esc(c.title)+'</h3><div class="meta"><span>차시 '+(c.curriculum_count||0)+'</span>'+(c.instructor?'<span>'+esc(c.instructor)+'</span>':'')+'</div><div class="badges"><span class="bdg tg">'+esc(c.target)+'</span><span class="bdg lv">'+esc(c.level)+'</span>'+bk+'</div><div class="kw">'+kw+'</div></div></article>';}
+const grid=document.getElementById("grid"),countEl=document.getElementById("count");
+function render(){const list=srt(COURSES.filter(match));countEl.innerHTML='<b>'+list.length+'</b> / '+COURSES.length;grid.innerHTML=list.length?list.map(cardHTML).join(''):'<div class="empty"><b>결과 없음</b>필터를 조정해 보세요.</div>';}
+const ovDetail=document.getElementById("ov-detail"),detail=document.getElementById("detail");
+function openDetail(id){const c=COURSES.find(x=>x.id===id);if(!c)return;const g=GRAD[c.category_key]||GRAD.lit;const ob=(c.objectives||[]).map(o=>'<li>'+esc(o)+'</li>').join('');const cu=(c.curriculum||[]).map(o=>'<li>'+esc(o)+'</li>').join('');const tl=(c.tools||[]).length?'<div class="mblock"><div class="lb">활용 툴</div><div class="mtools">'+c.tools.map(t=>'<span>'+esc(t)+'</span>').join('')+'</div></div>':'';const it=c.instructor?'<div class="mblock"><div class="lb">강사</div><p class="minst"><b>'+esc(c.instructor)+'</b></p></div>':'';const bk=c.book_provided?'<span>도서 제공</span>':'';detail.innerHTML='<div class="mhead" style="background:'+g+'"><button class="mclose" data-close>&times;</button><div class="cat">'+esc(c.category)+'</div><h3>'+esc(c.title)+'</h3><div class="mb"><span>'+esc(c.target)+'</span><span>'+esc(c.level)+'</span><span>'+esc(c.duration)+'</span><span>차시 '+(c.curriculum_count||0)+'</span>'+bk+'</div></div><div class="mbody"><div class="mblock"><div class="lb">학습 개요</div><p>'+esc(c.overview)+'</p></div>'+(ob?'<div class="mblock"><div class="lb">학습 목표</div><ul class="obj">'+ob+'</ul></div>':'')+(cu?'<div class="mblock"><div class="lb">커리큘럼</div><ol>'+cu+'</ol></div>':'')+tl+it+'<div class="mcta"><span class="src">원본: '+esc(c.detail_pdf||"-")+'</span><button class="btn btn-or" data-consult data-axis="'+esc(c.title)+'">이 과정 도입 문의</button></div></div>';openOv(ovDetail);}
+let lastFocus=null;
+function openOv(ov){lastFocus=document.activeElement;ov.classList.add("on");document.body.style.overflow="hidden";const f=ov.querySelector("button,input");if(f)f.focus();}
+function closeOv(ov){ov.classList.remove("on");document.body.style.overflow="";if(lastFocus&&lastFocus.focus)lastFocus.focus();}
+const ovConsult=document.getElementById("ov-consult"),ovExp=document.getElementById("ov-explorer");
+function openConsult(ax){document.getElementById("c-form").style.display="";document.getElementById("c-ok").classList.remove("on");const c=document.getElementById("c-ctx");if(ax){c.textContent="문의 대상: "+ax;c.classList.add("on");}else c.classList.remove("on");openOv(ovConsult);}
+document.addEventListener("click",e=>{
+  const card=e.target.closest(".card");if(card){openDetail(card.dataset.id);return;}
+  if(e.target.closest("[data-explorer]")){openOv(ovExp);render();return;}
+  const cb=e.target.closest("[data-consult]");if(cb){openConsult(cb.dataset.axis||"");return;}
+  if(e.target.closest("[data-close]")||e.target.classList.contains("ov")){document.querySelectorAll(".ov.on").forEach(closeOv);return;}
+  const tab=e.target.closest(".tab");if(tab){state.cat=tab.dataset.cat;tabsEl.querySelectorAll(".tab").forEach(t=>t.classList.toggle("on",t===tab));render();}
+});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")document.querySelectorAll(".ov.on").forEach(closeOv);});
+grid.addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target.classList.contains("card")){e.preventDefault();openDetail(e.target.dataset.id);}});
+let qt;document.getElementById("q").addEventListener("input",e=>{clearTimeout(qt);qt=setTimeout(()=>{state.q=e.target.value.trim();render();},160);});
+["target","level","band","tool","sort"].forEach(k=>document.getElementById("f-"+k).addEventListener("change",e=>{state[k]=e.target.value;render();}));
+document.getElementById("reset").addEventListener("click",()=>{Object.assign(state,{cat:"all",target:"",level:"",band:"",tool:"",q:"",sort:"default"});document.getElementById("q").value="";["f-target","f-level","f-band","f-tool"].forEach(id=>document.getElementById(id).value="");document.getElementById("f-sort").value="default";tabsEl.querySelectorAll(".tab").forEach((t,i)=>t.classList.toggle("on",i===0));render();});
+document.getElementById("cf-submit").addEventListener("click",()=>{const n=document.getElementById("cf-name").value.trim(),o=document.getElementById("cf-org").value.trim(),m=document.getElementById("cf-mail").value.trim();if(!n||!o||!/.+@.+\..+/.test(m)){[["cf-name",n],["cf-org",o],["cf-mail",/.+@.+\..+/.test(m)]].forEach(([id,ok])=>{document.getElementById(id).style.borderColor=ok?"":"var(--or2)";});return;}document.getElementById("c-form").style.display="none";document.getElementById("c-ok").classList.add("on");});
+const nav=document.getElementById("nav");addEventListener("scroll",()=>{nav.classList.toggle("solid",scrollY>20);},{passive:true});
+const axLinks=document.querySelectorAll(".axisnav a");const axSecs=[...axLinks].map(a=>document.getElementById(a.dataset.ax));
+const io=new IntersectionObserver(es=>{es.forEach(en=>{if(en.isIntersecting){const id=en.target.id;axLinks.forEach(a=>a.classList.toggle("on",a.dataset.ax===id));}});},{rootMargin:"-45% 0px -50% 0px"});
+axSecs.forEach(s=>{if(s)io.observe(s);});
+// v2.0: 과정 리스트 다운로드 (라이트 게이트)
+const ovDownload=document.getElementById("ov-download");
+function openDownload(){document.getElementById("d-form").style.display="";document.getElementById("d-ok").classList.remove("on");openOv(ovDownload);}
+function triggerDL(){var a=document.createElement("a");a.href="./KG에듀원_과정리스트.xlsx";a.download="KG에듀원_과정리스트.xlsx";document.body.appendChild(a);a.click();a.remove();}
+document.addEventListener("click",e=>{if(e.target.closest("[data-download]")){e.preventDefault();openDownload();}});
+document.getElementById("df-submit").addEventListener("click",()=>{const n=document.getElementById("df-name").value.trim(),o=document.getElementById("df-org").value.trim(),m=document.getElementById("df-mail").value.trim();if(!n||!o||!/.+@.+\..+/.test(m)){[["df-name",n],["df-org",o],["df-mail",/.+@.+\..+/.test(m)]].forEach(([id,ok])=>{document.getElementById(id).style.borderColor=ok?"":"var(--or2)";});return;}document.getElementById("d-form").style.display="none";document.getElementById("d-ok").classList.add("on");triggerDL();});
+render();
+</script></body></html>

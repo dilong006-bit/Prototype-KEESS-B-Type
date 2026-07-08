@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>KEESS · P3 HRD 통합 솔루션 — 와이어프레임 v2.0 (A안 · B안)</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Pretendard Variable",Pretendard,system-ui,sans-serif;background:#EDEEF0;color:#2b2b2f;line-height:1.5;padding:28px}
+h1{font-size:23px;font-weight:800;letter-spacing:-.01em}
+.sub{color:#6a6d73;font-size:13.5px;margin-top:6px}
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin:16px 0 24px;font-size:12px;color:#5a5d63}
+.legend b{font-weight:700;color:#2b2b2f}
+.legend .sw{display:inline-block;width:14px;height:14px;border:1px dashed #9a9da3;background:#e3e5e8;vertical-align:-2px;margin-right:5px;border-radius:3px}
+
+.cols{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;align-items:start;max-width:1320px;margin:0 auto}
+@media(max-width:900px){.cols{grid-template-columns:1fr;max-width:560px}}
+
+.col{background:#fff;border:1px solid #d4d6da;border-radius:14px;overflow:hidden}
+.col>.ch{padding:18px 20px;border-bottom:1px solid #e3e5e8;background:#fafafb}
+.col>.ch .tag{font-size:11px;font-weight:800;letter-spacing:.07em;color:#8a4fd0}
+.col>.ch h2{font-size:19px;font-weight:800;margin-top:3px}
+.col>.ch .cc{font-size:12.5px;color:#6a6d73;margin-top:4px}
+.col>.ch .bm{font-size:11px;color:#9a9da3;margin-top:6px}
+.stack{padding:16px;display:grid;grid-template-columns:1fr 1fr;gap:11px}
+@media(max-width:560px){.stack{grid-template-columns:1fr}}
+.stack.one{grid-template-columns:1fr}
+
+.frame{border:1px dashed #b9bcc2;border-radius:9px;background:#fff}
+.fhead{display:flex;align-items:center;gap:8px;padding:9px 11px;background:#f4f5f7;border-bottom:1px dashed #cfd2d7;border-radius:9px 9px 0 0}
+.fno{font-size:10.5px;font-weight:800;color:#fff;background:#3a3d44;border-radius:5px;padding:2px 6px;letter-spacing:.04em}
+.fname{font-size:12.5px;font-weight:700;flex:1;line-height:1.3}
+.ftag{font-size:9.5px;color:#5a5d63;background:#e6e8eb;border-radius:5px;padding:3px 7px;font-weight:600;white-space:nowrap}
+.fbody{padding:11px}
+.frame.span2{grid-column:1 / -1}
+
+.ph{background:#e7e9ec;border:1px dashed #b6b9bf;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#8a8d93;font-size:10px;font-weight:700;letter-spacing:.03em;text-align:center;padding:6px}
+.ph.img{height:54px;background:repeating-linear-gradient(45deg,#e7e9ec,#e7e9ec 7px,#e1e3e6 7px,#e1e3e6 14px)}
+.ph.hero{height:74px}
+.ph.bar{height:13px;margin-top:6px}
+.ph.bar.s{width:60%}.ph.bar.m{width:80%}
+.ph.cta{height:24px;width:120px;background:#3a3d44;color:#fff;border:none;margin-top:8px}
+.ph.cta.alt{background:#fff;color:#3a3d44;border:1px solid #b6b9bf}
+.row{display:flex;gap:6px;margin-top:8px}
+.row .ph{flex:1;height:42px}
+.note{font-size:11px;color:#55585e;margin-top:9px;line-height:1.55}
+.note .k{color:#8a4fd0;font-weight:700}
+.copy{font-size:11px;color:#2b2b2f;background:#f6f3fb;border-left:3px solid #b98fe0;border-radius:0 5px 5px 0;padding:6px 9px;margin-top:8px;line-height:1.5}
+.steps{display:flex;flex-direction:column;gap:5px;margin-top:6px}
+.steps .s{display:flex;gap:7px;align-items:flex-start;font-size:10.5px;color:#3a3d44}
+.steps .s b{flex:none;width:15px;height:15px;border-radius:50%;background:#3a3d44;color:#fff;font-size:8.5px;display:flex;align-items:center;justify-content:center;font-weight:700}
+.cta-row{display:flex;gap:6px;margin-top:8px}
+.cta-row .ph.cta{flex:1;width:auto;margin-top:0}
+
+/* 특수 스케치 */
+.bento-sk{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:14px;gap:4px;margin-top:2px}
+.bento-sk i{background:#e7e9ec;border:1px dashed #b6b9bf;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:7.5px;color:#8a8d93;font-weight:700}
+.bento-sk i.big{grid-column:span 2;grid-row:span 2}
+.bento-sk i.wide{grid-column:span 4}
+.stair-sk{display:flex;align-items:flex-end;gap:4px;height:60px;margin-top:2px}
+.stair-sk i{flex:1;background:#e3e5e8;border:1px dashed #b6b9bf;border-radius:5px 5px 2px 2px;display:flex;align-items:flex-end;justify-content:center;font-size:7.5px;color:#8a8d93;font-weight:700;padding-bottom:2px}
+.quad-sk{position:relative;height:84px;border:1px dashed #b6b9bf;border-radius:6px;margin-top:2px;background:#f4f5f7}
+.quad-sk .hl{position:absolute;left:0;right:0;top:50%;border-top:1px dashed #cfd2d7}
+.quad-sk .vl{position:absolute;top:0;bottom:0;left:50%;border-left:1px dashed #cfd2d7}
+.quad-sk .ch2{position:absolute;background:#8a4fd0;width:6px;height:6px;border-radius:50%;transform:translate(-50%,50%)}
+.quad-sk .axl{position:absolute;font-size:7.5px;color:#9a9da3;font-weight:700}
+.vsbar{display:flex;gap:6px;margin-top:4px}
+.vsbar .c{flex:1;border:1px dashed #b6b9bf;border-radius:5px;padding:5px;font-size:8.5px;font-weight:700;text-align:center;color:#8a8d93}
+.vsbar .c.kg{border-color:#8a4fd0;color:#8a4fd0;background:#f6f3fb}
+.toggle-sk{display:flex;align-items:center;gap:8px;margin-top:4px;flex-wrap:wrap}
+.toggle-sk .tk{width:50px;height:25px;border-radius:999px;background:#dfe2e6;border:1px dashed #b6b9bf;position:relative;flex:none}
+.toggle-sk .tk i{position:absolute;top:3px;left:3px;width:17px;height:17px;border-radius:50%;background:#8a8d93}
+.toggle-sk .tk.on{background:#d8cdf0;border-color:#8a4fd0}
+.toggle-sk .tk.on i{left:30px;background:#8a4fd0}
+.toggle-sk b{font-size:9.5px;font-weight:800;color:#8a8d93}
+.toggle-sk b.on{color:#8a4fd0}
+
+.foot-note{margin-top:20px;max-width:1320px;margin-left:auto;margin-right:auto;font-size:12px;color:#6a6d73;background:#fff;border:1px solid #d4d6da;border-radius:10px;padding:15px 18px;line-height:1.7}
+.foot-note b{color:#2b2b2f}
+
+/* ===== P3 추가 스케치 ===== */
+.mock-sk{display:flex;gap:7px;margin-top:4px;align-items:flex-end}
+.mock-sk .brw{flex:1;border:1px dashed #b6b9bf;border-radius:6px;background:#fff;overflow:hidden}
+.mock-sk .brw .bar{height:10px;background:#f4f5f7;border-bottom:1px dashed #cfd2d7;display:flex;gap:2px;align-items:center;padding:0 5px}
+.mock-sk .brw .bar i{width:3px;height:3px;border-radius:50%;background:#cfd2d7}
+.mock-sk .brw .scr{padding:6px;display:flex;flex-direction:column;gap:4px}
+.mock-sk .brw .scr .l{height:7px;background:#e7e9ec;border-radius:2px}
+.mock-sk .brw .scr .l.s{width:55%}
+.mock-sk .phn{width:30px;height:54px;border:1px dashed #b6b9bf;border-radius:6px;background:#f4f5f7;display:flex;align-items:flex-start;justify-content:center;padding-top:4px}
+.mock-sk .phn i{width:12px;height:3px;border-radius:2px;background:#cfd2d7}
+.tl-sk{display:flex;gap:4px;margin-top:6px}
+.tl-sk i{flex:1;border:1px dashed #b6b9bf;border-radius:5px;background:#e7e9ec;font-size:8px;color:#8a8d93;font-weight:700;text-align:center;padding:9px 2px}
+.tab-sk{display:flex;gap:4px;margin-top:4px}
+.tab-sk i{border:1px dashed #b6b9bf;border-radius:5px 5px 0 0;padding:5px 9px;font-size:8.5px;color:#8a8d93;font-weight:700;background:#f4f5f7}
+.tab-sk i.on{border-color:#8a4fd0;color:#8a4fd0;background:#f6f3fb}
+.mx-sk{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-top:4px}
+.mx-sk i{border:1px dashed #b6b9bf;border-radius:4px;background:#e7e9ec;font-size:8px;color:#8a8d93;font-weight:700;text-align:center;padding:6px 2px}
+.mx-sk i.hd{background:#eceef1;color:#5a5d63}
+.split-sk{display:flex;gap:7px;margin-top:4px}
+.split-sk .im{flex:1;min-height:60px;background:repeating-linear-gradient(45deg,#e7e9ec,#e7e9ec 7px,#e1e3e6 7px,#e1e3e6 14px);border:1px dashed #b6b9bf;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:8.5px;color:#8a8d93;font-weight:700;text-align:center}
+.split-sk .tx{flex:1;display:flex;flex-direction:column;gap:4px;justify-content:center}
+.logo-sk{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-top:4px}
+.logo-sk i{border:1px dashed #b6b9bf;border-radius:5px;background:#f4f5f7;font-size:8px;color:#8a8d93;font-weight:700;text-align:center;padding:10px 2px}
+.ps-sk{display:flex;flex-direction:column;gap:5px;margin-top:4px}
+.ps-sk .r{display:flex;gap:6px;align-items:center;font-size:9px}
+.ps-sk .r .pn{flex:1;border:1px dashed #b6b9bf;border-radius:5px;background:#f4f5f7;padding:6px;color:#8a8d93;font-weight:600}
+.ps-sk .r .ar{color:#8a4fd0;font-weight:800}
+.ps-sk .r .sl{flex:1;border:1px dashed #b98fe0;border-radius:5px;background:#f6f3fb;padding:6px;color:#8a4fd0;font-weight:700}
+.dark-sk{background:#3a3d44!important;border-color:#3a3d44!important}
+.dark-sk .ph{background:#4a4d55;border-color:#6a6d73;color:#c9ccd2}
+</style>
+</head>
+<body>
+
+<h1>KEESS · P3 HRD 통합 솔루션 — 와이어프레임 v2.0 (A안 · B안)</h1>
+<p class="sub">최종 프로토타입(A v1.6 서사형 · B v1.5 구조형/플랫폼) 구성 기준 로우파이 와이어프레임. 2열 배치 · 안별 독립 높이.</p>
+<div class="legend">
+  <span><span class="sw"></span> 플레이스홀더</span>
+  <span><b style="color:#8a4fd0">보라 텍스트</b> = 콘텐츠·카피</span>
+  <span><b>MOCK</b> 화면목업 · <b>TL</b> 타임라인 · <b>SPLIT</b> 실사분할 · <b>TAB</b> 탭 · <b>MX</b> 매트릭스 · <b>TOGGLE</b> 데모</span>
+</div>
+
+<div class="cols">
+<!-- ===== A안 ===== -->
+<div class="col">
+  <div class="ch"><div class="tag">A안 · 통합 서사형</div><h2>고충 → 해결 여정</h2><div class="cc">담당자 공감 → 3축 통합 → 각 축 → KGESA·AI → 프로세스 → 문의</div><div class="bm">벤치마크 : 러닝스푼즈(공감·프로세스) · 멀티캠퍼스</div></div>
+  <div class="stack">
+    <div class="frame span2"><div class="fhead"><span class="fno">01</span><span class="fname">상단 네비 + 서브내비</span><span class="ftag">고정바</span></div>
+      <div class="fbody"><div class="row"><div class="ph" style="flex:0 0 56px">LOGO</div><div class="ph">P1~P4·정부지원</div><div class="ph" style="flex:0 0 70px">CTA</div></div><div class="note">서브내비 <span class="k">고민·3축·시스템·운영·제작·사례·차세대·절차·문의</span></div></div></div>
+
+    <div class="frame span2"><div class="fhead"><span class="fno">02</span><span class="fname">히어로 (밝은 · 실사+플로팅)</span><span class="ftag">2단</span></div>
+      <div class="fbody"><div class="row"><div style="flex:1"><div class="ph hero">H1 + SUB + CTA 2</div></div><div style="flex:1"><div class="ph img" style="height:74px">실사 + float(3축/30+사)</div></div></div><div class="copy">H1 "여러 곳에 맡기던 HRD를, 한 곳에서" · strip 3</div></div></div>
+
+    <div class="frame span2"><div class="fhead"><span class="fno">03</span><span class="fname">고충 → 해결 매핑</span><span class="ftag">PS 4행</span></div>
+      <div class="fbody"><div class="ps-sk"><div class="r"><span class="pn">따로따로 관리</span><span class="ar">&rarr;</span><span class="sl">하나의 창구로 통합</span></div><div class="r"><span class="pn">책임 소재 불분명</span><span class="ar">&rarr;</span><span class="sl">KG 단일 책임 운영</span></div><div class="r"><span class="pn">품질·일정 들쭉</span><span class="ar">&rarr;</span><span class="sl">자체 스튜디오 통제</span></div><div class="r"><span class="pn">매번 개발 요청</span><span class="ar">&rarr;</span><span class="sl">담당자 직접(KGESA)</span></div></div><div class="note"><span class="k">고민 4 ↔ KG 해결 1:1</span> · "따로따로 관리하던 일, 한 번에 풀립니다"</div></div></div>
+
+    <div class="frame span2"><div class="fhead"><span class="fno">04</span><span class="fname">3축 독립 선택</span><span class="ftag">PICK 3</span></div>
+      <div class="fbody"><div class="row"><div class="ph">시스템<br>단독</div><div class="ph">운영<br>단독</div><div class="ph">제작 ★<br>단독</div></div><div class="copy">"필요한 것만 골라도, 전부 합쳐도" · "위탁운영부터…제작까지 — HRD의 모든 것" · "필요하신 것부터 상담"</div><div class="note">화살표 없음 · <span class="k">독립 선택</span></div></div></div>
+
+    <div class="frame span2"><div class="fhead"><span class="fno">05</span><span class="fname">B3-1 시스템 (화면 목업)</span><span class="ftag">SPLIT+MOCK</span></div>
+      <div class="fbody"><div class="mock-sk"><div style="flex:1;display:flex;flex-direction:column;gap:4px"><div class="ph bar m"></div><div class="ph bar s"></div><div class="ph bar m"></div></div><div class="brw"><div class="bar"><i></i><i></i><i></i></div><div class="scr"><div class="l"></div><div class="l s"></div><div class="l"></div></div></div><div class="phn"><i></i></div></div><div class="note">좌 기능 + 우 <span class="k">브라우저·모바일 목업</span> (LMS+APP)</div></div></div>
+
+    <div class="frame span2"><div class="fhead"><span class="fno">06</span><span class="fname">B3-2 운영 (HOW 7축 타임라인)</span><span class="ftag">TL 7</span></div>
+      <div class="fbody"><div class="tl-sk"><i>01</i><i>02</i><i>03</i><i>04</i><i>05</i><i>06</i><i>07</i></div><div class="note"><span class="k">가로 타임라인</span> VOC·챗봇·이중화·라이프사이클·필터·보고·장애대응 · 30+사</div></div></div>
+
+    <div class="frame span2"><div class="fhead"><span class="fno">07</span><span class="fname">B3-3 스튜디오 (실사 분할)</span><span class="ftag">SPLIT</span></div>
+      <div class="fbody"><div class="split-sk"><div class="im">스튜디오 실사<br>배지 "3개소"</div><div class="tx"><div class="ph bar m"></div><div class="ph bar"></div><div class="ph bar s"></div><div class="ph bar m"></div></div></div><div class="copy">"기획부터 제작까지 한 팀이 맡습니다…" · IP 8종·무상 50h</div></div></div>
+
+    <div class="frame"><div class="fhead"><span class="fno">08</span><span class="fname">도입 사례 (로고월+강조)</span><span class="ftag">LOGO</span></div>
+      <div class="fbody"><div class="logo-sk"><i>HRD FLEX</i><i>저축은행</i><i>미래에셋</i><i>KESCO</i></div><div class="copy">대표 사례 강조 인용</div></div></div>
+
+    <div class="frame"><div class="fhead"><span class="fno">09</span><span class="fname">AI 학습 여정</span><span class="ftag">STEP 3</span></div>
+      <div class="fbody"><div class="steps"><div class="s"><b>1</b>학습 전 · 추천</div><div class="s"><b>2</b>학습 중 · 챗봇·튜터존</div><div class="s"><b>3</b>학습 후 · 피드백</div></div><div class="note">KGESA 데모 하단 연결</div></div></div>
+
+    <div class="frame span2"><div class="fhead"><span class="fno">10</span><span class="fname">B3-4 KGESA 인터랙티브 데모</span><span class="ftag">TOGGLE</span></div>
+      <div class="fbody"><div class="row"><div class="ph" style="flex:1.3">FO 미리보기(학습자 화면)</div><div style="flex:.7"><div class="toggle-sk"><b>GNB</b><div class="tk on"><i></i></div><b class="on">LNB</b></div><div class="row" style="margin-top:4px"><div class="ph" style="height:16px">위젯</div><div class="ph" style="height:16px">순서</div><div class="ph" style="height:16px">on/off</div></div></div></div><div class="copy">"고르기만 하면, 화면은 알아서 완성됩니다"</div><div class="note"><span class="k">테마·위젯 조작 → FO 실시간</span></div></div></div>
+
+    <div class="frame span2"><div class="fhead"><span class="fno">11</span><span class="fname">도입 프로세스 (4스텝)</span><span class="ftag">STEP 4</span></div>
+      <div class="fbody"><div class="tl-sk"><i>01 문의</i><i>02 미팅</i><i>03 제안</i><i>04 운영</i></div><div class="copy">"시작은, 문의 하나면 됩니다"</div></div></div>
+
+    <div class="frame span2"><div class="fhead"><span class="fno">12</span><span class="fname">도입 문의 + 모달</span><span class="ftag">폼</span></div>
+      <div class="fbody"><div class="ph bar m"></div><div class="ph bar"></div><button class="ph cta">도입 문의</button></div></div>
+
+    <div class="frame span2"><div class="fhead"><span class="fno">13</span><span class="fname">푸터</span><span class="ftag">기본</span></div>
+      <div class="fbody"><div class="ph bar m"></div><div class="note">채널 분리 안내</div></div></div>
+  </div>
+</div>
+<!-- ===== B안 ===== -->
+<div class="col">
+  <div class="ch"><div class="tag">B안 · 구조형 / 플랫폼</div><h2>플랫폼 아키텍처 (LXP)</h2><div class="cc">다크 선언 → bento 아키텍처 → 특장점 → 데모 → AI → 탭모듈 → 신뢰 → <b style="color:#B07A0E">정부지원</b> → 문의</div><div class="bm">벤치마크 : Notion·Linear · LXP(elearningindustry 등) · 패스트캠퍼스 B2B</div></div>
+  <div class="stack">
+    <div class="frame span2"><div class="fhead"><span class="fno">01</span><span class="fname">상단 네비 + 서브내비</span><span class="ftag">고정바</span></div>
+      <div class="fbody"><div class="row"><div class="ph" style="flex:0 0 56px">LOGO</div><div class="ph">P1~P4·정부지원</div><div class="ph" style="flex:0 0 70px">CTA</div></div><div class="note">서브내비 <span class="k">아키텍처·특장점·데모·AI·모듈·규모·정부지원·문의</span></div></div></div>
+
+    <div class="frame span2"><div class="fhead"><span class="fno">02</span><span class="fname">히어로 (다크 · 플랫폼 선언)</span><span class="ftag">DARK</span></div>
+      <div class="fbody"><div class="ph hero dark-sk">H1 + SUB + CTA 2</div><div class="row" style="margin-top:6px"><div class="ph">3축</div><div class="ph">30+</div><div class="ph">2만</div><div class="ph">3개소</div></div><div class="copy">"HRD 운영의 모든 것을, 하나의 플랫폼에서" · 지표 4</div></div></div>
+
+    <div class="frame span2"><div class="fhead"><span class="fno">03</span><span class="fname">플랫폼 아키텍처 (bento)</span><span class="ftag">BENTO</span></div>
+      <div class="fbody"><div class="bento-sk"><i class="big">시스템</i><i>운영</i><i>제작★</i><i class="wide">KGESA</i></div><div class="note"><span class="k">4셀 크기 위계</span> · "4개 축으로 완성되는 HRD 플랫폼"</div></div></div>
+
+    <div class="frame span2"><div class="fhead"><span class="fno">04</span><span class="fname">서비스 모델 (교육담당자 관점)</span><span class="ftag">MX</span></div>
+      <div class="fbody"><div class="mx-sk"><i class="hd">기획·구성</i><i class="hd">운영·모니터링</i><i class="hd">학습자 지원</i><i>담당자 포털</i><i>관리자 포털</i><i>튜터존</i></div><div class="copy">"복잡한 건 시스템이, 담당자는 클릭만" · 업무→기능·포털 매핑</div></div></div>
+
+    <div class="frame span2"><div class="fhead"><span class="fno">05</span><span class="fname">핵심 특장점 (스튜디오 실사)</span><span class="ftag">SPLIT</span></div>
+      <div class="fbody"><div class="split-sk"><div class="im">스튜디오 실사<br>배지 "3개소"</div><div class="tx"><div class="ph bar m"></div><div class="ph bar"></div><div class="ph bar s"></div></div></div><div class="copy">"기획부터 제작까지, 자체 인프라로"</div></div></div>
+
+    <div class="frame span2"><div class="fhead"><span class="fno">06</span><span class="fname">KGESA 데모 (상단부 · 다크)</span><span class="ftag">TOGGLE</span></div>
+      <div class="fbody"><div class="row"><div class="ph" style="flex:1.3">FO 미리보기</div><div style="flex:.7"><div class="toggle-sk"><b class="on">GNB</b><div class="tk"><i></i></div><b>LNB</b></div><div class="row" style="margin-top:4px"><div class="ph" style="height:16px">위젯</div><div class="ph" style="height:16px">순서</div></div></div></div><div class="copy">"클릭 몇 번으로, 학습자 화면 완성"</div></div></div>
+
+    <div class="frame span2"><div class="fhead"><span class="fno">07</span><span class="fname">KGESA AI (역할·매트릭스·로드맵)</span><span class="ftag">MX+STEP</span></div>
+      <div class="fbody"><div class="row"><div class="ph">AI 운영지원(담당자)</div><div class="ph">튜터존·AI튜터(학습자)</div></div><div class="mx-sk" style="margin-top:5px"><i class="hd">학습 전</i><i class="hd">학습 중</i><i class="hd">학습 후</i><i>추천</i><i>챗봇·튜터존</i><i>피드백</i></div><div class="row" style="margin-top:5px"><div class="ph">NOW</div><div class="ph">NEXT</div><div class="ph">FUTURE</div></div><div class="copy">"생성형 AI와 함께하는 학습 여정" · 로드맵</div></div></div>
+
+    <div class="frame span2"><div class="fhead"><span class="fno">08</span><span class="fname">솔루션 모듈 (탭 전환)</span><span class="ftag">TAB 3</span></div>
+      <div class="fbody"><div class="tab-sk"><i class="on">B3-1 시스템</i><i>B3-2 운영</i><i>B3-3 제작★</i></div><div class="ph" style="height:44px;border-radius:0 6px 6px 6px;margin-top:-1px">탭 패널 (기능)</div><div class="copy">"흩어진 HRD를, 하나로"</div></div></div>
+
+    <div class="frame span2"><div class="fhead"><span class="fno">09</span><span class="fname">구조적 신뢰 (지표·로고월·인증)</span><span class="ftag">DARK</span></div>
+      <div class="fbody"><div class="row"><div class="ph">30+</div><div class="ph">2만</div><div class="ph">99.9%</div><div class="ph">24/7</div></div><div class="logo-sk" style="margin-top:5px"><i>HRD FLEX</i><i>저축은행</i><i>미래에셋</i><i>KESCO</i><i>예시</i><i>예시</i><i>예시</i><i>예시</i></div><div class="row" style="margin-top:5px"><div class="ph">ISMS</div><div class="ph">ISO</div><div class="ph">GS</div><div class="ph">보안</div></div><div class="copy">"검증된 운영 규모" · 인증 = 배치 예시</div></div></div>
+
+    <div class="frame span2"><div class="fhead"><span class="fno">10</span><span class="fname">정부지원 환급 (사업주훈련 · 신규)</span><span class="ftag">GOV</span></div>
+      <div class="fbody"><div class="row"><div class="ph">대상<br>고용보험 사업주</div><div class="ph">환급<br>최대 90%</div><div class="ph">대행<br>신청~정산</div></div><div class="tl-sk" style="margin-top:6px"><i>01 인정신청</i><i>02 실시·수료</i><i>03 비용신청</i><i>04 지원금</i></div><div class="cta-row"><button class="ph cta">지원 가능 여부 상담</button><button class="ph cta alt">환급 과정 리스트(→P4)</button></div><div class="copy">"교육비, 정부지원으로 돌려받으세요" · 위치: 신뢰 뒤 · 문의 앞</div><div class="note"><span class="k">--gov 포인트</span> · 금액 단정 회피(예시·상담 산정) · CTA→문의 프리셀렉트(정부지원)</div></div></div>
+
+    <div class="frame span2"><div class="fhead"><span class="fno">11</span><span class="fname">도입 문의 + 모달</span><span class="ftag">폼</span></div>
+      <div class="fbody"><div class="ph bar m"></div><div class="ph bar"></div><button class="ph cta">도입 문의</button></div></div>
+
+    <div class="frame span2"><div class="fhead"><span class="fno">12</span><span class="fname">푸터</span><span class="ftag">기본</span></div>
+      <div class="fbody"><div class="ph bar m"></div><div class="note">채널 분리 안내</div></div></div>
+  </div>
+</div>
+
+</div>
+
+<div class="foot-note">
+  <b>P3 와이어프레임 v2.0</b> · A안(서사형) / B안(구조형·플랫폼) 기준. 로우파이 · Figma 프레임 참고용. <b style="color:#B07A0E">B안 v2.0: 정부지원 환급 프레임 추가(신뢰 뒤·문의 앞) — A안 미적용.</b><br>
+  <b>A vs B 차별</b> : 3축(독립선택 vs bento) · 데모위치(하단 vs 상단부) · 모듈(순차 vs 탭) · AI(여정 서사 vs 매트릭스·로드맵) · 신뢰(사례 스토리 vs 지표·로고월) · 톤(밝은 서사 vs 다크 구조).<br>
+  <b>채널 원칙</b> : 전사 인증·수상은 홈 전용, P3는 솔루션 실체(시스템·스튜디오·데모)로 신뢰 표현. 인증 배지는 배치 예시.
+</div>
+
+</body>
+</html>

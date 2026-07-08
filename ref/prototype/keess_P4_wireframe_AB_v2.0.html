@@ -1,0 +1,210 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>P4 콘텐츠 솔루션 — 와이어프레임 A안·B안 v2.0</title>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" rel="stylesheet">
+<style>
+:root{--ink:#2A2833;--mut:#6B6976;--wline:#D6D6DE;--panel:#F7FAFB;--annoink:#3A5560}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Pretendard Variable",Pretendard,system-ui,sans-serif;background:#F0F0F3;color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+.page{max-width:1080px;margin:0 auto;padding:0 20px}
+header.top{background:#25232B;color:#fff;padding:26px 0;position:sticky;top:0;z-index:20}
+header.top .page{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+header.top h1{font-size:19px;font-weight:800;letter-spacing:-.02em}
+header.top .sub{font-size:12px;color:#B9B7C4;font-weight:600}
+header.top nav{display:flex;gap:8px}
+header.top nav a{font-size:12.5px;font-weight:700;color:#25232B;background:#fff;border-radius:999px;padding:7px 14px;text-decoration:none}
+header.top nav a.b{background:#8B8896;color:#fff}
+.section-h{margin:34px 0 14px;display:flex;align-items:baseline;gap:12px}
+.section-h .n{font:800 13px/1 ui-monospace,monospace;color:#fff;background:#33313A;border-radius:6px;padding:6px 10px}
+.section-h h2{font-size:20px;font-weight:800}
+.section-h .d{font-size:12.5px;color:var(--mut)}
+/* legend */
+.legend{display:flex;gap:16px;flex-wrap:wrap;background:#fff;border:1px solid var(--wline);border-radius:10px;padding:12px 16px;margin-top:16px;font-size:12px;color:var(--mut)}
+.legend .it{display:flex;align-items:center;gap:6px}
+.tag{display:inline-block;width:11px;height:11px;border-radius:3px;flex-shrink:0}
+.tag.noprice{background:#D8687A}.tag.src1{background:#3F8F6B}.tag.src2{background:#E0A53A}.tag.slot{background:#6E7FB0}
+/* compare */
+.cmp{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--wline);border-radius:10px;overflow:hidden;margin-top:6px}
+.cmp th,.cmp td{padding:11px 14px;font-size:13px;text-align:left;border-bottom:1px solid #EEE;vertical-align:top}
+.cmp thead th{background:#33313A;color:#fff;font-size:12px}
+.cmp thead th:nth-child(2){background:#4A4756}.cmp thead th:nth-child(3){background:#4A4756}
+.cmp td.k{font-weight:800;color:#3A3846;width:15%;background:#FAFAFC}
+.cmp td:nth-child(2){width:38%}
+/* wireframe block */
+.blk{display:grid;grid-template-columns:60px 1fr 250px;border:1px solid var(--wline);border-radius:10px;margin-bottom:12px;overflow:hidden;background:#fff}
+@media(max-width:800px){.blk{grid-template-columns:48px 1fr}.blk .anno{grid-column:1/-1;border-top:1px solid var(--wline)}}
+.blk.tone .id{background:#4A4756}
+.blk .id{background:#33313A;color:#fff;font:700 11px/1.3 ui-monospace,monospace;padding:14px 6px;text-align:center;letter-spacing:.02em;display:flex;align-items:center;justify-content:center}
+.blk .body{padding:15px 16px;border-right:1px solid var(--wline);min-width:0}
+.blk .bt{display:flex;align-items:center;gap:9px;margin-bottom:10px;flex-wrap:wrap}
+.blk .bt h4{font-size:14.5px;font-weight:800}
+.comp{font:700 9.5px/1 ui-monospace,monospace;color:#5A5866;background:#ECECF2;border:1px solid #D6D6DE;border-radius:5px;padding:4px 7px;letter-spacing:.03em}
+.anno{padding:13px 15px;background:var(--panel)}
+.annol{list-style:none;display:flex;flex-direction:column;gap:7px}
+.annol li{font-size:11.5px;color:var(--annoink);line-height:1.5;position:relative;padding-left:2px}
+.annol li .tag{margin-right:6px;vertical-align:middle}
+/* lo-fi primitives */
+.wbar{height:11px;background:#DCDCE2;border-radius:3px;margin:6px 0}
+.wbar.dark{background:#BdBcC6}
+.wbox{background:#EEEEF2;border:1.5px solid #CFCFD8;border-radius:6px}
+.wbox.dark{background:#D9D8E0;border-color:#B9B8C2}
+.wboxd{background:#fff;border:1.5px dashed #C2C2CC;border-radius:6px}
+.wgrid{display:grid;gap:7px;margin:6px 0}
+.wrow{display:flex;gap:8px;align-items:stretch;margin:6px 0}
+.wrow>div{flex:1}
+.lbl{font-size:10.5px;color:#75737F;font-weight:700;text-align:center;padding:0 4px}
+.mini{font:700 10px/1 ui-monospace,monospace;color:#8B8896;text-transform:uppercase;letter-spacing:.06em;margin:12px 0 4px}
+.stepnote{font:700 10px/1 ui-monospace,monospace;color:#3F8F6B;margin-bottom:6px}
+.tl{align-items:center}
+.tlbar{flex:0 0 auto!important;width:34px;height:2px;background:#C2C2CC;align-self:center}
+footer.foot{text-align:center;color:var(--mut);font-size:12px;padding:30px 0 50px}
+</style></head><body>
+
+<header class="top"><div class="page">
+  <div><h1>P4 콘텐츠 솔루션 · 와이어프레임</h1><div class="sub">A안 4-Axis / B안 6-Axis · lo-fi 구조 설계 · v2.0 (B안 과정리스트 다운로드 추가)</div></div>
+  <nav><a href="#cmp" class="b">구조 비교</a><a href="#wa">A안</a><a href="#wb">B안</a><a href="#common" class="b">공통 기준</a></nav>
+</div></header>
+
+<div class="page">
+  <div class="legend">
+    <div class="it"><span class="tag src1"></span>실데이터 (AX·AI 34)</div>
+    <div class="it"><span class="tag src2"></span>소개서 기준</div>
+    <div class="it"><span class="tag noprice"></span>가격 미노출 / 채널 원칙</div>
+    <div class="it"><span class="tag slot"></span>교체 슬롯 (실사·아이콘)</div>
+  </div>
+
+  <div class="section-h" id="cmp"><span class="n">00</span><h2>구조 비교</h2><span class="d">A안 4축 vs B안 6축 · 결정 기준</span></div>
+  <table class="cmp"><thead><tr><th>항목</th><th>A안 · 4-Axis</th><th>B안 · 6-Axis</th></tr></thead><tbody><tr><td class="k">축 구성</td><td>4축 · 보유 / 법정 / 제작 / 파트너</td><td>6축 · 직무 / 어학 / IT / 비즈·리더십 / 법정 / 제작·파트너</td></tr><tr><td class="k">정체성</td><td>탐색·필터 중심</td><td>체계 시각화 중심</td></tr><tr><td class="k">탐색기 위치</td><td>본문 인라인 (보유 축)</td><td>모달 (FAB·버튼)</td></tr><tr><td class="k">핵심 시각화</td><td>3단 깔때기 + 필터 카드그리드</td><td>매트릭스·로드맵·티어 프레임워크</td></tr><tr><td class="k">규모 노출</td><td>규모 스트립 전면</td><td>헥스맵 요약</td></tr><tr><td class="k">이동 피로도</td><td>낮음 (4)</td><td>있음 (6) → 스티키 내비 완화</td></tr><tr><td class="k">적합 상황</td><td>보유 규모·탐색 경험 강조</td><td>체계·전문성·신뢰 강조</td></tr><tr><td class="k">벤치마크 원형</td><td>패스트캠퍼스 (단일 허브)</td><td>멀티캠퍼스 e-System (체계 도식)</td></tr></tbody></table>
+
+  <div class="section-h" id="wa"><span class="n">A</span><h2>A안 와이어프레임 · 4-Axis Showcase</h2><span class="d">탐색·필터 중심 · 스크롤 순서 ↓</span></div>
+  <div class="blk ">
+  <div class="id">A·00</div>
+  <div class="body"><div class="bt"><h4>GNB (공통 헤더)</h4><span class="comp">NAV</span></div><div class="wrow"><div class="wbox" style="height:30px;display:flex;align-items:center;justify-content:center"><span class="lbl">로고</span></div><div class="wbox" style="height:30px;display:flex;align-items:center;justify-content:center"><span class="lbl">AX·AI</span></div><div class="wbox" style="height:30px;display:flex;align-items:center;justify-content:center"><span class="lbl">리더십</span></div><div class="wbox" style="height:30px;display:flex;align-items:center;justify-content:center"><span class="lbl">HRD</span></div><div class="wbox dark" style="height:30px;display:flex;align-items:center;justify-content:center"><span class="lbl">콘텐츠솔루션 ●</span></div><div class="wbox" style="height:30px;display:flex;align-items:center;justify-content:center"><span class="lbl">정부지원</span></div><div class="wboxd" style="height:30px;display:flex;align-items:center;justify-content:center"><span class="lbl">문의</span></div></div></div>
+  <div class="anno"><ul class="annol"><li>전 페이지 공통 · '콘텐츠 솔루션' 활성</li></ul></div>
+</div><div class="blk ">
+  <div class="id">A·01</div>
+  <div class="body"><div class="bt"><h4>HERO</h4><span class="comp">HERO</span></div><div class="wrow">
+  <div style="flex:1.1"><div class="wbar dark" style="width:38%"></div><div class="wbar " style="width:80%"></div><div class="wbar " style="width:66%"></div><div class="wrow" style="margin-top:10px"><div class="wbox dark" style="height:34px;display:flex;align-items:center;justify-content:center"><span class="lbl">CTA · 4축 보기</span></div><div class="wboxd" style="height:34px;display:flex;align-items:center;justify-content:center"><span class="lbl">CTA · 문의</span></div></div></div>
+  <div style="flex:1"><div class="wbox dark" style="height:34px;display:flex;align-items:center;justify-content:center"><span class="lbl">8,426 · 규모</span></div><div class="wgrid" style="grid-template-columns:1fr 1fr;margin-top:8px"><div class="wbox" style="height:34px;display:flex;align-items:center;justify-content:center"><span class="lbl">①보유</span></div><div class="wbox" style="height:34px;display:flex;align-items:center;justify-content:center"><span class="lbl">②법정</span></div><div class="wbox" style="height:34px;display:flex;align-items:center;justify-content:center"><span class="lbl">③제작</span></div><div class="wbox" style="height:34px;display:flex;align-items:center;justify-content:center"><span class="lbl">④파트너</span></div></div></div>
+</div></div>
+  <div class="anno"><ul class="annol"><li>8,426 규모 + 4축 맵(보유/법정/제작/파트너)</li><li><span class="tag src2"></span>규모 = 소개서 기준</li><li><span class="tag noprice"></span>가격·결제 미노출</li></ul></div>
+</div><div class="blk ">
+  <div class="id">A·NAV</div>
+  <div class="body"><div class="bt"><h4>스티키 축 내비 (4)</h4><span class="comp">STICKY</span></div><div class="wgrid" style="grid-template-columns:repeat(4,1fr)"><div class="wbox " style="height:30px;display:flex;align-items:center;justify-content:center"></div><div class="wbox " style="height:30px;display:flex;align-items:center;justify-content:center"></div><div class="wbox " style="height:30px;display:flex;align-items:center;justify-content:center"></div><div class="wbox " style="height:30px;display:flex;align-items:center;justify-content:center"></div></div></div>
+  <div class="anno"><ul class="annol"><li>스크롤 스파이 · 현재 축 하이라이트</li></ul></div>
+</div><div class="blk ">
+  <div class="id">A·02</div>
+  <div class="body"><div class="bt"><h4>AXIS ① 보유 콘텐츠</h4><span class="comp">FUNNEL</span></div><div class="stepnote">3단 깔때기 · 규모 → 체계 → 대표과정</div>
+<div class="wbox dark" style="height:40px;display:flex;align-items:center;justify-content:center"><span class="lbl">규모 스트립 · 8,426 + 6채널 카운트</span></div>
+<div class="mini">7체계 매트릭스</div><div class="wgrid" style="grid-template-columns:repeat(4,1fr)"><div class="wbox" style="height:34px;display:flex;align-items:center;justify-content:center"><span class="lbl">직무역량</span></div><div class="wbox" style="height:34px;display:flex;align-items:center;justify-content:center"><span class="lbl">글로벌</span></div><div class="wbox" style="height:34px;display:flex;align-items:center;justify-content:center"><span class="lbl">비즈공통</span></div><div class="wbox" style="height:34px;display:flex;align-items:center;justify-content:center"><span class="lbl">자격</span></div><div class="wbox" style="height:34px;display:flex;align-items:center;justify-content:center"><span class="lbl">조직문화</span></div><div class="wbox" style="height:34px;display:flex;align-items:center;justify-content:center"><span class="lbl">인문교양</span></div><div class="wbox" style="height:34px;display:flex;align-items:center;justify-content:center"><span class="lbl">법정·컴플</span></div></div>
+<div class="mini">대표 라인업 탐색기</div><div class="wrow"><div class="wbox" style="height:26px;display:flex;align-items:center;justify-content:center"><span class="lbl">탭×7</span></div><div class="wbox" style="height:26px;display:flex;align-items:center;justify-content:center"><span class="lbl">검색</span></div><div class="wbox" style="height:26px;display:flex;align-items:center;justify-content:center"><span class="lbl">필터×4</span></div><div class="wbox" style="height:26px;display:flex;align-items:center;justify-content:center"><span class="lbl">정렬</span></div></div><div class="wgrid" style="grid-template-columns:repeat(3,1fr)"><div class="wbox" style="height:44px;display:flex;align-items:center;justify-content:center"><span class="lbl">카드</span></div><div class="wbox" style="height:44px;display:flex;align-items:center;justify-content:center"><span class="lbl">카드</span></div><div class="wbox" style="height:44px;display:flex;align-items:center;justify-content:center"><span class="lbl">카드</span></div><div class="wbox" style="height:44px;display:flex;align-items:center;justify-content:center"><span class="lbl">카드</span></div><div class="wbox" style="height:44px;display:flex;align-items:center;justify-content:center"><span class="lbl">카드</span></div><div class="wbox" style="height:44px;display:flex;align-items:center;justify-content:center"><span class="lbl">카드</span></div></div></div>
+  <div class="anno"><ul class="annol"><li>규모 → 7체계 → 대표과정 3단</li><li><span class="tag src1"></span>탐색기 = AX·AI 34종 실데이터</li><li><span class="tag src2"></span>체계·규모 = 소개서 기준</li></ul></div>
+</div><div class="blk ">
+  <div class="id">A·03</div>
+  <div class="body"><div class="bt"><h4>AXIS ② 법정 헌터스</h4><span class="comp">DIFF</span></div><div class="mini">시리즈 타임라인</div><div class="wrow tl"><div class="wbox" style="height:30px;display:flex;align-items:center;justify-content:center"><span class="lbl">2024</span></div><div class="tlbar"></div><div class="wbox" style="height:30px;display:flex;align-items:center;justify-content:center"><span class="lbl">2025</span></div><div class="tlbar"></div><div class="wbox dark" style="height:30px;display:flex;align-items:center;justify-content:center"><span class="lbl">2026 ●</span></div></div>
+<div class="mini">공통 법정의무 · 4필드 카드</div><div class="wgrid" style="grid-template-columns:repeat(5,1fr)"><div class="wbox" style="height:52px;display:flex;align-items:center;justify-content:center"><span class="lbl">과정·근거·대상·주기</span></div><div class="wbox" style="height:52px;display:flex;align-items:center;justify-content:center"><span class="lbl">과정·근거·대상·주기</span></div><div class="wbox" style="height:52px;display:flex;align-items:center;justify-content:center"><span class="lbl">과정·근거·대상·주기</span></div><div class="wbox" style="height:52px;display:flex;align-items:center;justify-content:center"><span class="lbl">과정·근거·대상·주기</span></div><div class="wbox" style="height:52px;display:flex;align-items:center;justify-content:center"><span class="lbl">과정·근거·대상·주기</span></div></div>
+<div class="mini">경쟁사 차별화 표</div><div class="wboxd" style="height:40px;display:flex;align-items:center;justify-content:center"><span class="lbl">표 · 일반 vs KG (5행)</span></div></div>
+  <div class="anno"><ul class="annol"><li>HRD 신뢰 언어 · 4필드+타임라인+표</li><li><span class="tag src2"></span>법적근거·주기 = 대표표기(실편성 검증)</li><li>배지=고용노동부 기준·이수증</li></ul></div>
+</div><div class="blk ">
+  <div class="id">A·04</div>
+  <div class="body"><div class="bt"><h4>AXIS ③ 맞춤 제작</h4><span class="comp">SHOWCASE</span></div><div class="wrow"><div class="wbox dark" style="height:56px;display:flex;align-items:center;justify-content:center"><span class="lbl">자체 스튜디오 3종 (실사 슬롯)</span></div><div style="flex:1.3"><div class="mini" style="margin-top:0">AI 제작 파이프라인</div><div class="wrow"><div class="wbox" style="height:26px;display:flex;align-items:center;justify-content:center"><span class="lbl">①</span></div><div class="wbox" style="height:26px;display:flex;align-items:center;justify-content:center"><span class="lbl">②</span></div><div class="wbox" style="height:26px;display:flex;align-items:center;justify-content:center"><span class="lbl">③</span></div><div class="wbox" style="height:26px;display:flex;align-items:center;justify-content:center"><span class="lbl">④</span></div><div class="wbox" style="height:26px;display:flex;align-items:center;justify-content:center"><span class="lbl">⑤</span></div></div></div></div>
+<div class="mini">IP 협업 · 고객 사례</div><div class="wgrid" style="grid-template-columns:repeat(3,1fr)"><div class="wbox" style="height:34px;display:flex;align-items:center;justify-content:center"><span class="lbl">IP</span></div><div class="wbox" style="height:34px;display:flex;align-items:center;justify-content:center"><span class="lbl">IP</span></div><div class="wbox" style="height:34px;display:flex;align-items:center;justify-content:center"><span class="lbl">IP</span></div><div class="wbox" style="height:34px;display:flex;align-items:center;justify-content:center"><span class="lbl">사례</span></div><div class="wbox" style="height:34px;display:flex;align-items:center;justify-content:center"><span class="lbl">사례</span></div><div class="wbox" style="height:34px;display:flex;align-items:center;justify-content:center"><span class="lbl">사례</span></div></div></div>
+  <div class="anno"><ul class="annol"><li>스튜디오·AI·IP·사례 (제작 역량 증거)</li><li><span class="tag src2"></span>소개서 기준</li><li><span class="tag slot"></span>실사=교체 슬롯(Unsplash)</li></ul></div>
+</div><div class="blk ">
+  <div class="id">A·05</div>
+  <div class="body"><div class="bt"><h4>AXIS ④ 파트너 네트워크</h4><span class="comp">GRID</span></div><div class="mini">협력사 그리드 (14+)</div><div class="wgrid" style="grid-template-columns:repeat(7,1fr)"><div class="wbox" style="height:32px;display:flex;align-items:center;justify-content:center"><span class="lbl">로고</span></div><div class="wbox" style="height:32px;display:flex;align-items:center;justify-content:center"><span class="lbl">로고</span></div><div class="wbox" style="height:32px;display:flex;align-items:center;justify-content:center"><span class="lbl">로고</span></div><div class="wbox" style="height:32px;display:flex;align-items:center;justify-content:center"><span class="lbl">로고</span></div><div class="wbox" style="height:32px;display:flex;align-items:center;justify-content:center"><span class="lbl">로고</span></div><div class="wbox" style="height:32px;display:flex;align-items:center;justify-content:center"><span class="lbl">로고</span></div><div class="wbox" style="height:32px;display:flex;align-items:center;justify-content:center"><span class="lbl">로고</span></div></div>
+<div class="mini">외국어 협력사</div><div class="wgrid" style="grid-template-columns:repeat(5,1fr)"><div class="wbox" style="height:32px;display:flex;align-items:center;justify-content:center"><span class="lbl">로고</span></div><div class="wbox" style="height:32px;display:flex;align-items:center;justify-content:center"><span class="lbl">로고</span></div><div class="wbox" style="height:32px;display:flex;align-items:center;justify-content:center"><span class="lbl">로고</span></div><div class="wbox" style="height:32px;display:flex;align-items:center;justify-content:center"><span class="lbl">로고</span></div><div class="wbox" style="height:32px;display:flex;align-items:center;justify-content:center"><span class="lbl">로고</span></div></div>
+<div class="wrow" style="margin-top:8px"><div class="wboxd" style="height:40px;display:flex;align-items:center;justify-content:center"><span class="lbl">수급 이원화 · 자체+파트너</span></div><div class="wbox dark" style="height:40px;display:flex;align-items:center;justify-content:center"><span class="lbl">100+ 카운터</span></div></div></div>
+  <div class="anno"><ul class="annol"><li>협력사=신뢰신호(여정 레벨 근거)</li><li><span class="tag src2"></span>소개서 기준 · 협력사 수 정합 필요</li></ul></div>
+</div><div class="blk ">
+  <div class="id">A·06</div>
+  <div class="body"><div class="bt"><h4>최종 CTA</h4><span class="comp">CTA</span></div><div class="wbox dark" style="height:48px;display:flex;align-items:center;justify-content:center"><span class="lbl">어느 축이든, 필요한 걸 말씀해 주세요 · 통합 문의</span></div></div>
+  <div class="anno"><ul class="annol"><li>축별 문의 + 통합 상담 이중 CTA</li></ul></div>
+</div><div class="blk ">
+  <div class="id">A·07</div>
+  <div class="body"><div class="bt"><h4>Footer</h4><span class="comp">FOOTER</span></div><div class="wboxd" style="height:30px;display:flex;align-items:center;justify-content:center"><span class="lbl">회사정보 · 데이터 기준 표기</span></div></div>
+  <div class="anno"><ul class="annol"><li>데이터 출처·가격 미노출 명시</li></ul></div>
+</div><div class="blk ">
+  <div class="id">A·M</div>
+  <div class="body"><div class="bt"><h4>모달 (오버레이)</h4><span class="comp">MODAL</span></div><div class="wrow"><div class="wboxd" style="height:46px;display:flex;align-items:center;justify-content:center"><span class="lbl">과정 상세 L2 · 개요→목표→커리큘럼→강사→문의</span></div><div class="wboxd" style="height:46px;display:flex;align-items:center;justify-content:center"><span class="lbl">상담 폼 · 최소 4필드</span></div></div></div>
+  <div class="anno"><ul class="annol"><li>상세=개요·목표·커리큘럼·강사</li><li>폼=담당자·회사·이메일·과제 / 영업일 1일 내 회신</li><li><span class="tag noprice"></span>가격 미노출</li></ul></div>
+</div>
+
+  <div class="section-h" id="wb"><span class="n">B</span><h2>B안 와이어프레임 · 6-Axis 체계형</h2><span class="d">체계 시각화 중심 · 스크롤 순서 ↓</span></div>
+  <div class="blk ">
+  <div class="id">B·00</div>
+  <div class="body"><div class="bt"><h4>GNB (공통 헤더)</h4><span class="comp">NAV</span></div><div class="wrow"><div class="wbox" style="height:30px;display:flex;align-items:center;justify-content:center"><span class="lbl">로고</span></div><div class="wbox" style="height:30px;display:flex;align-items:center;justify-content:center"><span class="lbl">AX·AI</span></div><div class="wbox" style="height:30px;display:flex;align-items:center;justify-content:center"><span class="lbl">리더십</span></div><div class="wbox" style="height:30px;display:flex;align-items:center;justify-content:center"><span class="lbl">HRD</span></div><div class="wbox dark" style="height:30px;display:flex;align-items:center;justify-content:center"><span class="lbl">콘텐츠솔루션 ●</span></div><div class="wbox" style="height:30px;display:flex;align-items:center;justify-content:center"><span class="lbl">정부지원</span></div><div class="wboxd" style="height:30px;display:flex;align-items:center;justify-content:center"><span class="lbl">문의</span></div></div></div>
+  <div class="anno"><ul class="annol"><li>전 페이지 공통</li></ul></div>
+</div><div class="blk ">
+  <div class="id">B·01</div>
+  <div class="body"><div class="bt"><h4>HERO</h4><span class="comp">HERO</span></div><div class="wrow">
+  <div style="flex:1.1"><div class="wbar dark" style="width:40%"></div><div class="wbar " style="width:78%"></div><div class="wbar " style="width:64%"></div><div class="wrow" style="margin-top:10px"><div class="wbox dark" style="height:34px;display:flex;align-items:center;justify-content:center"><span class="lbl">CTA · 6체계 보기</span></div><div class="wboxd" style="height:34px;display:flex;align-items:center;justify-content:center"><span class="lbl">CTA · 대표과정 찾기 →모달</span></div></div></div>
+  <div style="flex:1"><div class="wbox dark" style="height:30px;display:flex;align-items:center;justify-content:center"><span class="lbl">8,426 · 규모</span></div><div class="wgrid" style="grid-template-columns:repeat(3,1fr);margin-top:8px"><div class="wbox" style="height:30px;display:flex;align-items:center;justify-content:center"><span class="lbl">①직무</span></div><div class="wbox" style="height:30px;display:flex;align-items:center;justify-content:center"><span class="lbl">②어학</span></div><div class="wbox" style="height:30px;display:flex;align-items:center;justify-content:center"><span class="lbl">③IT</span></div><div class="wbox" style="height:30px;display:flex;align-items:center;justify-content:center"><span class="lbl">④비즈·리더십</span></div><div class="wbox" style="height:30px;display:flex;align-items:center;justify-content:center"><span class="lbl">⑤법정</span></div><div class="wbox" style="height:30px;display:flex;align-items:center;justify-content:center"><span class="lbl">⑥제작·파트너</span></div></div></div>
+</div></div>
+  <div class="anno"><ul class="annol"><li>8,426 + 6축 헥스맵</li><li><span class="tag src1"></span>'대표과정 찾기'=탐색기 모달 트리거</li><li><span class="tag src2"></span>규모=소개서 기준</li><li><span class="tag noprice"></span>가격 미노출</li></ul></div>
+</div><div class="blk ">
+  <div class="id">B·NAV</div>
+  <div class="body"><div class="bt"><h4>스티키 축 내비 (6)</h4><span class="comp">STICKY</span></div><div class="wgrid" style="grid-template-columns:repeat(6,1fr)"><div class="wbox " style="height:28px;display:flex;align-items:center;justify-content:center"></div><div class="wbox " style="height:28px;display:flex;align-items:center;justify-content:center"></div><div class="wbox " style="height:28px;display:flex;align-items:center;justify-content:center"></div><div class="wbox " style="height:28px;display:flex;align-items:center;justify-content:center"></div><div class="wbox " style="height:28px;display:flex;align-items:center;justify-content:center"></div><div class="wbox " style="height:28px;display:flex;align-items:center;justify-content:center"></div></div></div>
+  <div class="anno"><ul class="annol"><li>6축 이동 피로도 → 스티키 내비로 완화</li></ul></div>
+</div><div class="blk ">
+  <div class="id">B·02</div>
+  <div class="body"><div class="bt"><h4>AXIS ① 직무역량</h4><span class="comp">ICON MAP</span></div><div class="wgrid" style="grid-template-columns:repeat(3,1fr)"><div class="wbox" style="height:50px;display:flex;align-items:center;justify-content:center"><span class="lbl">DX·AX</span></div><div class="wbox" style="height:50px;display:flex;align-items:center;justify-content:center"><span class="lbl">경영·기획</span></div><div class="wbox" style="height:50px;display:flex;align-items:center;justify-content:center"><span class="lbl">마케팅·영업</span></div><div class="wbox" style="height:50px;display:flex;align-items:center;justify-content:center"><span class="lbl">인사·조직</span></div><div class="wbox" style="height:50px;display:flex;align-items:center;justify-content:center"><span class="lbl">재무·회계</span></div><div class="wbox" style="height:50px;display:flex;align-items:center;justify-content:center"><span class="lbl">구매·생산·품질</span></div></div></div>
+  <div class="anno"><ul class="annol"><li>6직무군 아이콘 맵 + 하위스킬</li><li><span class="tag slot"></span>아이콘=인라인 SVG(Iconify 호환)</li></ul></div>
+</div><div class="blk ">
+  <div class="id">B·03</div>
+  <div class="body"><div class="bt"><h4>AXIS ② 어학·글로벌</h4><span class="comp">MATRIX</span></div><div class="mini">언어 × 레벨 프로피션시 매트릭스</div>
+<div class="wgrid" style="grid-template-columns:80px repeat(4,1fr)"><div class="wboxd" style="height:22px;display:flex;align-items:center;justify-content:center"><span class="lbl"></span></div><div class="wbox dark" style="height:22px;display:flex;align-items:center;justify-content:center"><span class="lbl">LV1</span></div><div class="wbox dark" style="height:22px;display:flex;align-items:center;justify-content:center"><span class="lbl">LV2</span></div><div class="wbox dark" style="height:22px;display:flex;align-items:center;justify-content:center"><span class="lbl">LV3</span></div><div class="wbox dark" style="height:22px;display:flex;align-items:center;justify-content:center"><span class="lbl">LV4</span></div></div>
+<div class="wgrid" style="grid-template-columns:80px repeat(4,1fr);margin-top:6px"><div class="wboxd" style="height:26px;display:flex;align-items:center;justify-content:center"><span class="lbl">영어</span></div><div class="wbox" style="height:26px;display:flex;align-items:center;justify-content:center"><span class="lbl"></span></div><div class="wbox" style="height:26px;display:flex;align-items:center;justify-content:center"><span class="lbl"></span></div><div class="wbox" style="height:26px;display:flex;align-items:center;justify-content:center"><span class="lbl"></span></div><div class="wbox" style="height:26px;display:flex;align-items:center;justify-content:center"><span class="lbl"></span></div></div><div class="wgrid" style="grid-template-columns:80px repeat(4,1fr);margin-top:6px"><div class="wboxd" style="height:26px;display:flex;align-items:center;justify-content:center"><span class="lbl">중국어</span></div><div class="wbox" style="height:26px;display:flex;align-items:center;justify-content:center"><span class="lbl"></span></div><div class="wbox" style="height:26px;display:flex;align-items:center;justify-content:center"><span class="lbl"></span></div><div class="wbox" style="height:26px;display:flex;align-items:center;justify-content:center"><span class="lbl"></span></div><div class="wbox" style="height:26px;display:flex;align-items:center;justify-content:center"><span class="lbl"></span></div></div><div class="wgrid" style="grid-template-columns:80px repeat(4,1fr);margin-top:6px"><div class="wboxd" style="height:26px;display:flex;align-items:center;justify-content:center"><span class="lbl">일본어</span></div><div class="wbox" style="height:26px;display:flex;align-items:center;justify-content:center"><span class="lbl"></span></div><div class="wbox" style="height:26px;display:flex;align-items:center;justify-content:center"><span class="lbl"></span></div><div class="wbox" style="height:26px;display:flex;align-items:center;justify-content:center"><span class="lbl"></span></div><div class="wbox" style="height:26px;display:flex;align-items:center;justify-content:center"><span class="lbl"></span></div></div><div class="wgrid" style="grid-template-columns:80px repeat(4,1fr);margin-top:6px"><div class="wboxd" style="height:26px;display:flex;align-items:center;justify-content:center"><span class="lbl">제2외국어</span></div><div class="wbox" style="height:26px;display:flex;align-items:center;justify-content:center"><span class="lbl"></span></div><div class="wbox" style="height:26px;display:flex;align-items:center;justify-content:center"><span class="lbl"></span></div><div class="wbox" style="height:26px;display:flex;align-items:center;justify-content:center"><span class="lbl"></span></div><div class="wbox" style="height:26px;display:flex;align-items:center;justify-content:center"><span class="lbl"></span></div></div></div>
+  <div class="anno"><ul class="annol"><li>언어×레벨 4×4 매트릭스(CEFR형)</li><li>멀티캠퍼스 어학 e-System 차용</li></ul></div>
+</div><div class="blk ">
+  <div class="id">B·04</div>
+  <div class="body"><div class="bt"><h4>AXIS ③ IT·자격</h4><span class="comp">ROADMAP</span></div><div class="mini">마일스톤 로드맵 · 자격 매핑</div><div class="wrow tl"><div class="wbox dark" style="height:28px;display:flex;align-items:center;justify-content:center"><span class="lbl">STAGE1 ●</span></div><div class="tlbar"></div><div class="wbox dark" style="height:28px;display:flex;align-items:center;justify-content:center"><span class="lbl">STAGE2 ●</span></div><div class="tlbar"></div><div class="wbox dark" style="height:28px;display:flex;align-items:center;justify-content:center"><span class="lbl">STAGE3 ●</span></div></div>
+<div class="wgrid" style="grid-template-columns:repeat(3,1fr);margin-top:8px"><div class="wboxd" style="height:56px;display:flex;align-items:center;justify-content:center"><span class="lbl">스킬+자격</span></div><div class="wboxd" style="height:56px;display:flex;align-items:center;justify-content:center"><span class="lbl">스킬+자격</span></div><div class="wboxd" style="height:56px;display:flex;align-items:center;justify-content:center"><span class="lbl">스킬+자격</span></div></div></div>
+  <div class="anno"><ul class="annol"><li>마일스톤 로드맵 · 자격을 단계에 매핑</li><li>멀티캠퍼스 IT e-System 차용</li></ul></div>
+</div><div class="blk ">
+  <div class="id">B·05</div>
+  <div class="body"><div class="bt"><h4>AXIS ④ 비즈니스·리더십</h4><span class="comp">FRAMEWORK</span></div><div class="mini">성장 티어 프레임워크 · 축 명시</div>
+<div class="wrow"><div class="wboxd" style="height:120px;display:flex;align-items:center;justify-content:center"><span class="lbl">축</span></div><div style="flex:1"><div class="wbox" style="height:34px;display:flex;align-items:center;justify-content:center"><span class="lbl">01 SELF · 개인 → 실무자</span></div><div style="margin-top:6px"><div class="wbox dark" style="height:34px;display:flex;align-items:center;justify-content:center"><span class="lbl">02 TEAM · 팀 → 팀 리더</span></div></div><div style="margin-top:6px"><div class="wbox dark" style="height:34px;display:flex;align-items:center;justify-content:center"><span class="lbl">03 ORG · 조직 → 경영·조직</span></div></div></div></div></div>
+  <div class="anno"><ul class="annol"><li>축 명시 성장 티어(개인→조직)</li><li>9-Box·성숙도 모델 시각 언어 차용</li></ul></div>
+</div><div class="blk ">
+  <div class="id">B·06</div>
+  <div class="body"><div class="bt"><h4>AXIS ⑤ 법정 헌터스</h4><span class="comp">DIFF</span></div><div class="mini">시리즈 타임라인</div><div class="wrow tl"><div class="wbox" style="height:30px;display:flex;align-items:center;justify-content:center"><span class="lbl">2024</span></div><div class="tlbar"></div><div class="wbox" style="height:30px;display:flex;align-items:center;justify-content:center"><span class="lbl">2025</span></div><div class="tlbar"></div><div class="wbox dark" style="height:30px;display:flex;align-items:center;justify-content:center"><span class="lbl">2026 ●</span></div></div>
+<div class="mini">공통 법정의무 · 4필드 카드</div><div class="wgrid" style="grid-template-columns:repeat(5,1fr)"><div class="wbox" style="height:52px;display:flex;align-items:center;justify-content:center"><span class="lbl">과정·근거·대상·주기</span></div><div class="wbox" style="height:52px;display:flex;align-items:center;justify-content:center"><span class="lbl">과정·근거·대상·주기</span></div><div class="wbox" style="height:52px;display:flex;align-items:center;justify-content:center"><span class="lbl">과정·근거·대상·주기</span></div><div class="wbox" style="height:52px;display:flex;align-items:center;justify-content:center"><span class="lbl">과정·근거·대상·주기</span></div><div class="wbox" style="height:52px;display:flex;align-items:center;justify-content:center"><span class="lbl">과정·근거·대상·주기</span></div></div>
+<div class="mini">경쟁사 차별화 표</div><div class="wboxd" style="height:40px;display:flex;align-items:center;justify-content:center"><span class="lbl">표 · 일반 vs KG (5행)</span></div></div>
+  <div class="anno"><ul class="annol"><li>4필드+타임라인+차별화표 (A안과 동일)</li><li><span class="tag src2"></span>법적근거=대표표기(검증)</li></ul></div>
+</div><div class="blk ">
+  <div class="id">B·07</div>
+  <div class="body"><div class="bt"><h4>AXIS ⑥ 제작·파트너</h4><span class="comp">SHOWCASE</span></div><div class="wrow"><div class="wbox dark" style="height:50px;display:flex;align-items:center;justify-content:center"><span class="lbl">스튜디오 3종 (실사 슬롯)</span></div><div style="flex:1.3"><div class="mini" style="margin-top:0">AI 파이프라인</div><div class="wrow"><div class="wbox" style="height:24px;display:flex;align-items:center;justify-content:center"><span class="lbl">①</span></div><div class="wbox" style="height:24px;display:flex;align-items:center;justify-content:center"><span class="lbl">②</span></div><div class="wbox" style="height:24px;display:flex;align-items:center;justify-content:center"><span class="lbl">③</span></div><div class="wbox" style="height:24px;display:flex;align-items:center;justify-content:center"><span class="lbl">④</span></div><div class="wbox" style="height:24px;display:flex;align-items:center;justify-content:center"><span class="lbl">⑤</span></div></div></div></div>
+<div class="mini">IP 협업</div><div class="wgrid" style="grid-template-columns:repeat(3,1fr)"><div class="wbox" style="height:30px;display:flex;align-items:center;justify-content:center"><span class="lbl">IP</span></div><div class="wbox" style="height:30px;display:flex;align-items:center;justify-content:center"><span class="lbl">IP</span></div><div class="wbox" style="height:30px;display:flex;align-items:center;justify-content:center"><span class="lbl">IP</span></div><div class="wbox" style="height:30px;display:flex;align-items:center;justify-content:center"><span class="lbl">IP</span></div><div class="wbox" style="height:30px;display:flex;align-items:center;justify-content:center"><span class="lbl">IP</span></div><div class="wbox" style="height:30px;display:flex;align-items:center;justify-content:center"><span class="lbl">IP</span></div></div>
+<div class="mini">협력사 + 수급 이원화 + 100+ 카운터</div><div class="wgrid" style="grid-template-columns:repeat(7,1fr)"><div class="wbox" style="height:28px;display:flex;align-items:center;justify-content:center"><span class="lbl">로고</span></div><div class="wbox" style="height:28px;display:flex;align-items:center;justify-content:center"><span class="lbl">로고</span></div><div class="wbox" style="height:28px;display:flex;align-items:center;justify-content:center"><span class="lbl">로고</span></div><div class="wbox" style="height:28px;display:flex;align-items:center;justify-content:center"><span class="lbl">로고</span></div><div class="wbox" style="height:28px;display:flex;align-items:center;justify-content:center"><span class="lbl">로고</span></div><div class="wbox" style="height:28px;display:flex;align-items:center;justify-content:center"><span class="lbl">로고</span></div><div class="wbox" style="height:28px;display:flex;align-items:center;justify-content:center"><span class="lbl">로고</span></div></div></div>
+  <div class="anno"><ul class="annol"><li>제작+파트너 통합 축</li><li>리드='기획부터 제작까지 한 팀처럼'</li><li><span class="tag src2"></span>소개서 기준 · 실사 슬롯</li></ul></div>
+</div><div class="blk ">
+  <div class="id">B·DL</div>
+  <div class="body"><div class="bt"><h4>전체 과정 리스트 다운로드 (신규)</h4><span class="comp">DOWNLOAD</span></div>
+  <div class="wrow"><div style="flex:1.05"><div class="wbar dark" style="width:52%"></div><div class="wbar" style="width:80%"></div><div class="wboxd" style="height:28px;display:flex;align-items:center;justify-content:center;margin-top:8px"><span class="lbl">→ 환급 495 · 정부지원(P3) 링크</span></div><div class="wrow" style="margin-top:8px"><div class="wbox dark" style="height:34px;display:flex;align-items:center;justify-content:center"><span class="lbl">CTA · 리스트 다운로드(Excel)</span></div></div></div>
+  <div style="flex:.95"><div class="wboxd" style="height:26px;display:flex;align-items:center;justify-content:center"><span class="lbl">XLS · 8,000여 과정</span></div><div class="wgrid" style="grid-template-columns:repeat(3,1fr);margin-top:6px"><div class="wbox" style="height:30px;display:flex;align-items:center;justify-content:center"><span class="lbl">직무 4,219</span></div><div class="wbox" style="height:30px;display:flex;align-items:center;justify-content:center"><span class="lbl">어학 3,332</span></div><div class="wbox" style="height:30px;display:flex;align-items:center;justify-content:center"><span class="lbl">전화 820</span></div><div class="wbox" style="height:30px;display:flex;align-items:center;justify-content:center"><span class="lbl">법정 25</span></div><div class="wbox" style="height:30px;display:flex;align-items:center;justify-content:center"><span class="lbl">신규 116</span></div><div class="wbox dark" style="height:30px;display:flex;align-items:center;justify-content:center"><span class="lbl">환급 495</span></div></div></div>
+  </div></div>
+  <div class="anno"><ul class="annol"><li><span class="tag src2"></span>플로팅 아닌 <b>본문 자연 흐름</b>(제작·파트너 뒤 · 문의 앞) — 라이브 플로팅 다운로드 대체</li><li>라이트 게이트: 회사·담당자·이메일 → 제출 시 xlsx 다운로드</li><li>수치=과정리스트 엑셀 실측 · 매월 갱신 · A안 미적용</li></ul></div>
+</div><div class="blk ">
+  <div class="id">B·08</div>
+  <div class="body"><div class="bt"><h4>최종 CTA</h4><span class="comp">CTA</span></div><div class="wbox dark" style="height:48px;display:flex;align-items:center;justify-content:center"><span class="lbl">어느 체계든, 필요한 걸 말씀해 주세요 · 통합 문의</span></div></div>
+  <div class="anno"><ul class="annol"><li>고르고, 필요하면 직접 만듭니다 (능동)</li></ul></div>
+</div><div class="blk ">
+  <div class="id">B·09</div>
+  <div class="body"><div class="bt"><h4>Footer</h4><span class="comp">FOOTER</span></div><div class="wboxd" style="height:30px;display:flex;align-items:center;justify-content:center"><span class="lbl">회사정보 · 데이터 기준 표기</span></div></div>
+  <div class="anno"><ul class="annol"><li>데이터 출처 명시</li></ul></div>
+</div><div class="blk ">
+  <div class="id">B·FAB</div>
+  <div class="body"><div class="bt"><h4>플로팅 버튼 + 탐색기 모달</h4><span class="comp">MODAL</span></div><div class="wrow"><div class="wbox dark" style="height:40px;display:flex;align-items:center;justify-content:center"><span class="lbl">FAB · 대표 과정 찾기</span></div><div class="wboxd" style="height:40px;display:flex;align-items:center;justify-content:center"><span class="lbl">탐색기 모달 · 탭+필터+검색+카드그리드</span></div></div></div>
+  <div class="anno"><ul class="annol"><li>탐색기=모달(본문은 체계 도식 중심)</li><li><span class="tag src1"></span>AX·AI 34종 실데이터</li></ul></div>
+</div><div class="blk ">
+  <div class="id">B·M</div>
+  <div class="body"><div class="bt"><h4>모달 (상세/상담)</h4><span class="comp">MODAL</span></div><div class="wrow"><div class="wboxd" style="height:44px;display:flex;align-items:center;justify-content:center"><span class="lbl">과정 상세 L2</span></div><div class="wboxd" style="height:44px;display:flex;align-items:center;justify-content:center"><span class="lbl">상담 폼 · 최소 4필드</span></div></div></div>
+  <div class="anno"><ul class="annol"><li>상세=개요·목표·커리큘럼·강사 / 폼=영업일 1일 내 회신</li><li>다운로드 게이트 모달(회사·담당자·이메일)=문의 폼 패턴 재사용 → 제출 시 다운로드</li><li><span class="tag noprice"></span>가격 미노출</li></ul></div>
+</div>
+
+  <div class="section-h" id="common"><span class="n">★</span><h2>공통 기준 · 원칙</h2><span class="d">두 안 모두 적용</span></div>
+  <div class="anno" style="border:1px solid var(--wline);border-radius:10px"><ul class="annol" style="gap:9px"><li><span class="tag noprice"></span>가격·결제 미노출 — 인바운드 채널 원칙</li><li><span class="tag noprice"></span>회사소개 전용(수상·인증·고객사 로고 나열) 상세 미노출 → 여정 레벨 근거만</li><li><span class="tag src1"></span>대표 라인업 = AX·AI 34종 실데이터 / 나머지 = 소개서 기준(8,426·7체계·법정 시리즈·제작·협력사)</li><li><span class="tag src2"></span>차주 대표 6+6 소개서 도착 시 탐색기 실데이터 교체</li><li><span class="tag src2"></span>규모 8,426 = 소개서 기준 (8,000+ 등 내부 수치 정합 필요)</li><li>CTA = 축별 문의 + 통합 상담 / 최소 필드 / 영업일 1일 내 회신</li><li><span class="tag src2"></span>과정 리스트 다운로드 = B안 전용(본문 자연 흐름) · A안 미적용</li><li><span class="tag slot"></span>실사 이미지 = 교체 슬롯(Unsplash) · 아이콘 = 인라인 SVG(Iconify 호환)</li></ul></div>
+
+  <footer class="foot">KG에듀원 · KEESS — P4 콘텐츠 솔루션 와이어프레임 · html.to.design 임포트용 · v2.0 (B안 다운로드 추가)</footer>
+</div>
+</body></html>

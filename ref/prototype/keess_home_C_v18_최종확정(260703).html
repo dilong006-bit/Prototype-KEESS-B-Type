@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>KEESS — KG에듀원 기업교육 (홈 D안 v3) · v18</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap" />
+<style>
+:root{
+  --bg:#FAFAFB; --ink:#14141A; --muted:#54585f; --line:#E6E8EC; --surface:#F3F5F8;
+  --p1:#2E1A6B; --p2:#E91E63; --p3:#8B27A8; --p4:#F58220; --gov:#F4B83A;
+  --ease:cubic-bezier(.22,.61,.36,1); --ease-out:cubic-bezier(.2,0,0,1);
+  --maxw:1200px; --gut:24px; --serif:"Gowun Batang",serif; --r:20px;
+  --shadow-1:0 1px 2px rgba(20,20,26,.05),0 2px 8px rgba(20,20,26,.05);
+  --shadow-2:0 2px 6px rgba(20,20,26,.06),0 10px 26px rgba(20,20,26,.09);
+  --shadow-3:0 6px 14px rgba(20,20,26,.08),0 22px 52px rgba(20,20,26,.14);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Pretendard Variable",Pretendard,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;letter-spacing:-.01em;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gut)}
+.num{font-variant-numeric:tabular-nums}
+a{color:inherit;text-decoration:none}button{font-family:inherit;cursor:pointer}
+.section{padding:120px 0}
+@media(max-width:720px){.section{padding:74px 0}}
+.eyebrow{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.sec-title{font-size:clamp(27px,3.8vw,42px);font-weight:800;letter-spacing:-.02em;line-height:1.24}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;font-weight:600;transition:transform .3s var(--ease),box-shadow .4s var(--ease),background .3s var(--ease)}
+.btn-ink{padding:15px 30px;background:var(--ink);color:#fff;font-size:16px}
+.btn-ink:hover{transform:translateY(-2px);box-shadow:0 18px 44px -14px rgba(20,20,26,.6)}
+.btn-glass{padding:10px 19px;background:rgba(255,255,255,.14);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.3);color:#fff;font-size:14.5px}
+.btn-glass:hover{background:rgba(255,255,255,.26)}
+
+.nav{position:fixed;top:0;left:0;right:0;z-index:70;transition:background .5s var(--ease),border-color .5s var(--ease)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:72px}
+.nav .logo{font-weight:800;font-size:22px;letter-spacing:.05em;color:#fff;transition:color .5s var(--ease)}
+.nav .menu{display:flex;gap:28px;font-size:14.5px;font-weight:500;color:rgba(255,255,255,.9);transition:color .5s var(--ease)}
+.nav .menu a{position:relative}
+.nav .menu a::after{content:"";position:absolute;left:0;bottom:-5px;width:0;height:1.5px;background:currentColor;transition:width .35s var(--ease)}
+.nav .menu a:hover::after{width:100%}
+.nav.solid{background:rgba(255,255,255,.84);backdrop-filter:saturate(160%) blur(16px);border-bottom:1px solid var(--line)}
+.nav.solid .logo{color:var(--ink)}.nav.solid .menu{color:#3a3d44}
+.nav.solid .btn-glass{background:var(--ink);border-color:var(--ink);color:#fff}
+.hamb{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:8px;z-index:80}
+.hamb span{width:24px;height:2px;background:#fff;transition:background .4s var(--ease)}
+.nav.solid .hamb span{background:var(--ink)}
+@media(max-width:940px){.nav .menu,.nav .nav-cta{display:none}.hamb{display:flex}}
+.mmenu{position:fixed;inset:0;z-index:75;background:rgba(18,16,28,.97);backdrop-filter:blur(8px);display:flex;flex-direction:column;justify-content:center;gap:6px;padding:40px var(--gut);transform:translateY(-100%);transition:transform .5s var(--ease)}
+.mmenu.open{transform:none}
+.mmenu a{color:#fff;font-size:25px;font-weight:700;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+.mmenu .btn-ink{margin-top:26px;background:#fff;color:var(--ink);align-self:flex-start}
+
+.pdots{position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:50;display:flex;flex-direction:column;gap:14px;opacity:.5;transition:opacity .4s var(--ease)}
+.pdots button{width:9px;height:9px;border-radius:50%;border:none;background:#cfd4da;transition:transform .35s var(--ease),background .35s var(--ease)}
+.pdots button.active{background:var(--ac,#2E1A6B);transform:scale(1.5)}
+@media(max-width:1040px){.pdots{display:none}}
+
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;color:#fff}
+.hero-bg{position:absolute;inset:-8% 0;z-index:0;background-image:linear-gradient(135deg,#1c1340,#2E1A6B 55%,#120e22);background-size:cover;background-position:center;will-change:transform}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;opacity:.4}
+.hero-scrim{position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,rgba(12,9,22,.5),rgba(12,9,22,.74))}
+.hero .wrap{position:relative;z-index:3;width:100%}
+.hero .eyebrow{color:rgba(255,255,255,.78);margin-bottom:22px;opacity:0;transform:translateY(10px);transition:opacity .8s var(--ease) .1s,transform .8s var(--ease) .1s}
+.hero.on .eyebrow{opacity:1;transform:none}
+.hero h1{font-size:clamp(40px,6.8vw,84px);font-weight:800;line-height:1.07;letter-spacing:-.03em;max-width:17ch}
+.hero h1 .w{display:inline-block;opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.hero.on h1 .w{opacity:1;transform:none}
+.hero .sub{margin-top:28px;font-size:clamp(16px,1.8vw,20px);color:rgba(255,255,255,.88);max-width:54ch;line-height:1.7;opacity:0;transform:translateY(10px);transition:opacity .9s var(--ease) .6s,transform .9s var(--ease) .6s}
+.hero.on .sub{opacity:1;transform:none}
+.hero .actions{margin-top:38px;opacity:0;transform:translateY(10px);transition:opacity .9s var(--ease) .75s,transform .9s var(--ease) .75s}
+.hero.on .actions{opacity:1;transform:none}
+.hero .actions .btn-ink{background:#fff;color:var(--ink)}
+.scrolldown{position:absolute;left:50%;bottom:30px;transform:translateX(-50%);z-index:3;color:rgba(255,255,255,.7);font-size:11px;letter-spacing:.18em;display:flex;flex-direction:column;align-items:center;gap:8px}
+.scrolldown .bar{width:1px;height:38px;background:linear-gradient(rgba(255,255,255,.7),transparent);animation:sd 1.9s var(--ease) infinite}
+@keyframes sd{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+.r{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.r.in{opacity:1;transform:none}
+.stagger>*{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.stagger.in>*{opacity:1;transform:none}
+.lines .ln{display:block;overflow:hidden}
+.lines .ln span{display:block;transform:translateY(110%);transition:transform .8s var(--ease)}
+.lines.in .ln span{transform:none}
+
+.intro{text-align:center;position:relative}
+.intro .lead{font-family:var(--serif);font-size:clamp(26px,4vw,46px);font-weight:700;line-height:1.32;max-width:20ch;margin:0 auto;letter-spacing:-.01em}
+.intro .leadsub{margin-top:22px;color:var(--muted);font-size:17px;max-width:62ch;margin-left:auto;margin-right:auto;line-height:1.7}
+.intro .midrule{width:0;height:2px;background:var(--p1);margin:34px auto 0;transition:width .9s var(--ease)}
+.intro .midrule.in{width:64px}
+
+.pillar{padding:108px 0;border-top:1px solid var(--line);overflow:hidden}
+@media(max-width:720px){.pillar{padding:70px 0}}
+.pgrid{max-width:var(--maxw);margin:0 auto;padding:0 var(--gut);display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.pillar.rev .pgrid{direction:rtl}
+.pillar.rev .ptext,.pillar.rev .pmedia{direction:ltr}
+@media(max-width:880px){.pgrid{grid-template-columns:1fr;gap:32px;direction:ltr !important}}
+.pmedia{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:4/3.2;background-image:var(--pg);background-size:cover;box-shadow:0 30px 70px -30px rgba(20,20,26,.4)}
+.pimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;will-change:transform}
+.pscrim{position:absolute;inset:0;background:linear-gradient(160deg,transparent 40%,color-mix(in srgb,var(--ac) 55%,transparent))}
+.pbadge{position:absolute;left:20px;bottom:18px;padding:9px 16px;border-radius:999px;background:rgba(255,255,255,.16);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.28);color:#fff;font-size:13px;font-weight:600;letter-spacing:.02em}
+.ptext .pidx{font-size:clamp(40px,5vw,64px);font-weight:800;letter-spacing:-.03em;color:var(--ac);line-height:1;opacity:.9}
+.ptext .pname{margin-top:6px;font-size:13px;font-weight:700;color:var(--muted);letter-spacing:.04em}
+.ptext h3{margin-top:16px;font-size:clamp(23px,2.9vw,34px);font-weight:800;line-height:1.25;letter-spacing:-.02em;max-width:18ch}
+.prule{width:0;height:4px;border-radius:2px;background:var(--ac);margin-top:20px;transition:width .8s var(--ease) .15s}
+.prule.in{width:56px}
+.steps{position:relative;margin-top:28px;padding-left:46px}
+.steps-line{position:absolute;left:15px;top:6px;bottom:14px;width:2px;background:var(--line)}
+.steps-fill{position:absolute;left:0;top:0;width:2px;height:var(--sp,0%);background:var(--ac)}
+.step{position:relative;padding-bottom:22px}
+.step:last-child{padding-bottom:0}
+.step .snum{position:absolute;left:-46px;top:-2px;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:700;color:var(--muted);background:var(--bg);border:2px solid var(--line);transition:all .5s var(--ease)}
+.step.lit .snum{color:#fff;background:var(--ac);border-color:var(--ac)}
+.step .stt{font-size:16.5px;font-weight:700}
+.step .std{font-size:14.5px;color:#54575e;line-height:1.6;margin-top:3px}
+.pclose{margin-top:22px;font-size:14.5px;font-weight:600;color:#3a3d44;padding-left:46px}
+
+.stats{background:var(--ink);color:#fff}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+@media(max-width:760px){.stats-grid{grid-template-columns:repeat(2,1fr);gap:40px}}
+.stat{text-align:center}
+.ring{position:relative;width:128px;height:128px;margin:0 auto}
+.ring svg{width:128px;height:128px;transform:rotate(-90deg)}
+.ring .bg{fill:none;stroke:rgba(255,255,255,.14);stroke-width:6}
+.ring .fg{fill:none;stroke:var(--ac);stroke-width:6;stroke-linecap:round;stroke-dasharray:326.726;stroke-dashoffset:326.726;transition:stroke-dashoffset 1.2s var(--ease)}
+.ring .val{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:800;font-variant-numeric:tabular-nums}
+.stat .lab{margin-top:16px;font-size:14.5px;color:rgba(255,255,255,.74)}
+
+.manifesto{position:relative;min-height:72vh;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;overflow:hidden}
+.man-bg{position:absolute;inset:-8% 0;z-index:0;background-image:linear-gradient(135deg,#161022,#2E1A6B);background-size:cover;background-position:center;will-change:transform}
+.man-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;opacity:.38}
+.man-scrim{position:absolute;inset:0;z-index:2;background:rgba(10,8,18,.55);opacity:.7;transition:opacity 1s var(--ease)}
+.manifesto.in .man-scrim{opacity:1}
+.manifesto .wrap{position:relative;z-index:3}
+.manifesto h2{font-family:var(--serif);font-weight:700;font-size:clamp(30px,5.2vw,60px);line-height:1.25;letter-spacing:-.01em;max-width:18ch;margin:0 auto;opacity:0;transform:translateY(20px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.manifesto.in h2{opacity:1;transform:none}
+
+.ref-block{margin-top:42px}
+.ref-label{font-size:13px;font-weight:700;color:var(--muted);letter-spacing:.04em;margin-bottom:16px}
+.ref-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:740px){.ref-grid{grid-template-columns:1fr}}
+.ref{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:26px 24px;transition:transform .3s var(--ease),box-shadow .4s var(--ease)}
+.ref:hover{transform:translateY(-3px);box-shadow:0 18px 40px -22px rgba(20,20,26,.3)}
+.ref .org{font-size:18px;font-weight:700;color:#2c2e34}
+.ref .role{font-size:13.5px;color:var(--muted);margin-top:4px}
+.ref-cap{margin-top:20px;font-size:13px;color:#9aa0a8}
+
+.cert-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:42px}
+@media(max-width:820px){.cert-grid{grid-template-columns:repeat(2,1fr)}}
+.cert{position:relative;border:1px solid var(--line);border-radius:16px;padding:28px 22px;background:rgba(255,255,255,.7);backdrop-filter:blur(8px);font-size:15px;font-weight:700;line-height:1.45;color:#2c2c33;overflow:hidden;transition:transform .3s var(--ease)}
+.cert::before{content:"";position:absolute;left:0;top:0;width:100%;height:3px;background:linear-gradient(90deg,var(--p1),var(--p3))}
+.cert:hover{transform:translateY(-3px)}
+.cert small{display:block;color:var(--muted);font-weight:500;font-size:12.5px;margin-top:7px}
+
+.inq{background:var(--surface)}
+.inq-grid{display:grid;grid-template-columns:0.82fr 1.18fr;gap:40px;align-items:stretch}
+@media(max-width:880px){.inq-grid{grid-template-columns:1fr}}
+.inq-side{border-radius:22px;padding:40px;color:#fff;background:linear-gradient(150deg,#2E1A6B,#5a2f8f 70%,#8B27A8);position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;min-height:340px}
+.inq-side::after{content:"";position:absolute;right:-60px;bottom:-60px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.08)}
+.inq-side .lead{font-family:var(--serif);font-size:clamp(24px,3vw,32px);font-weight:700;line-height:1.32;position:relative}
+.inq-side .leadsub{margin-top:16px;color:rgba(255,255,255,.86);font-size:14.5px;line-height:1.7;position:relative}
+.inq-side .trust{position:relative;font-size:13px;color:rgba(255,255,255,.8);display:flex;flex-wrap:wrap;gap:6px 14px}
+.form{background:var(--bg);border:1px solid var(--line);border-radius:22px;padding:34px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:560px){.frow{grid-template-columns:1fr}}
+.field{margin-top:16px}.field:first-child{margin-top:0}
+.field label{display:block;font-size:13.5px;font-weight:600;margin-bottom:7px;color:#3a3a42}
+.field label .req{color:var(--p2)}
+.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:11px;padding:12px 14px;font-family:inherit;font-size:15px;background:#fff;color:var(--ink);transition:border-color .25s var(--ease)}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--p1)}
+.field .err{color:var(--p2);font-size:12.5px;margin-top:6px;display:none}
+.field.invalid .err{display:block}.field.invalid input,.field.invalid select{border-color:var(--p2)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.mchip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 14px;font-size:13.5px;color:#3a3a42;cursor:pointer;transition:all .2s var(--ease)}
+.mchip.on{background:var(--p1);color:#fff;border-color:var(--p1)}
+.filebox{border:1.5px dashed #cfd4da;border-radius:12px;padding:18px;text-align:center;font-size:13.5px;color:var(--muted);cursor:pointer;transition:border-color .25s var(--ease)}
+.filebox:hover{border-color:var(--p1)}.filebox.has{border-style:solid;border-color:var(--p1);color:var(--ink)}
+.filehint{font-size:12px;color:#9aa0a8;margin-top:8px}
+.consent{display:flex;gap:10px;align-items:flex-start;margin-top:20px;font-size:13.5px;color:#3a3a42;line-height:1.55}
+.consent input{margin-top:3px;flex:none;width:18px;height:18px;accent-color:var(--p1)}
+.consent.invalid{color:var(--p2)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.form .submit{margin-top:22px;width:100%;background:var(--ink);color:#fff;padding:15px}
+.form .done{text-align:center;padding:20px 0;display:none}.form .done.show{display:block}
+.form .done .check{width:64px;height:64px;border-radius:50%;border:2px solid var(--p3);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;color:var(--p3);font-size:28px}
+.form .done h4{font-size:21px;font-weight:800}.form .done p{margin-top:8px;color:var(--muted);font-size:14.5px}
+.form #form-body.hide{display:none}
+
+.foot{background:var(--ink);color:rgba(255,255,255,.7);padding:60px 0}
+.foot .top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;padding-bottom:28px;border-bottom:1px solid rgba(255,255,255,.12)}
+.foot .logo{font-size:22px;font-weight:800;letter-spacing:.05em;color:#fff}
+.foot .note{font-size:14px;max-width:46ch;line-height:1.6}
+.foot .bottom{padding-top:24px;font-size:13px;color:rgba(255,255,255,.5);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+/* ── v3 polish ── */
+.cert{box-shadow:var(--shadow-1)}
+.ref{box-shadow:var(--shadow-1)}
+.form{box-shadow:var(--shadow-2)}
+.inq-side{box-shadow:var(--shadow-3)}
+.pmedia{box-shadow:0 30px 70px -30px rgba(20,20,26,.45)}
+
+:focus-visible{outline:2px solid var(--p1);outline-offset:3px;border-radius:4px}
+
+@media(prefers-reduced-motion:reduce){
+  *{transition:none !important;animation:none !important}
+  html{scroll-behavior:auto}
+  .hero .eyebrow,.hero h1 .w,.hero .sub,.hero .actions,.r,.stagger>*,.manifesto h2{opacity:1;transform:none}
+  .lines .ln span{transform:none}.prule{width:56px}.midrule{width:64px}
+  .hero-bg,.man-bg,.pimg{transform:none !important}.scrolldown{display:none}
+  .man-scrim{opacity:1}
+  .steps-fill{height:100% !important}.step .snum{color:#fff;background:var(--ac);border-color:var(--ac)}
+  .ring .fg{stroke-dashoffset:90}
+}
+
+/* ===== FAQ (v4) ===== */
+#faq{background:var(--bg)}
+.faq-tabs{display:flex;flex-wrap:wrap;gap:9px;margin-top:40px}
+.faq-tab{border:1px solid var(--line);background:#fff;border-radius:999px;padding:10px 18px;font-size:14.5px;font-weight:600;color:#3a3a42;cursor:pointer;font-family:inherit;transition:all .22s var(--ease)}
+.faq-tab:hover{border-color:#c9ccd3;transform:translateY(-1px)}
+.faq-tab.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.faq-list{margin-top:28px;display:flex;flex-direction:column;gap:12px;max-width:none}
+.faq-item{border:1px solid var(--line);border-radius:16px;background:#fff;overflow:hidden;transition:box-shadow .35s var(--ease),border-color .35s var(--ease)}
+.faq-item.open{box-shadow:var(--shadow-2);border-color:transparent}
+.faq-q{display:flex;align-items:center;gap:16px;width:100%;text-align:left;padding:21px 24px;background:none;border:none;cursor:pointer;font-family:inherit}
+.faq-q .qn{font-size:13px;font-weight:800;color:var(--p1);font-variant-numeric:tabular-nums;flex:none;letter-spacing:.02em}
+.faq-q .qt{font-size:16.5px;font-weight:700;color:var(--ink);flex:1;line-height:1.42;letter-spacing:-.01em}
+.faq-q .chev{flex:none;width:21px;height:21px;color:var(--muted);transition:transform .35s var(--ease)}
+.faq-item.open .faq-q .chev{transform:rotate(180deg);color:var(--p1)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .42s var(--ease)}
+.faq-a-inner{padding:0 24px 24px 66px;color:var(--muted);font-size:15.5px;line-height:1.78}
+@media(max-width:560px){.faq-a-inner{padding-left:24px}.faq-q{gap:11px}}
+.faq-a-inner p{max-width:820px}
+.faq-a-inner .acta{display:inline-flex;align-items:center;gap:6px;margin-top:15px;font-size:14.5px;font-weight:700;color:var(--p1);text-decoration:none}
+.faq-a-inner .acta:hover{text-decoration:underline;text-underline-offset:3px}
+.faq-foot{margin-top:34px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.faq-foot-t{font-size:15.5px;color:var(--muted);font-weight:600}
+.faq-cta{padding:13px 26px;font-size:15px}
+
+/* ===== 푸터 (v5 릴리즈) ===== */
+.foot{background:var(--ink);color:rgba(255,255,255,.66);padding:0 0 30px}
+.foot-util{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0;border-bottom:1px solid rgba(255,255,255,.1)}
+.famsite{position:relative}
+.fam-btn{display:inline-flex;align-items:center;justify-content:space-between;gap:10px;min-width:230px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18);color:#fff;border-radius:10px;padding:12px 18px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .2s}
+.fam-btn:hover{background:rgba(255,255,255,.1)}
+.fam-btn svg{width:16px;height:16px;transition:transform .3s var(--ease)}
+.fam-btn.open svg{transform:rotate(180deg)}
+.fam-menu{position:absolute;left:0;bottom:calc(100% + 8px);width:100%;background:#1e1e26;border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:6px;list-style:none;opacity:0;visibility:hidden;transform:translateY(8px);transition:all .25s var(--ease);box-shadow:0 -12px 34px rgba(0,0,0,.45);z-index:5}
+.fam-menu.open{opacity:1;visibility:visible;transform:none}
+.fam-menu a{display:block;padding:11px 14px;color:rgba(255,255,255,.8);font-size:14px;text-decoration:none;border-radius:8px;transition:background .18s,color .18s}
+.fam-menu a:hover{background:rgba(255,255,255,.08);color:#fff}
+.totop{color:rgba(255,255,255,.55);font-size:13px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.totop:hover{color:#fff}
+.foot-main{display:grid;grid-template-columns:.9fr 1.4fr;gap:44px;padding:46px 0 36px}
+@media(max-width:820px){.foot-main{grid-template-columns:1fr;gap:32px}}
+.foot-brand .logo{font-size:22px;font-weight:800;letter-spacing:.05em;color:#fff}
+.foot-brand .note{font-size:13.5px;max-width:42ch;line-height:1.66;margin-top:14px;color:rgba(255,255,255,.6)}
+.sns{display:flex;gap:10px;margin-top:20px}
+.sns a{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.75);transition:all .2s}
+.sns a:hover{background:#fff;color:var(--ink);transform:translateY(-2px)}
+.sns svg{width:18px;height:18px}
+.cinfo{display:grid;grid-template-columns:1fr 1fr;gap:9px 30px}
+@media(max-width:560px){.cinfo{grid-template-columns:1fr}}
+.cinfo>div{display:flex;gap:10px;font-size:13px;line-height:1.5}
+.cinfo dt{color:rgba(255,255,255,.4);font-weight:600;flex:none;min-width:66px}
+.cinfo dd{color:rgba(255,255,255,.72)}
+.foot-policy{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:24px;font-size:13px}
+.foot-policy a{color:rgba(255,255,255,.8);font-weight:600;text-decoration:none}
+.foot-policy a.priv{color:#fff}
+.foot-policy a:hover{color:#fff;text-decoration:underline;text-underline-offset:3px}
+.foot-policy span{color:rgba(255,255,255,.28)}
+.foot-policy .isms{margin-left:auto;font-size:11.5px;color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.2);border-radius:6px;padding:5px 11px;font-weight:600}
+@media(max-width:560px){.foot-policy .isms{margin-left:0}}
+.foot-bottom{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding-top:22px;border-top:1px solid rgba(255,255,255,.1)}
+.foot-bottom .copy{font-size:12.5px;color:rgba(255,255,255,.42);letter-spacing:.02em}
+.foot-bottom .report{font-size:11.5px;color:rgba(255,255,255,.32);text-decoration:none;font-weight:500}
+.foot-bottom .report:hover{color:rgba(255,255,255,.6);text-decoration:underline}
+
+
+/* ===== v6: 줄바꿈 · 모션 · FAB ===== */
+.ptext h3{word-break:keep-all;font-size:clamp(20px,2.3vw,28px);max-width:24em}
+.lines .ln{line-height:1.28}
+/* 필러 이미지 호버 줌 */
+.pmedia .pimg{transition:transform .7s var(--ease)}
+.pmedia:hover .pimg{transform:scale(1.05)}
+/* 성과 이미지 패럴럭스 */
+.manifesto{overflow:hidden}
+.man-img{will-change:transform}
+/* 부정훈련 링크(최하단, 흐린 톤) */
+.report-wrap{display:inline-flex;align-items:center;gap:9px}
+.report-wrap .report{font-size:11.5px;color:rgba(255,255,255,.48);text-decoration:none;font-weight:500}
+.report-wrap .report:hover{color:rgba(255,255,255,.62);text-decoration:underline}
+.report-sep{color:rgba(255,255,255,.2);font-size:11px}
+/* 맨 위로 FAB */
+.to-top{position:fixed;right:22px;bottom:22px;z-index:60;width:48px;height:48px;border-radius:50%;background:var(--ink);color:#fff;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;visibility:hidden;transform:translateY(12px) scale(.9);transition:opacity .35s var(--ease),transform .35s var(--ease),background .3s;box-shadow:var(--shadow-2)}
+.to-top.show{opacity:1;visibility:visible;transform:none}
+.to-top:hover{background:var(--p1);transform:translateY(-3px)}
+.to-top:active{transform:translateY(-1px) scale(.96)}
+.to-top svg{width:22px;height:22px}
+@media(max-width:560px){.to-top{right:16px;bottom:16px;width:44px;height:44px}}
+@media(prefers-reduced-motion:reduce){.pmedia:hover .pimg{transform:none}.man-img{transform:none!important}}
+
+
+/* ===== v7: 동의 그룹 · ISMS 마크 ===== */
+.consent-group{margin-top:20px;display:flex;flex-direction:column;gap:2px}
+.consent{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:6px 0}
+.consent-main{display:flex;align-items:center;gap:10px;font-size:14px;color:#2f2f37;cursor:pointer;flex:1;line-height:1.4}
+.consent-main input{flex:none;width:18px;height:18px;accent-color:var(--p1);cursor:pointer}
+.consent.invalid .consent-main{color:var(--p2)}
+.c-tag{font-size:11px;font-weight:800;border-radius:5px;padding:2px 7px;letter-spacing:.02em}
+.req-tag{background:#F3EAF9;color:var(--p3)}
+.opt-tag{background:var(--surface);color:var(--muted)}
+.consent.invalid .req-tag{background:#FCE8EE;color:var(--p2)}
+.consent-view{flex:none;background:none;border:none;font-family:inherit;font-size:12.5px;font-weight:600;color:var(--muted);cursor:pointer;text-decoration:underline;text-underline-offset:3px;padding:4px}
+.consent-view:hover{color:var(--p1)}
+.consent-text{max-height:0;overflow:hidden;transition:max-height .4s var(--ease)}
+.consent-text .ct-inner{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:4px 0 8px;font-size:12.5px;color:var(--muted);line-height:1.7;max-height:210px;overflow-y:auto}
+.consent-text .ct-inner p{margin-bottom:9px}
+.consent-text .ct-inner p:last-child{margin-bottom:0}
+.consent-text .ct-inner b{color:#3a3a42}
+/* ISMS 마크(다크 푸터 · 화이트 칩) */
+.isms-mark{margin-left:auto;height:44px;width:auto;background:#fff;border-radius:8px;padding:5px 8px;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+@media(max-width:560px){.isms-mark{margin-left:0}}
+.report-wrap .report:hover{color:rgba(255,255,255,.75)!important}
+
+
+/* ===== v8: 부정훈련 정책줄 재배치 ===== */
+.foot-policy .report-link{color:rgba(255,255,255,.62);font-weight:600;text-decoration:none}
+.foot-policy .report-link:hover{color:#fff;text-decoration:underline;text-underline-offset:3px}
+.foot-bottom{justify-content:flex-start}
+
+
+/* ===== v13: 부정훈련 모달 (고도화) ===== */
+@media(max-width:560px){.pv-head,.pv-tabs,.pv-body{padding-left:20px;padding-right:20px}}
+.report-link{font-family:inherit;background:none;border:none;cursor:pointer;padding:0}
+.pv-overlay{position:fixed;inset:0;z-index:120;background:rgba(20,20,26,.55);backdrop-filter:blur(4px);display:flex;align-items:flex-start;justify-content:center;padding:5vh 20px;opacity:0;visibility:hidden;transition:opacity .3s var(--ease),visibility .3s}
+.pv-overlay.open{opacity:1;visibility:visible}
+.pv-dialog{background:#fff;border-radius:22px;width:100%;max-width:720px;max-height:90vh;display:flex;flex-direction:column;box-shadow:var(--shadow-3);transform:translateY(16px) scale(.985);transition:transform .35s var(--ease);overflow:hidden}
+.pv-overlay.open .pv-dialog{transform:none}
+.pv-head{display:flex;align-items:center;justify-content:space-between;padding:22px 32px;border-bottom:1px solid var(--line)}
+.pv-head h3{font-size:19px;font-weight:800;letter-spacing:-.01em}
+.pv-close{width:36px;height:36px;border-radius:50%;border:none;background:var(--surface);color:var(--muted);font-size:22px;line-height:1;cursor:pointer;transition:all .2s}
+.pv-close:hover{background:var(--ink);color:#fff}
+.pv-tabs{display:flex;gap:4px;padding:14px 32px 0;border-bottom:1px solid var(--line)}
+.pv-tab{display:inline-flex;align-items:center;gap:7px;padding:11px 16px;border:none;background:none;font-family:inherit;font-size:14px;font-weight:700;color:var(--muted);cursor:pointer;border-bottom:2.5px solid transparent;margin-bottom:-1px;transition:color .2s,border-color .2s}
+.pv-tab:hover{color:var(--ink)}
+.pv-tab.on{color:var(--p1);border-bottom-color:var(--p1)}
+.pvi{width:18px;height:18px}.pvi-sm{width:16px;height:16px}
+.pv-body{padding:24px 32px 30px;overflow-y:auto}
+.pv-pane{display:none}
+.pv-pane.on{display:block;animation:pvfade .35s var(--ease)}
+@keyframes pvfade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.pv-lead{font-size:15px;color:#33333c;line-height:1.7;margin-bottom:18px}
+.pv-lead b{color:var(--ink)}
+.pv-h{display:flex;align-items:center;gap:9px;font-size:16px;font-weight:800;color:var(--ink);margin:24px 0 11px}
+.pv-h .pvi{color:var(--p1)}
+.pv-pane p{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:10px}
+.pv-warn{display:flex;gap:10px;align-items:flex-start;background:#FCEEF2;border:1px solid #F6D4DF;border-radius:12px;padding:13px 15px;font-size:13.5px;color:#9A2B47!important;font-weight:500}
+.pvi-warn{width:19px;height:19px;flex:none;color:#C0455E;margin-top:1px}
+.pv-note{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:7px}.pv-note .pvi-sm{color:var(--p1)}
+.pv-table{width:100%;border-collapse:collapse;margin:6px 0 8px;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.pv-table th,.pv-table td{padding:11px 14px;font-size:13.5px;text-align:left;border-bottom:1px solid var(--line)}
+.pv-table thead th{background:var(--surface);font-weight:700;color:var(--ink)}
+.pv-table tbody td:first-child{font-weight:600;color:#33333c;width:44%}
+.pv-table tr:last-child td{border-bottom:none}
+.pv-list{list-style:none;display:flex;flex-direction:column;gap:8px;margin:4px 0 8px}
+.pv-list li{position:relative;padding-left:20px;font-size:14px;color:#33333c;line-height:1.6}
+.pv-list li:before{content:"";position:absolute;left:4px;top:9px;width:6px;height:6px;border-radius:50%;background:var(--p1)}
+.pv-cta{margin-top:24px;background:var(--surface);border-radius:16px;padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.pv-cta b{font-size:14.5px;color:var(--ink)}.pv-cta span{display:block;font-size:13px;color:var(--muted);margin-top:3px}
+.pv-cta .btn,.pv-done-cta .btn{padding:12px 20px;font-size:14px;display:inline-flex;align-items:center;gap:7px}
+.pv-toplink{display:flex;justify-content:flex-end;margin-bottom:6px}
+.pv-link{display:inline-flex;align-items:center;gap:6px;background:none;border:none;font-family:inherit;font-size:13px;font-weight:700;color:var(--p1);cursor:pointer;padding:4px}
+.pv-link:hover{text-decoration:underline;text-underline-offset:3px}
+.pv-fs{margin-bottom:18px}
+.pv-fs-t{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:800;color:var(--p1);letter-spacing:.02em}
+.pv-fs-t .pvi-sm{color:var(--p1)}
+.pv-fs-d{font-size:12px;color:var(--muted);margin-left:8px}
+.pv-fs .field{margin-top:10px}
+.pv-fs .fnote{display:block;font-size:11.5px;color:#9aa0a8;margin-top:5px}
+.pv-hint{font-size:12.5px;color:var(--muted);background:var(--surface);border-radius:10px;padding:10px 13px;display:flex;align-items:center;gap:8px;margin:12px 0}
+.pv-hint b{color:var(--p1)}.pv-hint .pvi-sm{color:var(--p1);flex:none}
+.pv-done{display:none;text-align:center;padding:28px 10px}
+.pv-done.show{display:block}
+.pv-done .check{width:62px;height:62px;border-radius:50%;background:#EAF4EF;color:var(--p1);display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
+.pvi-done{width:34px;height:34px}
+.pv-done h4{font-size:18px;font-weight:800;margin-bottom:8px}
+.pv-done p{font-size:14px;color:var(--muted);max-width:44ch;margin:0 auto;line-height:1.7}
+.pv-receipt{margin:18px auto 6px;max-width:340px;background:var(--surface);border:1px dashed #c9cdd6;border-radius:12px;padding:14px 18px;display:flex;align-items:center;justify-content:space-between}
+.pv-receipt span{font-size:13px;color:var(--muted);font-weight:700}
+.pv-receipt b{font-size:17px;font-weight:800;color:var(--p1);font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.pv-receipt-note{font-size:12px!important;color:#9aa0a8!important}
+.pv-done-cta{margin-top:18px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn-line-dark{padding:12px 20px;border:1px solid var(--line);background:#fff;color:var(--muted);border-radius:999px;font-family:inherit;font-weight:700;font-size:14px;cursor:pointer;transition:all .2s}
+.btn-line-dark:hover{border-color:var(--ink);color:var(--ink)}
+/* 조회 결과 */
+.pv-result{margin-top:20px;border:1px solid var(--line);border-radius:16px;overflow:hidden;animation:pvfade .35s var(--ease)}
+.pv-result-head{background:var(--surface);padding:16px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--line)}
+.pv-result-head .no{font-size:13px;color:var(--muted);font-weight:700}.pv-result-head .no b{color:var(--ink);font-variant-numeric:tabular-nums}
+.pv-badge{font-size:12px;font-weight:800;border-radius:999px;padding:5px 12px}
+.pv-badge.s0{background:#EAEEF5;color:#3E5C8A}
+.pv-badge.s1{background:#FBF0D8;color:#8A6314}
+.pv-badge.s2{background:#E7F3EE;color:#2F6F5B}
+.pv-badge.s3{background:#FCE8EE;color:#B02F4E}
+.pv-result-body{padding:18px 20px}
+.pv-result-body dl{display:grid;grid-template-columns:88px 1fr;gap:10px 14px;font-size:13.5px}
+.pv-result-body dt{color:var(--muted);font-weight:700}
+.pv-result-body dd{color:#2a2a32;line-height:1.6}
+.pv-steps{display:flex;align-items:center;gap:6px;margin:14px 0 2px;flex-wrap:wrap}
+.pv-step{font-size:11.5px;font-weight:700;color:#b7bcc6;display:flex;align-items:center;gap:6px}
+.pv-step.on{color:var(--p1)}
+.pv-step .dot{width:8px;height:8px;border-radius:50%;background:currentColor}
+.pv-step-arrow{color:#d6d9df;font-size:12px}
+.pv-notfound{margin-top:20px;background:#FCEEF2;border:1px solid #F6D4DF;border-radius:12px;padding:16px 18px;font-size:13.5px;color:#9A2B47}
+@media(prefers-reduced-motion:reduce){.pv-overlay,.pv-dialog,.pv-pane.on,.pv-result{transition:none;animation:none}}
+/* ===== v10: 히어로 캐러셀 ===== */
+.hero-track{position:absolute;inset:0;z-index:0}
+.hero-slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .9s var(--ease),visibility .9s;display:flex;align-items:center}
+.hero-slide.active{opacity:1;visibility:visible}
+.hs-bg{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center}
+.hero-slide[data-theme=brand] .hs-bg{background:linear-gradient(135deg,#1c1340,#2E1A6B 55%,#120e22)}
+.hero-slide[data-theme=event] .hs-bg{background:linear-gradient(130deg,#3a0f26,#E91E63 62%,#6f0f31)}
+.hero-slide[data-theme=new] .hs-bg{background:linear-gradient(130deg,#3a1e05,#F58220 62%,#7a3a05)}
+.hero-slide[data-theme=gov] .hs-bg{background:linear-gradient(130deg,#33270a,#B8891A 55%,#4d3608)}
+.hero-slide[data-theme=case] .hs-bg{background:linear-gradient(130deg,#280e37,#8B27A8 62%,#3a1050)}
+.hs-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;opacity:.5;will-change:transform}
+@keyframes hs-kb{from{transform:scale(1.04)}to{transform:scale(1.14)}}
+.hero-slide.active .hs-img{animation:hs-kb 9s ease-out both}
+.hs-scrim{position:absolute;inset:0;z-index:2;background:linear-gradient(100deg,rgba(12,9,22,.82),rgba(12,9,22,.44) 66%,rgba(12,9,22,.34)),linear-gradient(180deg,rgba(12,9,22,0),rgba(12,9,22,.5))}
+.hero-slide .wrap{position:relative;z-index:3;width:100%}
+.hs-content{max-width:min(100%,920px)}
+.hs-tag{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;letter-spacing:.06em;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:999px;padding:6px 14px;margin-bottom:20px;backdrop-filter:blur(4px)}
+.hero-slide .eyebrow{color:rgba(255,255,255,.82);margin-bottom:18px}
+.hero-slide h1{font-size:clamp(34px,6vw,74px);font-weight:800;line-height:1.1;letter-spacing:-.03em;max-width:20ch;word-break:keep-all}
+.hero-slide .sub{margin-top:24px;font-size:clamp(15px,1.7vw,19px);color:rgba(255,255,255,.9);max-width:52ch;line-height:1.68}
+.hero-slide .actions{margin-top:34px}
+.hero-slide .actions .btn-ink{background:#fff;color:var(--ink)}
+/* 콘텐츠 진입 */
+.hs-tag,.hero-slide .eyebrow,.hero-slide h1,.hero-slide .sub,.hero-slide .actions{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.hero-slide.active .hs-tag{opacity:1;transform:none;transition-delay:.12s}
+.hero-slide.active .eyebrow{opacity:1;transform:none;transition-delay:.22s}
+.hero-slide.active h1{opacity:1;transform:none;transition-delay:.3s}
+.hero-slide.active .sub{opacity:1;transform:none;transition-delay:.42s}
+.hero-slide.active .actions{opacity:1;transform:none;transition-delay:.54s}
+/* 컨트롤 */
+.hero-ctrl{position:absolute;left:0;right:0;bottom:40px;z-index:5;display:flex;align-items:center;justify-content:center;gap:18px;pointer-events:none}
+.hero-ctrl>*{pointer-events:auto}
+.hero-arrow{width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);color:#fff;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,transform .2s;backdrop-filter:blur(6px)}
+.hero-arrow:hover{background:rgba(255,255,255,.26);transform:scale(1.05)}
+.hero-dots{display:flex;gap:9px;align-items:center}
+.hero-dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.38);border:none;cursor:pointer;padding:0;transition:all .3s var(--ease)}
+.hero-dot:hover{background:rgba(255,255,255,.7)}
+.hero-dot.on{background:#fff;width:28px;border-radius:5px}
+.hero-meta{position:absolute;right:var(--gut);bottom:46px;z-index:5;display:flex;align-items:center;gap:12px;color:rgba(255,255,255,.85);font-size:13px;font-weight:700;font-variant-numeric:tabular-nums}
+.hero-play{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:9px;letter-spacing:1px}
+.hero-progress{position:absolute;left:0;bottom:0;z-index:5;width:100%;height:3px;background:rgba(255,255,255,.14)}
+.hero-progress span{display:block;height:100%;width:0;background:#fff}
+@media(max-width:640px){.hero-meta{display:none}.hero-ctrl{bottom:24px;gap:12px}.hero-arrow{width:40px;height:40px;font-size:20px}}
+@media(prefers-reduced-motion:reduce){.hero-slide,.hs-tag,.hero-slide .eyebrow,.hero-slide h1,.hero-slide .sub,.hero-slide .actions{transition:none!important}.hero-slide.active .hs-img{animation:none;transform:none}.hero-progress{display:none}}
+
+
+/* v12: 서브카피 줄바꿈 보정 */
+.hero-slide .sub,.leadsub{word-break:keep-all}
+
+/* ===== v15: 조회 목록/상세 ===== */
+.pv-list-head{display:flex;align-items:center;justify-content:space-between;margin:18px 0 12px;font-size:14px;color:var(--muted)}
+.pv-list-head b{color:var(--ink)}
+.pv-rcard{border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin-bottom:12px;transition:box-shadow .3s var(--ease)}
+.pv-rcard:hover{box-shadow:var(--shadow-1)}
+.pv-rc-top{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.pv-rc-no{font-size:12.5px;font-weight:800;color:var(--muted);font-variant-numeric:tabular-nums}
+.pv-rc-title{font-size:15.5px;font-weight:700;color:var(--ink);line-height:1.42}
+.pv-rc-date{font-size:12.5px;color:#9aa0a8;margin-top:5px}
+.pv-rc-toggle{margin-top:12px;background:none;border:none;font-family:inherit;font-size:13.5px;font-weight:700;color:var(--p1);cursor:pointer;padding:0}
+.pv-rc-toggle:hover{text-decoration:underline;text-underline-offset:3px}
+.pv-rc-detail{max-height:0;overflow:hidden;transition:max-height .4s var(--ease)}
+.pv-rc-detail.open{max-height:660px;margin-top:14px}
+.pv-rc-pw{border-top:1px dashed var(--line);padding-top:14px}
+.pv-rc-pw label{font-size:12.5px;font-weight:700;color:#3a3a42;display:block;margin-bottom:7px}
+.pv-rc-pwrow{display:flex;gap:8px}
+.pv-rc-pwrow input{flex:1;border:1px solid var(--line);border-radius:10px;padding:11px 13px;font-family:inherit;font-size:14px;background:#fff}
+.pv-rc-pwrow input:focus{outline:none;border-color:var(--p1)}
+.pv-rc-pwrow .btn-line-dark{padding:11px 18px;flex:none}
+.pv-rc-err{display:block;font-size:12px;color:var(--p2);margin-top:7px;min-height:14px;font-weight:600}
+.pv-dl{display:grid;grid-template-columns:64px 1fr;gap:8px 12px;font-size:13.5px;margin-bottom:12px}
+.pv-dl dt{color:var(--muted);font-weight:700}.pv-dl dd{color:#2a2a32;line-height:1.6}
+.pv-answer{margin-top:12px;background:#EAF4EF;border:1px solid #cfe6db;border-radius:10px;padding:12px 14px}
+.pv-answer b{font-size:12.5px;color:#2F6F5B;display:block;margin-bottom:5px}
+.pv-answer p{font-size:13.5px!important;color:#33333c!important;line-height:1.65;margin:0!important}
+
+
+/* ===== v16: 히어로 CJ 넘버 인디케이터 ===== */
+.hero-indicator{position:absolute;left:0;right:0;bottom:48px;z-index:5}
+.hero-indicator .wrap{pointer-events:none}
+.hero-ind-inner{display:inline-flex;align-items:center;gap:16px;pointer-events:auto}
+.hero-count{display:flex;align-items:center;gap:13px;color:#fff;font-variant-numeric:tabular-nums;margin-left:2px}
+.hero-count .cur{font-size:15px;font-weight:800;letter-spacing:.04em}
+.hero-count .tot{font-size:12px;color:rgba(255,255,255,.55);letter-spacing:.04em}
+.hero-line{width:100px;height:2px;background:rgba(255,255,255,.28);position:relative;overflow:hidden;border-radius:2px}
+.hero-line span{position:absolute;left:0;top:0;height:100%;width:0;background:#fff}
+@media(max-width:640px){.hero-indicator{bottom:26px}.hero-ind-inner{gap:11px}.hero-line{width:64px}.scrolldown{display:none}}
+
+.pv-fs-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.pv-fs-head .pv-fs-d{margin-left:0}
+#homelogo{text-decoration:none;cursor:pointer}
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="logo" id="homelogo" href="#hero">KEESS</a>
+    <nav class="menu">
+      <a href="#p1">AX·AI 전환</a><a href="#p2">리더십·조직</a><a href="#p3">HRD 통합 솔루션</a><a href="#p4">콘텐츠 솔루션</a>
+    </nav>
+    <button class="btn btn-glass nav-cta" data-scroll="#inq">교육 상담</button>
+    <button class="hamb" id="hamb" aria-label="메뉴"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<nav class="mmenu" id="mmenu">
+  <a href="#p1" data-mclose>AX·AI 전환</a><a href="#p2" data-mclose>리더십·조직</a><a href="#p3" data-mclose>HRD 통합 솔루션</a><a href="#p4" data-mclose>콘텐츠 솔루션</a>
+  <button class="btn btn-ink" data-scroll="#inq" data-mclose>교육 상담</button>
+</nav>
+
+<div class="pdots" id="pdots">
+  <button data-dot="#p1" aria-label="AX·AI"></button>
+  <button data-dot="#p2" aria-label="리더십"></button>
+  <button data-dot="#p3" aria-label="HRD 통합"></button>
+  <button data-dot="#p4" aria-label="콘텐츠"></button>
+</div>
+
+<section class="hero" id="hero" aria-roledescription="carousel" aria-label="주요 소식"><div class="hero-track"><div class="hero-slide active" data-theme="brand" aria-hidden="false"><div class="hs-bg"></div><img class="hs-img" src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2000&auto=format&fit=crop" alt="" loading="eager" decoding="async" onerror="this.style.display='none'"><div class="hs-scrim"></div><div class="wrap"><div class="hs-content"><p class="eyebrow">KG에듀원 기업교육 · B2B · B2G</p><h1>진단으로 설계하고, 효과로 증명합니다.</h1><p class="sub">조직을 먼저 진단해 무엇을 키울지 특정하고, 효과를 숫자로 증명합니다.<br>AX·AI 전환·리더십·HRD 통합·콘텐츠까지, 진단부터 결과보고까지 직접 책임집니다.</p><div class="actions"><button class="btn btn-ink" data-scroll="#inq">교육 상담 신청</button></div></div></div></div><div class="hero-slide" data-theme="event" aria-hidden="true"><div class="hs-bg"></div><img class="hs-img" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2000&auto=format&fit=crop" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'"><div class="hs-scrim"></div><div class="wrap"><div class="hs-content"><div class="hs-tag">EVENT · 예시</div><p class="eyebrow">신규 도입 기업 대상</p><h1>지금 도입하면,<br>조직 진단 무료</h1><p class="sub">오픈 기념, 신규 도입 기업에 조직 역량 진단을 무상 제공합니다. 진단 결과로 꼭 맞는 교육을 설계해 드립니다.</p><div class="actions"><button class="btn btn-ink" data-scroll="#inq">이벤트 신청</button></div></div></div></div><div class="hero-slide" data-theme="new" aria-hidden="true"><div class="hs-bg"></div><img class="hs-img" src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2000&auto=format&fit=crop" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'"><div class="hs-scrim"></div><div class="wrap"><div class="hs-content"><div class="hs-tag">NEW · 예시</div><p class="eyebrow">2026 신규 과정</p><h1>생성형 AI 실무 과정,<br>새로 열렸습니다</h1><p class="sub">ChatGPT 업무 적용부터 데이터 분석·자동화까지. 현업에 바로 적용하는 AI 과정을 새롭게 선보입니다.</p><div class="actions"><button class="btn btn-ink" data-scroll="#p1">과정 살펴보기</button></div></div></div></div><div class="hero-slide" data-theme="gov" aria-hidden="true"><div class="hs-bg"></div><img class="hs-img" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2000&auto=format&fit=crop" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'"><div class="hs-scrim"></div><div class="wrap"><div class="hs-content"><div class="hs-tag">정부지원 · 예시</div><p class="eyebrow">사업주훈련 환급 과정</p><h1>교육비 부담은 낮추고,<br>역량은 높이고</h1><p class="sub">정부지원 요건을 충족하면 훈련비를 지원받을 수 있습니다. 필요한 절차는 담당 컨설턴트가 안내해 드립니다.</p><div class="actions"><button class="btn btn-ink" data-scroll="#inq">지원 상담</button></div></div></div></div><div class="hero-slide" data-theme="case" aria-hidden="true"><div class="hs-bg"></div><img class="hs-img" src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=2000&auto=format&fit=crop" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'"><div class="hs-scrim"></div><div class="wrap"><div class="hs-content"><div class="hs-tag">CASE · 예시</div><p class="eyebrow">고객 성공 사례</p><h1>○○기업, AI 전환 교육으로<br>실무를 바꾸다</h1><p class="sub">전 직원 AI 리터러시 교육 도입 후 업무 자동화가 확산됐습니다. 진단–설계–운영–성과까지 함께 만들었습니다.</p><div class="actions"><button class="btn btn-ink" data-scroll="#inq">사례 문의</button></div></div></div></div></div><div class="hero-indicator"><div class="wrap"><div class="hero-ind-inner"><button class="hero-arrow prev" type="button" aria-label="이전 슬라이드">&#8249;</button><button class="hero-arrow next" type="button" aria-label="다음 슬라이드">&#8250;</button><div class="hero-count"><span class="cur">01</span><div class="hero-line"><span></span></div><span class="tot">05</span></div><button class="hero-play" type="button" aria-label="일시정지">&#10073;&#10073;</button></div></div></div><div class="scrolldown">SCROLL<div class="bar"></div></div></section>
+
+<section class="section intro">
+  <div class="wrap">
+    <p class="eyebrow r" style="margin-bottom:22px">KG에듀원 교육체계</p>
+    <p class="lead r">과정을 고르기 전에,<br>조직을 먼저 진단합니다.</p>
+    <p class="leadsub r">7대 교육체계 위에 8,000여 콘텐츠를 갖추고 매월 새 과정을 더합니다. 진단으로 설계하고, 운영으로 책임지고, 숫자로 증명합니다.</p>
+    <div class="midrule"></div>
+  </div>
+</section>
+
+<section class="pillar" id="p1" style="--ac:var(--p1);--pg:linear-gradient(135deg,#2E1A6B,#5a3fb0)">
+  <div class="pgrid">
+    <div class="pmedia"><img class="pimg" src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1600&auto=format&fit=crop" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'"><div class="pscrim"></div><div class="pbadge">AI Transformation</div></div>
+    <div class="ptext">
+      <div class="pidx r">01</div><div class="pname r">AX·AI 전환</div>
+      <h3 class="lines"><span class="ln"><span>AI 교육을 진단에서 시작해,</span></span><span class="ln"><span>성과로 끝냅니다.</span></span></h3>
+      <div class="prule"></div>
+      <div class="steps">
+        <div class="steps-line"><div class="steps-fill"></div></div>
+        <div class="step"><div class="snum">01</div><div class="stt">진단으로 시작</div><div class="std">AI 성숙도 4단계로 현 위치를 봅니다.</div></div>
+        <div class="step"><div class="snum">02</div><div class="stt">직무로 좁히고</div><div class="std">5단계 역량모델·Skill Matrix로 직무별 설계.</div></div>
+        <div class="step"><div class="snum">03</div><div class="stt">성과로 확인</div><div class="std">전후 비교 리포트로 변화를 증명.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pillar rev" id="p2" style="--ac:var(--p2);--pg:linear-gradient(135deg,#E91E63,#ff7aa8)">
+  <div class="pgrid">
+    <div class="pmedia"><img class="pimg" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1600&auto=format&fit=crop" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'"><div class="pscrim"></div><div class="pbadge">Leadership Development</div></div>
+    <div class="ptext">
+      <div class="pidx r">02</div><div class="pname r">리더십·조직</div>
+      <h3 class="lines"><span class="ln"><span>리더십을 감이 아니라</span></span><span class="ln"><span>진단으로 키웁니다.</span></span></h3>
+      <div class="prule"></div>
+      <div class="steps">
+        <div class="steps-line"><div class="steps-fill"></div></div>
+        <div class="step"><div class="snum">01</div><div class="stt">격차를 보고</div><div class="std">텐트진단으로 자가·타인 인식의 격차를 드러냅니다.</div></div>
+        <div class="step"><div class="snum">02</div><div class="stt">역량을 좁히고</div><div class="std">우선 개발 역량부터 키웁니다.</div></div>
+        <div class="step"><div class="snum">03</div><div class="stt">단계로 키우고</div><div class="std">신임부터 임원까지 생애주기 파이프라인.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pillar" id="p3" style="--ac:var(--p3);--pg:linear-gradient(135deg,#8B27A8,#c44fd8)">
+  <div class="pgrid">
+    <div class="pmedia"><img class="pimg" src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=1600&auto=format&fit=crop" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'"><div class="pscrim"></div><div class="pbadge">Customized HRD Solution</div></div>
+    <div class="ptext">
+      <div class="pidx r">03</div><div class="pname r">HRD 통합 솔루션</div>
+      <h3 class="lines"><span class="ln"><span>진단부터 시스템·<wbr>운영·<wbr>결과보고까지,</span></span><span class="ln"><span>한 곳에서 책임집니다.</span></span></h3>
+      <div class="prule"></div>
+      <div class="steps">
+        <div class="steps-line"><div class="steps-fill"></div></div>
+        <div class="step"><div class="snum">01</div><div class="stt">시스템 안정</div><div class="std">동시접속 2만·ISMS 전용 시스템.</div></div>
+        <div class="step"><div class="snum">02</div><div class="stt">운영 밀착</div><div class="std">알림톡·전담 핫라인·강사 품질관리체계로 밀착.</div></div>
+        <div class="step"><div class="snum">03</div><div class="stt">성과 보고</div><div class="std">만족도·수료율·현업 적용 정량 리포트.</div></div>
+      </div>
+      <div class="pclose r">국민건강보험공단·한국전기안전공사가 위탁운영을 맡깁니다.</div>
+    </div>
+  </div>
+</section>
+
+<section class="pillar rev" id="p4" style="--ac:var(--p4);--pg:linear-gradient(135deg,#F58220,#ffb15e)">
+  <div class="pgrid">
+    <div class="pmedia"><img class="pimg" src="https://images.unsplash.com/photo-1581090700227-1e37b190418e?q=80&w=1600&auto=format&fit=crop" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'"><div class="pscrim"></div><div class="pbadge">Content Solution</div></div>
+    <div class="ptext">
+      <div class="pidx r">04</div><div class="pname r">콘텐츠 솔루션</div>
+      <h3 class="lines"><span class="ln"><span>직무역량부터 자격증·<wbr>외국어·</span></span><span class="ln"><span>조직문화까지,</span></span><span class="ln"><span>한 곳에서.</span></span></h3>
+      <div class="prule"></div>
+      <div class="steps">
+        <div class="steps-line"><div class="steps-fill"></div></div>
+        <div class="step"><div class="snum">01</div><div class="stt">직무·비즈니스</div><div class="std">직무 역량·비즈니스 스킬 3,500여 과정.</div></div>
+        <div class="step"><div class="snum">02</div><div class="stt">외국어·자격</div><div class="std">외국어 4,100여, 자격증 490여 과정.</div></div>
+        <div class="step"><div class="snum">03</div><div class="stt">조직·교양·법정</div><div class="std">조직문화·교양·법정의무교육까지.</div></div>
+      </div>
+      <div class="pclose r">필요한 콘텐츠는 직접 제작하고, 매월 새 과정을 더합니다.</div>
+    </div>
+  </div>
+</section>
+
+<section class="section stats">
+  <div class="wrap">
+    <div class="stats-grid">
+      <div class="stat" style="--ac:#8a6bff"><div class="ring"><svg viewBox="0 0 120 120"><circle class="bg" cx="60" cy="60" r="52"/><circle class="fg" cx="60" cy="60" r="52" data-pct=".82"/></svg><div class="val"><span class="num" data-count="8000">0</span>+</div></div><div class="lab">보유 교육 콘텐츠</div></div>
+      <div class="stat" style="--ac:#ff5e92"><div class="ring"><svg viewBox="0 0 120 120"><circle class="bg" cx="60" cy="60" r="52"/><circle class="fg" cx="60" cy="60" r="52" data-pct=".55"/></svg><div class="val"><span class="num" data-count="100">0</span>+</div></div><div class="lab">매월 신규 과정</div></div>
+      <div class="stat" style="--ac:#c067e0"><div class="ring"><svg viewBox="0 0 120 120"><circle class="bg" cx="60" cy="60" r="52"/><circle class="fg" cx="60" cy="60" r="52" data-pct=".7"/></svg><div class="val"><span class="num" data-count="4146">0</span></div></div><div class="lab">외국어 콘텐츠</div></div>
+      <div class="stat" style="--ac:#ffa24d"><div class="ring"><svg viewBox="0 0 120 120"><circle class="bg" cx="60" cy="60" r="52"/><circle class="fg" cx="60" cy="60" r="52" data-pct=".9"/></svg><div class="val"><span class="num" data-count="2">0</span>만</div></div><div class="lab">동시접속 · ISMS</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="manifesto" id="manifesto">
+  <div class="man-bg" id="manbg"></div>
+  <img class="man-img" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2400&auto=format&fit=crop" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'">
+  <div class="man-scrim"></div>
+  <div class="wrap"><h2>교육의 효과를, 이제 숫자로 증명합니다.</h2></div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <p class="eyebrow r">References</p>
+    <h2 class="sec-title r" style="margin-top:12px">이미 이렇게 함께하고 있습니다.</h2>
+    <div class="ref-block r">
+      <p class="ref-label">위탁 운영</p>
+      <div class="ref-grid stagger">
+        <div class="ref"><div class="org">국민건강보험공단</div><div class="role">위탁 운영</div></div>
+        <div class="ref"><div class="org">한국전기안전공사</div><div class="role">위탁 운영</div></div>
+        <div class="ref"><div class="org">그랜드코리아레저(GKL)</div><div class="role">위탁 운영</div></div>
+      </div>
+    </div>
+    <div class="ref-block r">
+      <p class="ref-label">맞춤 제작 사례</p>
+      <div class="ref-grid stagger">
+        <div class="ref"><div class="org">KG그룹</div><div class="role">핵심가치·윤리교육</div></div>
+        <div class="ref"><div class="org">코오롱</div><div class="role">개인정보 온라인 콘텐츠</div></div>
+        <div class="ref"><div class="org">KG제로인</div><div class="role">퇴직연금 시리즈</div></div>
+      </div>
+    </div>
+    <p class="ref-cap r">레퍼런스·사례 (노출 협의 기준)</p>
+  </div>
+</section>
+
+<section class="section" id="cert" style="background:var(--surface)">
+  <div class="wrap">
+    <p class="eyebrow r">정부지원 · 인증</p>
+    <h2 class="sec-title r" style="margin-top:12px">정부가 인증하고, 보안으로 지킵니다.</h2>
+    <div class="cert-grid stagger">
+      <div class="cert">정부 <span class="num">3</span>년 인증 훈련기관<small>2026.01 – 2028.12</small></div>
+      <div class="cert">ISMS<small>정보보호 관리체계 인증</small></div>
+      <div class="cert">국무총리 표창<small>정부 표창</small></div>
+      <div class="cert">고용노동부장관 표창<small>정부 표창</small></div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="faq">
+  <div class="wrap">
+    <p class="eyebrow r">FAQ · 자주 묻는 질문</p>
+    <h2 class="sec-title r" style="margin-top:12px">궁금한 점을 미리 확인하세요.</h2>
+    <p class="leadsub r" style="margin-top:18px;color:var(--muted);font-size:16.5px;max-width:56ch;line-height:1.7">도입 전 담당자가 가장 많이 묻는 질문을 모았습니다.<br>더 궁금한 점은 바로 문의해 주세요.</p>
+    <div class="faq-tabs r"><button class="faq-tab on" data-type="1">교육 도입</button><button class="faq-tab" data-type="2">교육과정</button><button class="faq-tab" data-type="3">LMS·운영</button><button class="faq-tab" data-type="4">비용·지원</button><button class="faq-tab" data-type="5">KG에듀원 강점</button></div>
+    <div class="faq-list r"><div class="faq-item" data-type="1"><button class="faq-q" aria-expanded="false"><span class="qn">Q01</span><span class="qt">KG에듀원에서는 어떤 기업교육 서비스를 제공하나요?</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-a"><div class="faq-a-inner"><p>온라인 기업교육을 콘텐츠부터 운영까지 한 곳에서 지원합니다. AI·AX, 직무, 리더십, 법정의무, OA, 어학 과정에 기업 맞춤 제작과 LMS 운영을 더합니다.</p></div></div></div><div class="faq-item" data-type="1"><button class="faq-q" aria-expanded="false"><span class="qn">Q02</span><span class="qt">우리 회사도 온라인 기업교육을 도입할 수 있나요?</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-a"><div class="faq-a-inner"><p>규모나 업종과 무관하게 도입할 수 있습니다. 소규모 기업부터 중견·대기업, 공공기관까지 운영해 왔고, 목적과 예산에 맞춰 방안을 제안해 드립니다.</p></div></div></div><div class="faq-item" data-type="1"><button class="faq-q" aria-expanded="false"><span class="qn">Q03</span><span class="qt">우리 회사에 맞는 교육과정을 추천받을 수 있나요?</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-a"><div class="faq-a-inner"><p>네. 업종·직무·직급·목적을 확인해 맞는 과정을 추천해 드립니다. 필요하시면 연간 교육체계와 로드맵까지 함께 설계해 드립니다.</p><a class="acta" href="#inq">맞춤 추천 상담 <span aria-hidden="true">&#8594;</span></a></div></div></div><div class="faq-item" data-type="1"><button class="faq-q" aria-expanded="false"><span class="qn">Q04</span><span class="qt">KG에듀원의 교육 운영 절차는 어떻게 되나요?</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-a"><div class="faq-a-inner"><p>상담 → 과정 제안 → 계약 → 개설 → 운영 → 결과 리포트 순으로 진행됩니다. 전담 운영 담당자가 시작부터 종료까지 함께합니다.</p></div></div></div><div class="faq-item" data-type="1"><button class="faq-q" aria-expanded="false"><span class="qn">Q05</span><span class="qt">교육과정 리스트를 받아볼 수 있나요?</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-a"><div class="faq-a-inner"><p>네. 아래로 문의를 남겨 주시면 최신 전체 과정 리스트를 보내드립니다.</p><a class="acta" href="#inq">과정 리스트 요청 <span aria-hidden="true">&#8594;</span></a></div></div></div><div class="faq-item" data-type="2"><button class="faq-q" aria-expanded="false"><span class="qn">Q06</span><span class="qt">어떤 교육 콘텐츠를 운영하고 있나요?</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-a"><div class="faq-a-inner"><p>AI·AX, DX, 직무, 리더십, 법정의무, OA, 어학, ESG, 인문·교양까지 8,400여 개 과정을 운영합니다.</p></div></div></div><div class="faq-item" data-type="2"><button class="faq-q" aria-expanded="false"><span class="qn">Q07</span><span class="qt">AI·AX 교육도 운영하나요?</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-a"><div class="faq-a-inner"><p>네. 생성형 AI 활용, ChatGPT 업무 적용, AI 업무 생산성 등 최신 과정을 운영합니다. 조직 진단을 바탕으로 현업에 맞는 AI 활용 과정을 설계해 드립니다.</p></div></div></div><div class="faq-item" data-type="2"><button class="faq-q" aria-expanded="false"><span class="qn">Q08</span><span class="qt">법정의무교육도 함께 운영할 수 있나요?</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-a"><div class="faq-a-inner"><p>네. 성희롱 예방, 개인정보보호, 장애인 인식개선, 퇴직연금 등을 온라인으로 운영합니다. 매년 새 시리즈로 제작해 이수율과 몰입을 높입니다.</p></div></div></div><div class="faq-item" data-type="2"><button class="faq-q" aria-expanded="false"><span class="qn">Q09</span><span class="qt">직급별 또는 직무별 교육도 가능한가요?</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-a"><div class="faq-a-inner"><p>가능합니다. 신입부터 팀장·관리자까지 직급별 과정과 영업·기획·생산·서비스 등 직무별 체계를 제공합니다.</p></div></div></div><div class="faq-item" data-type="2"><button class="faq-q" aria-expanded="false"><span class="qn">Q10</span><span class="qt">우리 회사 맞춤형 교육 콘텐츠도 제작할 수 있나요?</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-a"><div class="faq-a-inner"><p>가능합니다. 조직문화·업무 프로세스·사내 규정을 반영해 맞춤 콘텐츠를 제작합니다. 자체 스튜디오와 AI 제작으로 기획부터 제작까지 직접 진행합니다.</p><a class="acta" href="#inq">맞춤 제작 문의 <span aria-hidden="true">&#8594;</span></a></div></div></div><div class="faq-item" data-type="3"><button class="faq-q" aria-expanded="false"><span class="qn">Q11</span><span class="qt">기업 전용 LMS도 제공하나요?</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-a"><div class="faq-a-inner"><p>네. 운영·진도 관리·시험·설문·수료 관리를 지원하는 기업 전용 LMS를 제공합니다.</p></div></div></div><div class="faq-item" data-type="3"><button class="faq-q" aria-expanded="false"><span class="qn">Q12</span><span class="qt">교육 진행 현황을 확인할 수 있나요?</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-a"><div class="faq-a-inner"><p>네. 관리자 페이지에서 진도·수료율·시험·설문 결과를 실시간으로 확인할 수 있습니다.</p></div></div></div><div class="faq-item" data-type="3"><button class="faq-q" aria-expanded="false"><span class="qn">Q13</span><span class="qt">PC와 모바일 모두 수강할 수 있나요?</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-a"><div class="faq-a-inner"><p>네. PC와 모바일 어디서든 수강할 수 있고, 기기를 바꿔도 이어보기가 됩니다.</p></div></div></div><div class="faq-item" data-type="3"><button class="faq-q" aria-expanded="false"><span class="qn">Q14</span><span class="qt">교육 종료 후 수료증 발급이 가능한가요?</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-a"><div class="faq-a-inner"><p>네. 수료 기준을 충족하면 과정 종료 시점에 온라인으로 수료증을 발급받을 수 있습니다.</p></div></div></div><div class="faq-item" data-type="4"><button class="faq-q" aria-expanded="false"><span class="qn">Q15</span><span class="qt">기업교육 비용은 어떻게 산정되나요?</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-a"><div class="faq-a-inner"><p>교육 인원·과정 수·운영 방식에 따라 맞춤 견적으로 안내해 드립니다. 상담을 남겨 주시면 예산에 맞는 운영 방안을 제안해 드립니다.</p><a class="acta" href="#inq">견적 상담 <span aria-hidden="true">&#8594;</span></a></div></div></div><div class="faq-item" data-type="4"><button class="faq-q" aria-expanded="false"><span class="qn">Q16</span><span class="qt">사업주훈련 과정과 일반 교육과정의 차이는 무엇인가요?</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-a"><div class="faq-a-inner"><p>사업주훈련은 기준을 충족하면 제도에 따라 훈련비를 지원받을 수 있는 과정입니다. 일반 과정은 지원과 무관하게 자유롭게 운영합니다. 지원 대상·기준은 관련 법령과 제도에 따라 달라질 수 있습니다.</p></div></div></div><div class="faq-item" data-type="4"><button class="faq-q" aria-expanded="false"><span class="qn">Q17</span><span class="qt">사업주훈련은 어떻게 신청하나요?</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-a"><div class="faq-a-inner"><p>상담 후 과정 선정 → 일정 협의 → 서류 제출 순으로 진행됩니다. 필요한 행정 절차는 담당 컨설턴트가 안내해 드립니다.</p></div></div></div><div class="faq-item" data-type="4"><button class="faq-q" aria-expanded="false"><span class="qn">Q18</span><span class="qt">교육 종료 후 지원 절차도 안내받을 수 있나요?</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-a"><div class="faq-a-inner"><p>네. 교육 운영뿐 아니라 지원 관련 절차까지 안내해, 담당자의 행정 부담을 덜어 드립니다.</p></div></div></div><div class="faq-item" data-type="5"><button class="faq-q" aria-expanded="false"><span class="qn">Q19</span><span class="qt">온라인 기업교육의 장점은 무엇인가요?</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-a"><div class="faq-a-inner"><p>시간과 장소에 매이지 않고 운영할 수 있고, 학습 이력과 수료 현황을 한눈에 관리할 수 있습니다. 집합교육보다 운영 부담과 비용이 적어 더 많은 임직원에게 교육을 제공할 수 있습니다.</p></div></div></div><div class="faq-item" data-type="5"><button class="faq-q" aria-expanded="false"><span class="qn">Q20</span><span class="qt">왜 KG에듀원을 선택해야 하나요?</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-a"><div class="faq-a-inner"><p>콘텐츠, 맞춤 설계, LMS 운영, 학습관리, 성과 분석까지 한 곳에서 지원합니다. 8,400여 개 과정과 자체 제작 역량, 전담 운영으로 기업의 인재 성장을 함께합니다.</p><a class="acta" href="#inq">도입 문의 <span aria-hidden="true">&#8594;</span></a></div></div></div></div>
+    <div class="faq-foot r">
+      <span class="faq-foot-t">필요한 답을 못 찾으셨나요?</span>
+      <a class="btn btn-ink faq-cta" href="#inq">도입 문의하기</a>
+    </div>
+  </div>
+</section>
+
+<section class="section inq" id="inq">
+  <div class="wrap">
+    <div class="inq-grid">
+      <div class="inq-side r">
+        <div>
+          <p class="lead">교육 도입, 진단부터 상담해 드립니다.</p>
+          <p class="leadsub">기업·기관 교육 도입 문의를 남겨 주시면, 담당자가 영업일 기준 1일 내 회신드립니다. 제안서·요건 자료가 있으시면 첨부해 주세요.</p>
+        </div>
+        <div class="trust"><span>정부 3년 인증</span><span>·</span><span>ISMS</span><span>·</span><span>동시접속 2만 운영</span></div>
+      </div>
+      <div class="form r">
+        <div id="form-body">
+          <div class="frow">
+            <div class="field" data-f><label>부문 <span class="req">*</span></label><select id="f-sector"><option value="">선택</option><option>기업 (B2B)</option><option>공공·기관 (B2G)</option></select><span class="err">부문을 선택해 주세요.</span></div>
+            <div class="field" data-f><label>교육 대상 규모 <span class="req">*</span></label><select id="f-size"><option value="">선택</option><option>~50명</option><option>50~300명</option><option>300~1,000명</option><option>1,000명+</option></select><span class="err">규모를 선택해 주세요.</span></div>
+          </div>
+          <div class="frow">
+            <div class="field" data-f><label>회사·기관명 <span class="req">*</span></label><input id="f-company"><span class="err">회사·기관명을 입력해 주세요.</span></div>
+            <div class="field" data-f><label>담당자명 <span class="req">*</span></label><input id="f-name"><span class="err">담당자명을 입력해 주세요.</span></div>
+          </div>
+          <div class="frow">
+            <div class="field" data-f><label>이메일 <span class="req">*</span></label><input id="f-email" type="email"><span class="err">올바른 이메일을 입력해 주세요.</span></div>
+            <div class="field"><label>연락처</label><input id="f-phone"></div>
+          </div>
+          <div class="field"><label>관심 영역</label><div class="chips" id="f-int"><span class="mchip">AX·AI 전환</span><span class="mchip">리더십·조직</span><span class="mchip">HRD 통합 솔루션</span><span class="mchip">콘텐츠 솔루션</span><span class="mchip">정부지원</span></div></div>
+          <div class="field"><label>문의 내용</label><textarea id="f-msg" rows="3"></textarea></div>
+          <div class="field"><label>첨부파일</label>
+            <label class="filebox" id="filebox" for="f-file">파일을 선택하거나 끌어다 놓으세요</label>
+            <input id="f-file" type="file" style="display:none" accept=".zip,.pdf,.hwp,.ppt,.pptx,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png,.gif">
+            <div class="filehint">zip·pdf·hwp·ppt·pptx·doc·docx·xls·xlsx·jpg·png·gif / 최대 10MB</div>
+            <span class="err" id="file-err" style="display:none"></span>
+          </div>
+          <input class="hp" id="f-website" tabindex="-1" autocomplete="off" placeholder="website">
+          <div class="consent-group"><div class="consent" id="consent-wrap"><label class="consent-main"><input type="checkbox" id="f-consent"><span><b class="c-tag req-tag">필수</b> 개인정보 수집·이용 동의</span></label><button type="button" class="consent-view" data-c="priv">전문 보기</button></div><div class="consent-text" id="priv-text"><div class="ct-inner"><p><b>개인정보 수집·이용 동의 (필수)</b></p><p>KG에듀원 KEESS 서비스를 제공하기 위해 필요한 필수 정보를 아래와 같이 수집·이용하고자 하오니, 이에 동의하여 주시기를 부탁드립니다.</p><p><b>1. 수집·이용 목적</b><br>상담신청 및 안내 — KEESS 직원 교육 상담신청 서비스의 상담·안내를 위한 자료 활용</p><p><b>2. 수집 항목</b><br>(필수) 이름, 전화번호, 이메일</p><p><b>3. 보유 및 이용 기간</b><br>법령에 따른 보유·이용 기간 또는 동의받은 기간 내에서 처리·보유합니다. 수집·보유 근거: 정보주체의 동의 / 보유·이용기간: 동의일로부터 1년간(보유목적 달성) 또는 삭제 요청 시 지체 없이 파기.</p><p><b>4. 동의 거부 권리</b><br>동의를 거부할 권리가 있습니다. 다만 거부 시 상담 서비스 이용이 제한될 수 있습니다.</p></div></div><div class="consent" id="mkt-wrap"><label class="consent-main"><input type="checkbox" id="f-mkt"><span><b class="c-tag opt-tag">선택</b> 마케팅 정보 수신 동의</span></label><button type="button" class="consent-view" data-c="mkt">전문 보기</button></div><div class="consent-text" id="mkt-text"><div class="ct-inner"><p><b>마케팅 정보 수신 동의 (선택)</b></p><p>KG에듀원 KEESS는 「개인정보 보호법」 제22조에 의거하여 마케팅 목적의 개인정보 수집·이용에 대해 별도 동의를 받습니다. 동의를 거부하셔도 서비스 이용이 가능하며, 일부 서비스·혜택 제공이 제한될 수 있습니다.</p><p><b>수집·이용 목적</b><br>모바일 상품권(기프티콘) MMS 발송</p><p><b>수집 항목</b><br>이름, 전화번호, 이메일</p><p><b>보유 및 이용 기간</b><br>모바일 상품권(기프티콘) 수령 완료 시까지</p><p>상기 이외의 마케팅 목적으로 수집·이용 시 별도 동의를 받습니다.</p></div></div></div>
+          <button class="btn submit" id="submit">상담 신청</button>
+        </div>
+        <div class="done" id="done">
+          <div class="check">✓</div>
+          <h4>상담 신청이 접수되었습니다.</h4>
+          <p>담당자가 영업일 기준 1일 내 회신드립니다.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot" id="site-footer">
+  <div class="wrap">
+    <div class="foot-util">
+      <div class="famsite">
+        <button class="fam-btn" id="famBtn" aria-expanded="false" aria-haspopup="true">FAMILY SITE<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+        <ul class="fam-menu" id="famMenu" role="menu"><li role="none"><a role="menuitem" href="https://arc.kgeduone.co.kr/" target="_blank" rel="noopener">디지털 원격훈련 아카이브</a></li><li role="none"><a role="menuitem" href="https://ai.kgeduone.co.kr/main/default.asp" target="_blank" rel="noopener">AI 기초 훈련</a></li><li role="none"><a role="menuitem" href="https://www.economistleaders.co.kr/" target="_blank" rel="noopener">이코노미스트 Leaders</a></li><li role="none"><a role="menuitem" href="https://hrd.kgeduone.co.kr/main/" target="_blank" rel="noopener">내일배움카드</a></li><li role="none"><a role="menuitem" href="https://www.kgeduone.com/" target="_blank" rel="noopener">KG에듀원</a></li></ul>
+      </div>
+      <a class="totop" href="#hero">맨 위로 <span aria-hidden="true">&#8593;</span></a>
+    </div>
+    <div class="foot-main">
+      <div class="foot-brand">
+        <div class="logo">KEESS</div>
+        <p class="note">KG에듀원 HRD사업본부의 기업·기관 교육 도입 문의 채널입니다. 회사·사업 소개는 kgeduone.com에서 안내합니다.</p>
+        <div class="sns"><a href="https://www.instagram.com/kghrd_official" target="_blank" rel="noopener" aria-label="인스타그램"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a><a href="https://www.facebook.com/profile.php?id=61556338525608" target="_blank" rel="noopener" aria-label="페이스북"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V5.5h-3c-2 0-3.5 1.6-3.5 3.6V11H8v3h2.5v7H14v-7h2.6l.4-3H14V9.4c0-.3.2-.4.5-.4z"/></svg></a><a href="https://blog.naver.com/kg_hrd" target="_blank" rel="noopener" aria-label="블로그"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h11a2 2 0 012 2v14l-4-3H5a2 2 0 01-2-2V6a2 2 0 012-2z"/><path d="M8 9h7M8 13h5"/></svg></a></div>
+      </div>
+      <div class="foot-company">
+        <dl class="cinfo">
+          <div><dt>상호명</dt><dd>(주)케이지에듀원</dd></div>
+          <div><dt>대표자</dt><dd>김상엽</dd></div>
+          <div><dt>주소</dt><dd>서울특별시 동작구 장승배기로 171, 2층 (노량진동, 노량진아이비빌딩) 06928</dd></div>
+          <div><dt>사업자번호</dt><dd>119-81-39002</dd></div>
+          <div><dt>통신판매업</dt><dd>제 2025-서울동작-0445호</dd></div>
+          <div><dt>개인정보책임</dt><dd>임근성 · privacy_eduone@kggroup.co.kr</dd></div>
+          <div><dt>문의</dt><dd>Tel 02-828-2704 · kg11_kg6030@kggroup.co.kr</dd></div>
+        </dl>
+        <div class="foot-policy"><a class="priv" href="#">개인정보처리방침</a><span>·</span><a href="#">이용약관</a><span>·</span><button class="report-link" type="button" data-prevent="info">부정훈련 예방 안내</button><span>·</span><button class="report-link" type="button" data-prevent="report">부정훈련 신고</button><img class="isms-mark" src="data:image/png;base64,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Z2VSZWFkeXHJZTwAAAMmaVRYdFhNTDpjb20uYWRvYmUueG1wAAAAAAA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA5LjEtYzAwMSA3OS5hNmJmYjg0MTksIDIwMjMvMDcvMTctMTk6Mzg6MzMgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkI2NDY2OUMzOUIzNDExRUZBMjYwRTg4MzlEMzc2Q0NEIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkI2NDY2OUMyOUIzNDExRUZBMjYwRTg4MzlEMzc2Q0NEIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCAyNC43IChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjg3QjI3QkNDNTlEQzExRUY5RkI5QjdCMzgzNEJGOEM0IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjg3QjI3QkNENTlEQzExRUY5RkI5QjdCMzgzNEJGOEM0Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8++K8mjAAANsBJREFUeNrsfQecXFd573dunz4721fSqljNvWFj3DEuicE27dECJLSEB0mIAQNJeAmJEzCEBAj8eIGEEgjBYIgJYExs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" alt="ISMS 정보보호 관리체계 인증" width="116" height="82"></div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div class="copy">COPYRIGHT &copy; KG EDUONE. All RIGHTS RESERVED.</div>
+      
+    </div>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="맨 위로 이동"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+
+<div class="pv-overlay" id="prevent-modal" role="dialog" aria-modal="true" aria-labelledby="pv-title">
+  <div class="pv-dialog">
+    <div class="pv-head">
+      <h3 id="pv-title">부정훈련 예방 및 신고</h3>
+      <button class="pv-close" type="button" aria-label="닫기" data-pv-close>&times;</button>
+    </div>
+    <div class="pv-tabs" role="tablist">
+      <button class="pv-tab on" type="button" data-tab="info" role="tab"><svg class="pvi-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.6-3.1 8.2-7 10-3.9-1.8-7-5.4-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>예방 안내</button>
+      <button class="pv-tab" type="button" data-tab="report" role="tab"><svg class="pvi-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4"/><path d="M5 4h11l-1.6 4L16 12H5"/></svg>신고 접수</button>
+      <button class="pv-tab" type="button" data-tab="lookup" role="tab"><svg class="pvi-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.2-4.2"/></svg>신고 조회</button>
+    </div>
+    <div class="pv-body">
+      <div class="pv-pane on" id="pv-pane-info">
+<p class="pv-lead">KG에듀원은 부정훈련을 철저히 관리합니다. 부정훈련이 적발되면 진도율·평가점수와 관계없이 미수료 처리되며, 고용보험상의 정부지원을 받을 수 없습니다.</p>
+<h4 class="pv-h"><svg class="pvi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 4.3 2.8 17a2 2 0 0 0 1.7 3h15a2 2 0 0 0 1.7-3L13.7 4.3a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>부정훈련이란?</h4>
+<p>「국민 평생 직업능력 개발법」에 따른 직업능력개발훈련을 법과 규정을 벗어난 방법으로 실시하는 것을 말합니다. 대표적으로 훈련생이 아닌 타인의 대리 수강·평가, 훈련비 지원금 리베이트 거래, 승인 내용과 다르게 운영하는 훈련내용 미준수 등이 있습니다.</p>
+<p class="pv-warn"><svg class="pvi-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 4.3 2.8 17a2 2 0 0 0 1.7 3h15a2 2 0 0 0 1.7-3L13.7 4.3a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg><span>적발 시 훈련기관·기업·개인은 훈련비 지원금 징수(부정수급액 최대 5배)와 지원 제한 등 행정처분 및 형사처벌을 받을 수 있습니다.</span></p>
+<h4 class="pv-h"><svg class="pvi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.6-3.1 8.2-7 10-3.9-1.8-7-5.4-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>본인 수강 확인</h4>
+<table class="pv-table"><thead><tr><th>학습 단계</th><th>본인 확인 방식</th></tr></thead><tbody>
+<tr><td>최초 로그인</td><td>휴대폰 · I-PIN</td></tr>
+<tr><td>과정 입과 시 최초 1회</td><td>mOTP · 공동인증서 · 휴대폰 · I-PIN</td></tr>
+<tr><td>1일 1회 진도 학습 · 평가 · 과제</td><td>mOTP · 휴대폰 · I-PIN</td></tr>
+</tbody></table>
+<h4 class="pv-h"><svg class="pvi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.2-4.2"/></svg>부정훈련 적발 기준</h4>
+<ul class="pv-list">
+<li>연속된 시간에 동일 IP·PC 정보에서 평가를 제출한 경우</li>
+<li>접속자의 FDS 정보가 동일한 경우</li>
+<li>사업자 정보가 다르지만 동일 IP에서 수강·평가한 경우</li>
+</ul>
+<p class="pv-note">위 항목 중 하나라도 해당하면 부정훈련 검출 프로그램을 통해 절차를 진행합니다.</p>
+<h4 class="pv-h"><svg class="pvi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg>KG에듀원의 부정훈련 방지 약속</h4>
+<ul class="pv-list">
+<li>훈련생의 진도·평가를 담당자나 외부 인원이 대신 수행하지 않습니다.</li>
+<li>수료 기준에 미달한 훈련생을 임의로 수료 처리하지 않습니다.</li>
+<li>승인받은 콘텐츠·교재와 평가문항으로 진행하며, 평가 전 모범답안을 제공하지 않습니다.</li>
+<li>경력·학력이 인증된 자격 있는 교·강사가 역할을 수행합니다.</li>
+<li>수강을 강요하지 않으며, 대리수강·모사답안 방지를 위해 상시 모니터링합니다.</li>
+</ul>
+<div class="pv-cta">
+  <div><b>부정훈련을 발견하셨나요?</b></div>
+  <button class="btn btn-ink" type="button" id="pv-goto-report"><svg class="pvi-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4"/><path d="M5 4h11l-1.6 4L16 12H5"/></svg>부정훈련 신고하기</button>
+</div>
+</div>
+      <div class="pv-pane" id="pv-pane-report">
+<div class="pv-toplink"><button type="button" class="pv-link" id="pv-to-lookup"><svg class="pvi-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.2-4.2"/></svg>이미 신고하셨나요? 신고 조회하기</button></div>
+<p class="pv-lead">KG에듀원은 부정·부실훈련을 줄이고 올바른 훈련문화를 만들기 위해 노력합니다. 아래로 신고 내용을 남겨 주시면 접수·처리되며, 입력하신 정보는 비공개로 처리됩니다.</p>
+
+<div id="pv-report-form">
+  <div class="pv-fs"><div class="pv-fs-head"><span class="pv-fs-t"><svg class="pvi-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.6"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>신고자 정보</span><span class="pv-fs-d">입력 정보는 비공개 처리됩니다</span></div><div class="pv-frow"><div class="field"><label>성함 <span class="req">*</span></label><input id="pv-name" type="text" placeholder=""><span class="err">필수 항목을 확인해 주세요.</span></div><div class="field"><label>전화번호 <span class="req">*</span></label><input id="pv-phone" type="tel" placeholder="010-0000-0000"><span class="err">필수 항목을 확인해 주세요.</span></div></div><div class="pv-frow"><div class="field"><label>접수 비밀번호 <span class="req">*</span></label><input id="pv-pw" type="password" placeholder=""><span class="fnote">상세 조회 시 사용됩니다</span><span class="err">필수 항목을 확인해 주세요.</span></div><div class="field"><label>비밀번호 확인 <span class="req">*</span></label><input id="pv-pw2" type="password" placeholder=""><span class="err">필수 항목을 확인해 주세요.</span></div></div><div class="pv-frow"><div class="field"><label>이메일 <span class="req">*</span></label><input id="pv-email" type="email" placeholder="name@company.com"><span class="err">필수 항목을 확인해 주세요.</span></div><div class="field"><label>신고자 신분 <span class="req">*</span></label><div class="sel"><select id="pv-role"><option value="">선택</option><option>훈련생</option><option>훈련강사</option><option>훈련기관 관계자</option><option>기업 관계자</option><option>기타</option></select></div><span class="err">필수 항목을 확인해 주세요.</span></div></div></div>
+  <div class="pv-fs"><span class="pv-fs-t"><svg class="pvi-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h13a1 1 0 0 1 1 1v15H6a2 2 0 0 1-2-2V5a1 1 0 0 1 1-1z"/><path d="M5 17h14"/></svg>훈련 정보</span><div class="pv-frow"><div class="field"><label>훈련 구분</label><div class="sel"><select id="pv-ttype"><option value="">선택</option><option>사업주훈련</option><option>디지털아카이브</option><option>기업훈련카드</option><option>국민내일배움카드</option><option>기타</option></select></div><span class="err">필수 항목을 확인해 주세요.</span></div><div class="field"><label>훈련 과정명 <span class="req">*</span></label><input id="pv-course" type="text" placeholder=""><span class="err">필수 항목을 확인해 주세요.</span></div></div><div class="field"><label>훈련 기관 <span class="req">*</span></label><input id="pv-org" type="text" placeholder=""><span class="err">필수 항목을 확인해 주세요.</span></div></div>
+  <div class="pv-fs"><span class="pv-fs-t"><svg class="pvi-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h8"/><path d="M16.5 3.5a2 2 0 0 1 3 3L8 18l-4 1 1-4z"/></svg>신고 내용</span><div class="field"><label>신고 대상</label><div class="sel"><select id="pv-target"><option value="">선택</option><option>훈련생</option><option>훈련강사</option><option>훈련내용</option><option>기타</option></select></div><span class="err">필수 항목을 확인해 주세요.</span></div><div class="field"><label>제목 <span class="req">*</span></label><input id="pv-title" type="text" placeholder=""><span class="err">필수 항목을 확인해 주세요.</span></div><div class="field"><label>내용 <span class="req">*</span></label><textarea id="pv-content" rows="4" placeholder="신고 내용을 구체적으로 작성해 주세요."></textarea><span class="err">필수 항목을 확인해 주세요.</span></div></div>
+  <div class="consent-group" style="margin-top:8px">
+    <div class="consent" id="pv-c1-wrap"><label class="consent-main"><input type="checkbox" id="pv-agree1"><span><b class="c-tag req-tag">필수</b> 개인정보 수집·이용 안내</span></label><button type="button" class="consent-view" data-c="pvpriv1">전문 보기</button></div>
+    <div class="consent-text" id="pvpriv1-text"><div class="ct-inner"><p><b>개인정보 수집·이용 안내 (필수)</b></p><p>부정훈련 신고센터를 통해 신고 접수 시 아래와 같이 개인정보를 수집·이용합니다.</p><p><b>수집 항목</b><br>(필수) 신고자의 성명, 휴대폰번호, 이메일, 신고자 신분</p><p><b>수집·이용 목적</b><br>신고의 접수·처리 등 소관 업무 수행</p><p><b>보유·이용 기간</b><br>신고 접수와 관련해 수집한 개인정보는 10년간 기록·보존되며, 기간 경과 시 관련 법령에 따라 파기합니다.</p></div></div>
+    <div class="consent" id="pv-c2-wrap"><label class="consent-main"><input type="checkbox" id="pv-agree2"><span><b class="c-tag req-tag">필수</b> 개인정보 제3자 제공</span></label><button type="button" class="consent-view" data-c="pvpriv2">전문 보기</button></div>
+    <div class="consent-text" id="pvpriv2-text"><div class="ct-inner"><p><b>개인정보의 제3자 제공 (필수)</b></p><p><b>제공받는 기관</b><br>훈련기관 주소 기준 관할 고용복지플러스센터, 고용노동부</p><p><b>제공 목적</b><br>부정훈련 신고사항 검토 및 지도점검 등 훈련품질관리 업무</p><p><b>제공 항목</b><br>신고자의 성명, 휴대폰번호, 신고자 신분</p><p><b>보유·이용 기간</b><br>관련 법령에 따라 10년간 기록·보존되며, 기간 경과 시 파기합니다.</p></div></div>
+  </div>
+  <button class="btn btn-ink" id="pv-submit" type="button" style="width:100%;margin-top:20px">신고 접수</button>
+</div>
+<div class="pv-done" id="pv-done">
+  <div class="check"><svg class="pvi-done" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg></div>
+  <h4>신고가 접수되었습니다.</h4>
+  <p>담당자가 확인 후 절차를 진행합니다. 접수 시 입력하신 이름·연락처로 신고 내역을 조회하실 수 있습니다.</p>
+  <div class="pv-receipt"><span>접수번호</span><b id="pv-receipt-no">—</b></div>
+  <p class="pv-receipt-note">이름·연락처로 목록을 조회하고, 상세 내용은 이 신고의 비밀번호로 확인합니다.</p>
+  <div class="pv-done-cta">
+    <button class="btn btn-ink" type="button" id="pv-done-lookup"><svg class="pvi-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.2-4.2"/></svg>신고 조회하기</button>
+    <button class="btn-line-dark" type="button" data-pv-close>닫기</button>
+  </div>
+</div>
+</div>
+      <div class="pv-pane" id="pv-pane-lookup">
+<p class="pv-lead">접수 시 입력하신 <b>이름</b>과 <b>연락처</b>로 신고 내역을 조회하실 수 있습니다. 상세 내용은 신고마다 설정한 <b>비밀번호</b>로 확인합니다.</p>
+<div id="pv-lookup-form">
+  <div class="pv-fs"><div class="pv-frow"><div class="field"><label>이름 <span class="req">*</span></label><input id="pv-lk-name" type="text" placeholder="홍길동"><span class="err">필수 항목을 확인해 주세요.</span></div><div class="field"><label>연락처 <span class="req">*</span></label><input id="pv-lk-phone" type="tel" placeholder="010-1234-5678"><span class="err">필수 항목을 확인해 주세요.</span></div></div></div>
+  
+  <button class="btn btn-ink" id="pv-lookup-btn" type="button" style="width:100%;margin-top:6px">신고 내역 조회</button>
+</div>
+<div id="pv-lookup-result" aria-live="polite"></div>
+</div>
+    </div>
+  </div>
+</div>
+
+<script>
+const RM=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* 히어로 캐러셀 초기화는 하단 IIFE에서 처리 */
+
+const nav=document.getElementById('nav'),hero=document.getElementById('hero');
+addEventListener('scroll',()=>nav.classList.toggle('solid',scrollY>hero.offsetHeight-90),{passive:true});
+
+document.querySelectorAll('[data-scroll]').forEach(b=>b.addEventListener('click',()=>{const el=document.querySelector(b.dataset.scroll);if(el)el.scrollIntoView({behavior:RM?'auto':'smooth'});}));
+document.querySelectorAll('[data-dot]').forEach(b=>b.addEventListener('click',()=>{const el=document.querySelector(b.dataset.dot);if(el)el.scrollIntoView({behavior:RM?'auto':'smooth'});}));
+
+const hamb=document.getElementById('hamb'),mmenu=document.getElementById('mmenu');
+function mClose(){mmenu.classList.remove('open');document.body.style.overflow='';hamb.setAttribute('aria-expanded','false');}
+hamb.addEventListener('click',()=>{const o=mmenu.classList.toggle('open');document.body.style.overflow=o?'hidden':'';hamb.setAttribute('aria-expanded',o);});
+document.querySelectorAll('[data-mclose]').forEach(a=>a.addEventListener('click',mClose));
+addEventListener('keydown',e=>{if(e.key==='Escape')mClose();});
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.16});
+document.querySelectorAll('.r,.stagger,.lines,.prule,.midrule').forEach(el=>io.observe(el));
+document.querySelectorAll('.stagger').forEach(g=>[...g.children].forEach((c,i)=>c.style.transitionDelay=(i*0.09)+'s'));
+
+function cup(el){const t=+el.dataset.count,dur=1200,st=performance.now();(function tick(n){const p=Math.min((n-st)/dur,1);el.textContent=Math.round((1-Math.pow(1-p,3))*t).toLocaleString();if(p<1)requestAnimationFrame(tick);})(st);}
+const cio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){if(RM)e.target.textContent=(+e.target.dataset.count).toLocaleString();else cup(e.target);cio.unobserve(e.target);}}),{threshold:.6});
+document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
+
+const rio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const fg=e.target,pct=parseFloat(fg.dataset.pct);fg.style.strokeDashoffset=326.726*(1-pct);rio.unobserve(fg);}}),{threshold:.5});
+document.querySelectorAll('.ring .fg').forEach(el=>rio.observe(el));
+
+const mio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');}),{threshold:.3});
+mio.observe(document.getElementById('manifesto'));
+
+const herobg=document.getElementById('herobg'),manbg=document.getElementById('manbg');
+const pmedias=[...document.querySelectorAll('.pmedia .pimg')];
+const stepsEls=[...document.querySelectorAll('.steps')];
+const pillars=[...document.querySelectorAll('.pillar')];
+const dots=[...document.querySelectorAll('#pdots button')];
+const pdots=document.getElementById('pdots');
+function onScroll(){
+  const vh=innerHeight,y=scrollY;
+  if(!RM){
+    if(herobg&&y<vh)herobg.style.transform='translateY('+(y*0.18)+'px)';
+    pmedias.forEach(img=>{const m=img.parentElement.getBoundingClientRect();if(m.bottom<0||m.top>vh)return;const prog=(m.top+m.height/2-vh/2)/vh;const sc=1+Math.min(Math.abs(prog),.5)*0.12;img.style.transform='scale('+sc.toFixed(3)+') translateY('+(prog*-16)+'px)';});
+    const mb=manbg.parentElement.getBoundingClientRect();if(mb.bottom>0&&mb.top<vh){const mp=(mb.top+mb.height/2-vh/2)/vh;manbg.style.transform='translateY('+(mp*-30)+'px)';}
+    stepsEls.forEach(st=>{const r=st.getBoundingClientRect();let p=(vh*0.62-r.top)/(r.height*0.85);p=Math.max(0,Math.min(1,p));st.querySelector('.steps-fill').style.height=(p*100)+'%';const items=[...st.querySelectorAll('.step')];items.forEach((s,i)=>{const f=items.length>1?i/(items.length-1):0;s.classList.toggle('lit',p>=f-0.04);});});
+  }
+  let act=-1,best=Infinity;
+  pillars.forEach((sec,i)=>{const r=sec.getBoundingClientRect();const d=Math.abs(r.top+r.height/2-vh/2);if(r.top<vh*0.6&&r.bottom>vh*0.4&&d<best){best=d;act=i;}});
+  pdots.style.opacity=(act>=0)?'1':'.5';
+  dots.forEach((d,i)=>d.classList.toggle('active',i===act));
+  if(act>=0)pdots.style.setProperty('--ac',getComputedStyle(pillars[act]).getPropertyValue('--ac'));
+}
+addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);onScroll();
+
+document.querySelectorAll('#f-int .mchip').forEach(c=>c.addEventListener('click',()=>c.classList.toggle('on')));
+const allowed=['zip','pdf','hwp','ppt','pptx','doc','docx','xls','xlsx','jpg','jpeg','png','gif'],MAX=10*1024*1024;
+const fileInput=document.getElementById('f-file'),filebox=document.getElementById('filebox'),fileErr=document.getElementById('file-err');
+let fileOK=true;
+fileInput.addEventListener('change',()=>{
+  fileErr.style.display='none';fileOK=true;filebox.classList.remove('has');
+  const f=fileInput.files[0];if(!f){filebox.textContent='파일을 선택하거나 끌어다 놓으세요';return;}
+  const ext=f.name.split('.').pop().toLowerCase();
+  if(!allowed.includes(ext)){fileErr.textContent='허용되지 않는 파일 형식입니다.';fileErr.style.display='block';fileOK=false;fileInput.value='';filebox.textContent='파일을 선택하거나 끌어다 놓으세요';return;}
+  if(f.size>MAX){fileErr.textContent='파일 용량은 최대 10MB까지 가능합니다.';fileErr.style.display='block';fileOK=false;fileInput.value='';filebox.textContent='파일을 선택하거나 끌어다 놓으세요';return;}
+  filebox.classList.add('has');filebox.textContent=f.name+' ('+(f.size/1048576).toFixed(1)+'MB)';
+});
+filebox.addEventListener('dragover',e=>{e.preventDefault();filebox.style.borderColor='var(--p1)';});
+filebox.addEventListener('dragleave',()=>{filebox.style.borderColor='';});
+filebox.addEventListener('drop',e=>{e.preventDefault();filebox.style.borderColor='';if(e.dataTransfer.files.length){fileInput.files=e.dataTransfer.files;fileInput.dispatchEvent(new Event('change'));}});
+function setInvalid(id,bad){document.getElementById(id).closest('[data-f]').classList.toggle('invalid',bad);}
+document.getElementById('submit').addEventListener('click',()=>{
+  if(document.getElementById('f-website').value)return;
+  let ok=true;
+  const sector=document.getElementById('f-sector').value,size=document.getElementById('f-size').value,
+        company=document.getElementById('f-company').value.trim(),name=document.getElementById('f-name').value.trim(),
+        email=document.getElementById('f-email').value.trim();
+  setInvalid('f-sector',!sector);if(!sector)ok=false;
+  setInvalid('f-size',!size);if(!size)ok=false;
+  setInvalid('f-company',!company);if(!company)ok=false;
+  setInvalid('f-name',!name);if(!name)ok=false;
+  const emailOK=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  setInvalid('f-email',!emailOK);if(!emailOK)ok=false;
+  const consent=document.getElementById('f-consent').checked;
+  document.getElementById('consent-wrap').classList.toggle('invalid',!consent);if(!consent)ok=false;
+  if(!fileOK)ok=false;
+  if(!ok){const first=document.querySelector('.field.invalid, .consent.invalid');if(first)first.scrollIntoView({behavior:RM?'auto':'smooth',block:'center'});return;}
+  document.getElementById('form-body').classList.add('hide');
+  document.getElementById('done').classList.add('show');
+});
+
+/* ===== FAQ (v4) ===== */
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('.faq-tab'));
+  var items=[].slice.call(document.querySelectorAll('.faq-item'));
+  function openItem(it,on){var a=it.querySelector('.faq-a'),q=it.querySelector('.faq-q');if(on){it.classList.add('open');a.style.maxHeight=a.scrollHeight+'px';q.setAttribute('aria-expanded','true');}else{it.classList.remove('open');a.style.maxHeight='0';q.setAttribute('aria-expanded','false');}}
+  function showType(t){tabs.forEach(function(tb){tb.classList.toggle('on',tb.dataset.type===t);});var first=null;items.forEach(function(it){var m=it.dataset.type===t;it.style.display=m?'':'none';openItem(it,false);if(m&&!first)first=it;});if(first)openItem(first,true);}
+  tabs.forEach(function(tb){tb.addEventListener('click',function(){showType(tb.dataset.type);});});
+  items.forEach(function(it){it.querySelector('.faq-q').addEventListener('click',function(){var was=it.classList.contains('open');items.forEach(function(o){if(o!==it&&o.dataset.type===it.dataset.type)openItem(o,false);});openItem(it,!was);});});
+  showType('1');
+})();
+
+/* ===== 푸터 FAMILY SITE (v5) ===== */
+(function(){
+  var btn=document.getElementById('famBtn'),menu=document.getElementById('famMenu');
+  if(!btn||!menu)return;
+  function close(){btn.classList.remove('open');menu.classList.remove('open');btn.setAttribute('aria-expanded','false');}
+  btn.addEventListener('click',function(e){e.stopPropagation();var o=!menu.classList.contains('open');menu.classList.toggle('open',o);btn.classList.toggle('open',o);btn.setAttribute('aria-expanded',o?'true':'false');});
+  document.addEventListener('click',function(e){if(!menu.contains(e.target)&&e.target!==btn)close();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+})();
+
+
+/* ===== v6: FAB · 성과 패럴럭스 ===== */
+(function(){
+  var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var toTop=document.getElementById('toTop');
+  if(toTop){
+    addEventListener('scroll',function(){toTop.classList.toggle('show',scrollY>560);},{passive:true});
+    toTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:rm?'auto':'smooth'});});
+  }
+  var man=document.querySelector('.man-img');
+  if(man && !rm){
+    var sec=man.parentElement, tick=false;
+    function upd(){
+      var r=sec.getBoundingClientRect(), vh=innerHeight;
+      if(r.bottom>0 && r.top<vh){
+        var prog=(vh - r.top)/(vh + r.height);
+        man.style.transform='translateY('+((prog-0.5)*38).toFixed(1)+'px) scale(1.09)';
+      }
+      tick=false;
+    }
+    addEventListener('scroll',function(){if(!tick){requestAnimationFrame(upd);tick=true;}},{passive:true});
+    addEventListener('resize',upd); upd();
+  }
+})();
+
+
+/* ===== v7: 동의 전문 토글 ===== */
+(function(){
+  document.querySelectorAll('.consent-view').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var panel=document.getElementById(btn.dataset.c+'-text');
+      var inner=panel.querySelector('.ct-inner');
+      var open=panel.classList.toggle('open');
+      panel.style.maxHeight=open?(inner.offsetHeight+16)+'px':'0';
+      btn.textContent=open?'접기':'전문 보기';if(open){setTimeout(function(){panel.scrollIntoView({behavior:'smooth',block:'center'});},420);}
+    });
+  });
+})();
+
+
+/* ===== v15: 부정훈련 모달 (조회 목록/상세) ===== */
+(function(){
+  var modal=document.getElementById('prevent-modal'); if(!modal) return;
+  var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var lastFocus=null;
+  window.__keessReports=window.__keessReports||[
+    {no:'KR-20260701-0012',name:'홍길동',phone:'010-1234-5678',pw:'test',title:'훈련 미실시 의심 신고',content:'승인된 차시와 다르게 운영된 정황이 있어 신고합니다.',status:1,date:'2026-07-01'},
+    {no:'KR-20260628-0007',name:'홍길동',phone:'010-1234-5678',pw:'test2',title:'대리 수강 정황 신고',content:'타인이 대신 수강한 것으로 보이는 정황이 있어 신고합니다.',status:2,date:'2026-06-28',answer:'접수 내용 확인 후 해당 기관에 대한 지도점검을 완료했습니다. 협조해 주셔서 감사합니다.'}
+  ];
+  var STAT=['접수 완료','검토 중','처리 완료','반려'];
+  function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  function digits(s){return (s||'').replace(/\D/g,'');}
+  function setTab(t){
+    modal.querySelectorAll('.pv-tab').forEach(function(b){b.classList.toggle('on',b.dataset.tab===t);});
+    modal.querySelectorAll('.pv-pane').forEach(function(p){p.classList.toggle('on',p.id==='pv-pane-'+t);});
+    modal.querySelector('.pv-body').scrollTop=0;
+  }
+  function open(tab){lastFocus=document.activeElement;setTab(tab||'info');modal.classList.add('open');document.body.style.overflow='hidden';modal.querySelector('.pv-close').focus();}
+  function close(){modal.classList.remove('open');document.body.style.overflow='';if(lastFocus&&lastFocus.focus)lastFocus.focus();}
+  document.querySelectorAll('[data-prevent]').forEach(function(b){b.addEventListener('click',function(){open(b.dataset.prevent==='report'?'report':(b.dataset.prevent==='lookup'?'lookup':'info'));});});
+  modal.querySelectorAll('.pv-tab').forEach(function(b){b.addEventListener('click',function(){setTab(b.dataset.tab);});});
+  modal.querySelectorAll('[data-pv-close]').forEach(function(b){b.addEventListener('click',close);});
+  modal.addEventListener('click',function(e){if(e.target===modal)close();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&modal.classList.contains('open'))close();});
+  var g1=document.getElementById('pv-goto-report'); if(g1)g1.addEventListener('click',function(){setTab('report');});
+  var g2=document.getElementById('pv-to-lookup'); if(g2)g2.addEventListener('click',function(){setTab('lookup');});
+  function inval(id,bad){var f=document.getElementById(id);if(f){var c=f.closest('.field');if(c)c.classList.toggle('invalid',bad);}}
+  function cinval(id,bad){document.getElementById(id).classList.toggle('invalid',bad);}
+  function genNo(){var d=new Date();var p=function(x){return('0'+x).slice(-2);};var r=('000'+Math.floor(Math.random()*9000+1000)).slice(-4);return 'KR-'+d.getFullYear()+p(d.getMonth()+1)+p(d.getDate())+'-'+r;}
+  var sb=document.getElementById('pv-submit');
+  if(sb){sb.addEventListener('click',function(){
+    var ok=true, reqs=['pv-name','pv-phone','pv-pw','pv-pw2','pv-email','pv-role','pv-course','pv-org','pv-title','pv-content'];
+    reqs.forEach(function(id){var v=(document.getElementById(id).value||'').trim();var bad=!v;inval(id,bad);if(bad)ok=false;});
+    var email=(document.getElementById('pv-email').value||'').trim();
+    var eok=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);inval('pv-email',!eok);if(!eok)ok=false;
+    var pw=document.getElementById('pv-pw').value,pw2=document.getElementById('pv-pw2').value;
+    if(pw&&pw2&&pw!==pw2){inval('pv-pw2',true);ok=false;}
+    var a1=document.getElementById('pv-agree1').checked,a2=document.getElementById('pv-agree2').checked;
+    cinval('pv-c1-wrap',!a1);cinval('pv-c2-wrap',!a2);if(!a1||!a2)ok=false;
+    if(!ok){var first=modal.querySelector('#pv-report-form .field.invalid, #pv-report-form .consent.invalid');if(first)first.scrollIntoView({behavior:rm?'auto':'smooth',block:'center'});return;}
+    var no=genNo(), d=new Date(), dd=d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);
+    window.__keessReports.push({no:no,name:document.getElementById('pv-name').value.trim(),phone:document.getElementById('pv-phone').value.trim(),pw:pw,title:document.getElementById('pv-title').value.trim(),content:document.getElementById('pv-content').value.trim(),status:0,date:dd});
+    document.getElementById('pv-receipt-no').textContent=no;
+    document.getElementById('pv-report-form').style.display='none';
+    document.getElementById('pv-done').classList.add('show');
+    modal.querySelector('.pv-body').scrollTop=0;
+  });}
+  var dl=document.getElementById('pv-done-lookup');
+  if(dl)dl.addEventListener('click',function(){setTab('lookup');var n=document.getElementById('pv-lk-name'),ph=document.getElementById('pv-lk-phone');if(n)n.value=document.getElementById('pv-name').value.trim();if(ph)ph.value=document.getElementById('pv-phone').value.trim();});
+  // ===== 조회: 이름+연락처 → 목록 → 글별 비밀번호 상세 =====
+  function badge(st){return '<span class="pv-badge s'+st+'">'+STAT[st]+'</span>';}
+  function stepsHtml(st){var steps=['접수 완료','검토 중','처리 완료'];return '<div class="pv-steps">'+steps.map(function(s,k){return '<span class="pv-step'+(k<=Math.min(st,2)?' on':'')+'"><span class="dot"></span>'+s+'</span>';}).join('<span class="pv-step-arrow">\u203a</span>')+'</div>';}
+  function card(r,i){
+    return '<div class="pv-rcard"><div class="pv-rc-top"><span class="pv-rc-no">'+esc(r.no)+'</span>'+badge(r.status)+'</div>'+
+      '<div class="pv-rc-title">'+esc(r.title)+'</div><div class="pv-rc-date">'+esc(r.date)+' 접수</div>'+
+      '<button class="pv-rc-toggle" data-i="'+i+'" type="button">상세 보기 \u203a</button>'+
+      '<div class="pv-rc-detail" id="pv-rc-detail-'+i+'">'+
+        '<div class="pv-rc-pw" id="pv-rc-pwbox-'+i+'"><label>이 신고의 비밀번호</label>'+
+          '<div class="pv-rc-pwrow"><input type="password" id="pv-rc-pw-'+i+'" placeholder="접수 시 설정한 비밀번호"><button class="btn-line-dark" type="button" data-detail="'+i+'">확인</button></div>'+
+          '<span class="pv-rc-err" id="pv-rc-err-'+i+'"></span></div>'+
+        '<div class="pv-rc-content" id="pv-rc-content-'+i+'"></div>'+
+      '</div></div>';
+  }
+  var box=document.getElementById('pv-lookup-result');
+  var lb=document.getElementById('pv-lookup-btn');
+  if(lb){lb.addEventListener('click',function(){
+    var name=(document.getElementById('pv-lk-name').value||'').trim();
+    var phone=digits(document.getElementById('pv-lk-phone').value);
+    inval('pv-lk-name',!name);inval('pv-lk-phone',!phone);
+    if(!name||!phone)return;
+    var recs=window.__keessReports.filter(function(r){return r.name===name && digits(r.phone)===phone;});
+    if(!recs.length){box.innerHTML='<div class="pv-notfound">일치하는 신고 내역이 없습니다. 접수 시 입력하신 이름·연락처를 다시 확인해 주세요.</div>';return;}
+    box._recs=recs;
+    box.innerHTML='<div class="pv-list-head"><span>총 <b>'+recs.length+'</b>건의 신고 내역</span><button class="pv-link" id="pv-lk-back" type="button">\u2190 다시 조회</button></div>'+recs.map(card).join('');
+    document.getElementById('pv-lookup-form').style.display='none';
+  });}
+  if(box){box.addEventListener('click',function(e){
+    if(e.target.id==='pv-lk-back'){box.innerHTML='';document.getElementById('pv-lookup-form').style.display='';return;}
+    var tg=e.target.closest('.pv-rc-toggle');
+    if(tg){var i=tg.dataset.i;var d=document.getElementById('pv-rc-detail-'+i);var op=d.classList.toggle('open');tg.innerHTML=op?'접기 \u2039':'상세 보기 \u203a';if(op){var pw=document.getElementById('pv-rc-pw-'+i);if(pw)setTimeout(function(){pw.focus();},60);}return;}
+    var db=e.target.closest('[data-detail]');
+    if(db){var i=db.dataset.detail;var rec=box._recs[i];var v=(document.getElementById('pv-rc-pw-'+i).value||'');var err=document.getElementById('pv-rc-err-'+i);
+      if(v!==rec.pw){err.textContent='비밀번호가 일치하지 않습니다.';return;}
+      err.textContent='';document.getElementById('pv-rc-pwbox-'+i).style.display='none';
+      document.getElementById('pv-rc-content-'+i).innerHTML='<dl class="pv-dl"><dt>내용</dt><dd>'+esc(rec.content)+'</dd></dl>'+(rec.status<3?stepsHtml(rec.status):'')+(rec.answer?'<div class="pv-answer"><b>처리 결과</b><p>'+esc(rec.answer)+'</p></div>':'');
+      return;
+    }
+  });}
+})();
+
+
+
+/* ===== v10: 히어로 캐러셀 ===== */
+(function(){
+  var hero=document.getElementById('hero'); if(!hero) return;
+  var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var slides=[].slice.call(hero.querySelectorAll('.hero-slide'));
+  var cur=hero.querySelector('.hero-count .cur');
+  var tot=hero.querySelector('.hero-count .tot');
+  var prog=hero.querySelector('.hero-line span');
+  var playBtn=hero.querySelector('.hero-play');
+  var n=slides.length, i=0, timer=null, DUR=6000, playing=!rm, hovering=false;
+  function pad(x){return ('0'+x).slice(-2);}
+  if(tot)tot.textContent=pad(n);
+  function render(){
+    slides.forEach(function(s,k){s.classList.toggle('active',k===i);s.setAttribute('aria-hidden',k===i?'false':'true');});
+    if(cur)cur.textContent=pad(i+1);
+  }
+  function resetProg(){ if(!prog)return; prog.style.transition='none'; prog.style.width='0%'; void prog.offsetWidth; }
+  function runProg(){ if(!prog)return; prog.style.transition='width '+DUR+'ms linear'; prog.style.width='100%'; }
+  function freezeProg(){ if(!prog)return; var w=getComputedStyle(prog).width; prog.style.transition='none'; prog.style.width=w; }
+  function schedule(){ clearTimeout(timer); if(playing&&!rm&&!hovering){ resetProg(); runProg(); timer=setTimeout(function(){go(i+1);},DUR); } }
+  function go(x){ i=(x%n+n)%n; render(); schedule(); }
+  function setPlay(p){ playing=p; if(playBtn){playBtn.innerHTML=p?'&#10073;&#10073;':'&#9654;';playBtn.setAttribute('aria-label',p?'일시정지':'재생');} if(p){schedule();}else{clearTimeout(timer);freezeProg();} }
+  var nx=hero.querySelector('.hero-arrow.next'), pv=hero.querySelector('.hero-arrow.prev');
+  if(nx)nx.addEventListener('click',function(){go(i+1);});
+  if(pv)pv.addEventListener('click',function(){go(i-1);});
+  if(playBtn)playBtn.addEventListener('click',function(){setPlay(!playing);});
+  hero.addEventListener('mouseenter',function(){hovering=true;clearTimeout(timer);freezeProg();});
+  hero.addEventListener('mouseleave',function(){hovering=false;if(playing&&!rm)schedule();});
+  render();
+  if(playing&&!rm) schedule();
+})();
+
+(function(){var hl=document.getElementById('homelogo');if(hl)hl.addEventListener('click',function(e){e.preventDefault();window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});});})();
+</script>
+</body>
+</html>

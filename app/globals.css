@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========================================================================
+   KEESS B안 — 디자인 토큰 (Design.md §3 · TECHSPEC §3, 1:1)
+   신규 값 발명 금지. 색·간격·라운드·그림자·이징은 이 :root 토큰만 사용.
+   ========================================================================= */
+:root{
+  --bg:#FAFAFB; --ink:#14141A; --muted:#54585f; --line:#E6E8EC; --surface:#F3F5F8;
+  --p1:#2E1A6B; --p2:#E91E63; --p3:#8B27A8; --p4:#F58220; --gov:#F4B83A;
+  --ease:cubic-bezier(.22,.61,.36,1); --ease-out:cubic-bezier(.2,0,0,1);
+  --maxw:1200px; --gut:24px; --serif:var(--font-gowun),"Gowun Batang",serif; --r:20px;
+  --shadow-1:0 1px 2px rgba(20,20,26,.05),0 2px 8px rgba(20,20,26,.05);
+  --shadow-2:0 2px 6px rgba(20,20,26,.06),0 10px 26px rgba(20,20,26,.09);
+  --shadow-3:0 6px 14px rgba(20,20,26,.08),0 22px 52px rgba(20,20,26,.14);
+}
+
+/* 필러 틴트 (페이지 wrapper 클래스, 4값만 오버라이드 · TECHSPEC §3) */
+.tint-p1{ --bg:#FCFCFE; --surface:#F4F2FB; --ink:#15131D; --line:#EAE8F2; --maxw:1180px; }
+.tint-p2{ --bg:#FDFBFC; --surface:#FCEBF2; --ink:#181318; --line:#F0E3EA; --maxw:1180px; }
+.tint-p3{ --surface:#F4EAFA; --line:#ECE0F4; --ink:#1A1420; --maxw:1180px; }
+.tint-p4{ --surface:#F7F4EF; --ink:#15131D; --maxw:1180px; }
+
+/* =========================================================================
+   Base reset (원본 프로토타입 공통 base)
+   ========================================================================= */
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-pretendard),"Pretendard Variable",Pretendard,system-ui,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.6;letter-spacing:-.01em;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+.num{font-variant-numeric:tabular-nums}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+
+/* 공통 컨테이너·섹션 리듬 (Design.md §3-3·§4) */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gut)}
+.section{padding:120px 0}
+@media(max-width:720px){.section{padding:74px 0}}
+.eyebrow{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.sec-title{font-size:clamp(27px,3.8vw,42px);font-weight:800;letter-spacing:-.02em;line-height:1.24}
+
+/* =========================================================================
+   Scroll reveal (Design.md §6 · threshold .16 통일)
+   ========================================================================= */
+.r{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.r.in{opacity:1;transform:none}
+.stagger>*{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.stagger.in>*{opacity:1;transform:none}
+
+/* 접근성 — 모션 저감 */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important}
+  .r,.stagger>*{opacity:1 !important;transform:none !important}
+}
+
+/* 포커스 가시성 (a11y) */
+:focus-visible{outline:2px solid var(--ink);outline-offset:2px;border-radius:4px}
