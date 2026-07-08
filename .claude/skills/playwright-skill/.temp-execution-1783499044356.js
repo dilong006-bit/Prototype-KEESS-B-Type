@@ -27,18 +27,11 @@ function getContextOptionsWithHeaders(options = {}) {
     
 const browser = await chromium.launch({ headless: true });
 const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
-page.on('pageerror', e => console.log('PAGEERR:', e.message));
-await page.goto('http://localhost:3000/', { waitUntil: 'networkidle' });
-await page.waitForTimeout(600);
-await page.getByRole('button', { name: '부정훈련 신고' }).click();
-await page.waitForTimeout(500);
-await page.locator('#pv-submit').click();
-await page.waitForTimeout(300);
-console.log('class:', await page.locator('#toast').getAttribute('class'));
-console.log('textContent:', JSON.stringify(await page.locator('#toast').textContent()));
-console.log('visible:', await page.locator('#toast').isVisible());
-await page.waitForTimeout(600);
-console.log('class(after900):', await page.locator('#toast').getAttribute('class'));
+await page.goto('http://localhost:3000/ax-ai', { waitUntil: 'networkidle' });
+await page.waitForTimeout(1200);
+const OUT='C:/Users/NT-0127/AppData/Local/Temp/claude/c-----------workspace-KEESS-B-Type/1d3dfd61-5663-40f3-a522-853b2539db9a/scratchpad';
+await page.screenshot({ path: OUT + '/p1-09-hero-fixed.png', clip:{x:120,y:480,width:640,height:200} });
+console.log('done');
 await browser.close();
 
   } catch (error) {
