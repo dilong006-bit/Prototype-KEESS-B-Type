@@ -321,7 +321,7 @@ export default function ReportModal({ open, onClose, initialTab = 'info' }: Repo
                     </div>
                     <div className="pv-frow">
                       <div className={fld('pw')}><label>접수 비밀번호 <span className="req">*</span></label><input id="pv-pw" aria-label="접수 비밀번호" type="password" value={form.pw} onChange={upd('pw')} /><span className="fnote">상세 조회 시 사용됩니다</span><span className="err">필수 항목을 확인해 주세요.</span></div>
-                      <div className={fld('pw2')}><label>비밀번호 확인</label><input id="pv-pw2" aria-label="비밀번호 확인" type="password" value={form.pw2} onChange={upd('pw2')} /><span className="err">필수 항목을 확인해 주세요.</span></div>
+                      <div className={fld('pw2')}><label>비밀번호 확인</label><input id="pv-pw2" aria-label="비밀번호 확인" type="password" value={form.pw2} onChange={upd('pw2')} /><span className="err">비밀번호가 일치하지 않습니다.</span></div>
                     </div>
                     <div className="pv-frow">
                       <div className={fld('email')}><label>이메일</label><input id="pv-email" aria-label="이메일" type="email" placeholder="name@company.com" value={form.email} onChange={upd('email')} /><span className="err">필수 항목을 확인해 주세요.</span></div>

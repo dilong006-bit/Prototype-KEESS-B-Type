@@ -133,8 +133,8 @@ export default function Sections() {
           <div className="growthfw">
             <div className="gfaxis"><span className="lab">{AX4.axis}</span><span className="arr" /></div>
             <div className="gftiers">
-              {AX4.tiers.map((t) => (
-                <div className="gftier" key={t.no}>
+              {AX4.tiers.map((t, i) => (
+                <div className={`gftier t${i + 1}`} key={t.no}>
                   <div><div className="no">{t.no}</div><h3>{t.h3}</h3><div className="items">{t.items.map((i) => <span key={i}>{i}</span>)}</div></div>
                   <div className="stage"><b>{t.stage}</b><span>대상</span></div>
                 </div>
@@ -180,7 +180,7 @@ export default function Sections() {
           <AxHead no={AX6.no} kicker={AX6.kicker} icon={AX_ICONS[5]} title={AX6.title} lead={AX6.lead}
             extra={<button className="btn-line-dark" onClick={() => openConsult(AX6.consultAxis)}>제작 문의</button>} />
           <div className="infra" style={{ marginTop: 30 }}>
-            <div className="imgslot"><IcCam /><span className="cap">{AX6.studioCap}</span></div>
+            <div className="imgslot"><span className="cap">{AX6.studioCap}</span></div>
             <div className="pipebox">
               <div className="lb">{AX6.pipeLabel}</div>
               <div className="pipe">{AX6.pipe.map((p, i) => <div className="pstep" key={p.t}><div className="ic">{i + 1}</div><div className="t">{p.t}</div><div className="dd">{p.dd}</div></div>)}</div>

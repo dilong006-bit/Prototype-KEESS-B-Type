@@ -109,7 +109,8 @@
 .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
 @media(max-width:760px){.stats-grid{grid-template-columns:repeat(2,1fr);gap:40px}}
 .stat{text-align:center}
-.ring{position:relative;width:128px;height:128px;margin:0 auto}
+/* 'ring'은 Tailwind ring 유틸(box-shadow)과 클래스명이 충돌 → 사각 테두리 방지 */
+.ring{position:relative;width:128px;height:128px;margin:0 auto;box-shadow:none}
 .ring svg{width:128px;height:128px;transform:rotate(-90deg)}
 .ring .bg{fill:none;stroke:rgba(255,255,255,.14);stroke-width:6}
 .ring .fg{fill:none;stroke:var(--ac);stroke-width:6;stroke-linecap:round;stroke-dasharray:326.726;stroke-dashoffset:326.726;transition:stroke-dashoffset 1.2s var(--ease)}
