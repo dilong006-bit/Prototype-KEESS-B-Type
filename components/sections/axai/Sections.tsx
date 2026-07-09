@@ -17,6 +17,7 @@ const BENTO_ICONS: Record<string, React.ReactNode> = {
   bar: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 3v18h18" /><rect x="7" y="10" width="3" height="7" /><rect x="13" y="6" width="3" height="11" /></svg>,
   gear: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M19 5l-3 3M8 16l-3 3" /><circle cx="12" cy="12" r="3" /></svg>,
   rise: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 17l6-6 4 4 8-8" /><path d="M17 7h4v4" /></svg>,
+  learn: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 6.5a4 4 0 00-4-2.5H3v13h5a4 4 0 014 2.5M12 6.5a4 4 0 014-2.5h5v13h-5a4 4 0 00-4 2.5M12 6.5v13" /></svg>,
 };
 
 export default function Sections() {

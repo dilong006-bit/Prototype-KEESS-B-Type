@@ -27,6 +27,7 @@ export const BENTO = {
   cards: [
     { icon: 'search', ok: '진단', h4: '현 위치부터 데이터로', p: '조직 AX 수준·직무 활용도·데이터 성숙도 진단.' },
     { icon: 'bar', ok: '설계', h4: '직무에 맞게 그립니다', p: 'AX Framework·직무별 Skill Map으로 설계.' },
+    { icon: 'learn', ok: '학습', h4: '실전 중심 학습 경험', p: '시나리오 기반 학습·블렌디드 러닝으로 체득.' },
     { icon: 'gear', ok: '실행', h4: '현업 프로젝트로 체득', p: '실전 PBL·Agent 실습·현업 혁신 과제 적용.' },
     { icon: 'rise', ok: '성과', h4: '측정하고 확산합니다', p: '생산성·활용도 측정 후 조직 전체로 확산.' },
   ],

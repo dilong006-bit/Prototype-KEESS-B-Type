@@ -41,7 +41,7 @@
 
 /* ── Bento (offer) ───────────────────────────────────────────────────── */
 .ax-bento{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px}
-@media(max-width:880px){.ax-bento{grid-template-columns:1fr 1fr}}
+@media(max-width:880px){.ax-bento{grid-template-columns:1fr 1fr}.b-stat{grid-column:span 1;flex-direction:column;gap:14px}}
 @media(max-width:560px){.ax-bento{grid-template-columns:1fr}}
 .bcard{position:relative;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:24px;box-shadow:var(--shadow-1);display:flex;flex-direction:column;gap:8px;transition:transform .3s var(--ease),box-shadow .4s var(--ease);overflow:hidden}
 .bcard:hover{transform:translateY(-3px);box-shadow:var(--shadow-2)}
@@ -58,7 +58,7 @@
 .b-hero p{color:rgba(255,255,255,.85);font-size:14.5px;margin-top:8px}
 .b-hero .bmini{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
 .b-hero .bmini span{font-size:12px;font-weight:700;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.24);border-radius:999px;padding:5px 12px}
-.b-stat{grid-column:span 1;gap:16px;justify-content:center}
+.b-stat{grid-column:span 2;flex-direction:row;gap:28px;justify-content:space-around;align-items:center;text-align:center}
 .b-stat .st .v{font-size:clamp(26px,3.4vw,34px);font-weight:800;color:var(--p1);font-variant-numeric:tabular-nums;line-height:1}
 .b-stat .st .l{font-size:12.5px;color:var(--muted);margin-top:5px}
 
@@ -125,7 +125,8 @@
 .lv.b3{background:var(--p1);color:#fff}
 
 /* ── 직무 포지셔닝 맵 ────────────────────────────────────────────────── */
-.qmap{position:relative;margin-top:34px;height:340px;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow-1)}
+.qmap{position:relative;margin-top:34px;height:400px;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow-1)}
+@media(max-width:640px){.qmap{height:320px}}
 .qax{position:absolute;font-size:12px;font-weight:700;color:var(--p1);text-align:center}
 .qax.qy-top{top:14px;left:50%;transform:translateX(-50%)}
 .qax.qy-bot{bottom:14px;left:50%;transform:translateX(-50%)}
