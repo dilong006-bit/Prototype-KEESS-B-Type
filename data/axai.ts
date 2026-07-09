@@ -182,12 +182,12 @@ export const COURSES = {
   eyebrow: '과정 라인업',
   title: '입문부터 실무·자격까지',
   items: [
-    { badge: '입문', title: 'AI 입문 · ChatGPT 마스터 클래스' },
-    { badge: '활용', title: 'Genspark · Gemini · Perplexity 활용' },
-    { badge: '실무', title: '생성형 AI 실무 완벽 활용' },
-    { badge: '심화', title: '프롬프트부터 파인튜닝까지' },
-    { badge: '일잘러', title: '일잘러 AI 활용법' },
-    { badge: '자격', title: 'AICE Basic 준비 과정' },
+    { badge: '입문', title: 'AI 입문 · ChatGPT 마스터 클래스', img: '/images/course1.jpg' },
+    { badge: '활용', title: 'Genspark · Gemini · Perplexity 활용', img: '/images/course2.jpg' },
+    { badge: '실무', title: '생성형 AI 실무 완벽 활용', img: '/images/course3.jpg' },
+    { badge: '심화', title: '프롬프트부터 파인튜닝까지', img: '/images/course4.jpg' },
+    { badge: '일잘러', title: '일잘러 AI 활용법', img: '/images/course5.jpg' },
+    { badge: '자격', title: 'AICE Basic 준비 과정', img: '/images/course6.jpg' },
   ],
 };
 

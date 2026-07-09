@@ -136,7 +136,7 @@ export default function Sections() {
           <div className="course-grid stagger">
             {COURSES.items.map((c) => (
               <div className="course" key={c.title}>
-                <div className="cth"><div className="pat" /><span className="ax-badge">{c.badge}</span></div>
+                <div className="cth" style={{ ['--cimg' as string]: `url(${c.img})` }}><span className="ax-badge">{c.badge}</span></div>
                 <div className="cbd"><h4>{c.title}</h4></div>
               </div>
             ))}
