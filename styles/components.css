@@ -54,6 +54,7 @@
 .frow{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media(max-width:560px){.frow{grid-template-columns:1fr}}
 .field{margin-top:16px}.field:first-child{margin-top:0}
+.frow>.field{margin-top:0}.frow+.frow,.field+.frow{margin-top:16px}
 .field label{display:block;font-size:13.5px;font-weight:600;margin-bottom:7px;color:#3a3a42}
 .field label .req{color:var(--p2)}
 .field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:11px;padding:12px 14px;font-family:inherit;font-size:15px;background:#fff;color:var(--ink);transition:border-color .25s var(--ease)}
