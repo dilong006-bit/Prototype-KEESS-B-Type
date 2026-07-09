@@ -1,7 +1,12 @@
-# dependencies
+# dependencies (all levels — incl. local skill tooling)
 /node_modules
+node_modules/
 /.pnp
 .pnp.js
+
+# local Claude Code tooling (QA skills) — not part of the deliverable
+.claude/skills/
+.claude/settings.local.json
 
 # next.js
 /.next/
@@ -29,3 +34,7 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# redundant 16MB data copies — canonical copy is public/downloads/
+/KG에듀원_과정리스트.xlsx
+ref/prototype/KG에듀원_과정리스트.xlsx
