@@ -2,7 +2,7 @@
 // 색·버튼변형은 이식하지 않음. 단계 색조는 --p1 파생(color-mix)만 사용.
 
 export const HERO = {
-  tag: 'P1 · AX·AI 전환 · End-to-End Partner',
+  tag: 'End-to-End Partner',
   img: '/images/p1-hero.jpg',
   h1Lead: 'AI를 배우는 데서 멈추지 않습니다.',
   h1Emph: '일하는 방식을 바꿉니다.',

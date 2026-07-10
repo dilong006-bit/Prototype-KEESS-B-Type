@@ -17,7 +17,9 @@
 .ct-hero .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:.20}
 .ct-hero .hero-scrim{position:absolute;inset:0;z-index:1;background:linear-gradient(105deg,rgba(30,16,6,.8),rgba(30,16,6,.52) 60%,rgba(30,16,6,.48))}
 .ct-hero .wrap{position:relative;z-index:2;width:100%}
-.ct-hero .ct-eyebrow{color:#fff}
+/* 히어로 eyebrow = P1~P3와 동일한 글래스 칩(닷+블러) 통일 */
+.ct-hero .ct-eyebrow{color:#fff;font-size:12.5px;font-weight:700;letter-spacing:normal;text-transform:none;background:rgba(255,255,255,.14);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:8px 15px;margin-bottom:22px}
+.ct-hero .ct-eyebrow .d{width:7px;height:7px;border-radius:50%;background:#fff;flex:none}
 .ct-hero-in{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center}
 @media(max-width:880px){.ct-hero-in{grid-template-columns:1fr;gap:34px}}
 .ct-hero h1{font-size:clamp(32px,4.8vw,52px);font-weight:800;line-height:1.14;letter-spacing:-.03em;margin-top:12px;word-break:keep-all}

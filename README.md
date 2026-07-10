@@ -85,5 +85,6 @@ public/         # fonts(Pretendard self-host)·images·downloads(xlsx)
 - **P4 다운로드 카피**: 헤드라인(원하는 과정을 / 전체 리스트에서 바로 찾아보세요) · 설명 · 크로스링크 버튼(정부지원 환급 안내).
 - **모달 닫기 버튼 고도화(전 모달 공통)**: `×` 글리프 → 스트로크 SVG X로 교체(hover 시 광학 중심 정확) · 고정 top-right 앵커로 1행/2행 헤더 무관 제목 첫 줄 정렬(오차 ±2px) · outline 원형 + ink hover·scale·active·focus-visible 링. 게이트 모달 `.ctx` 웜(P4) 톤·업퍼케이스 마이크로 이브로우·입력 포커스 링 추가.
 - **P1~P4 히어로 실사 이미지 통일**: 필러별 히어로에 실사 배경(저채도 텍스처) + 필러 톤 스크림의 동일 처리 적용 → 4페이지 히어로 시각 언어 통일. P1(디지털 워크플레이스)·P4(콘텐츠 제작)에 신규 실사 추가, P2(팀)·P3(시스템)는 기존 이미지 유지. **Unsplash 소싱 후 `public/images/p1~p4-hero.jpg`로 self-host**(핫링크 제거·배포 견고성). 콘텐츠(카드·copy)는 불변, 배경 레이어만 추가(§0.5-3 스크림/그라데이션 허용 영역).
+- **히어로 eyebrow 칩 통일**: 4페이지 히어로 eyebrow를 동일한 글래스 필 칩(닷 + `blur(8px)` + border + 8·15 pad + 22px margin)으로 정규화. P4는 평문 이브로우 → 칩 전환(닷 추가), P1 태그는 `End-to-End Partner`로 축약, P2/P3는 blur·margin 미세 편차 정합. 구성 불변·시각 통일.
 
 > 백엔드 미연동(클라이언트 상태 UI) · Design.md 토큰 준수 · 가격/결제 요소 없음.

@@ -55,7 +55,7 @@ export default function Sections() {
         <div className="wrap">
           <div className="ct-hero-in">
             <div>
-              <span className="ct-eyebrow">{HERO.eyebrow}</span>
+              <span className="ct-eyebrow"><span className="d" />{HERO.eyebrow}</span>
               <h1>{HERO.h1Lead}<span className="hl">{HERO.h1Emph}</span>{HERO.h1Tail}<br />{HERO.h1Line2}</h1>
               <p className="lead">{HERO.lead}</p>
               <div className="hero-cta">
