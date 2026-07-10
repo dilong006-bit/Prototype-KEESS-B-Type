@@ -35,7 +35,9 @@ export default function Modal({
       <div className="pv-dialog" ref={ref} style={{ maxWidth }}>
         <div className="pv-head">
           <h3 id={labelledBy}>{title}</h3>
-          <button className="pv-close" type="button" aria-label="닫기" onClick={onClose} data-autofocus>&times;</button>
+          <button className="pv-close" type="button" aria-label="닫기" onClick={onClose} data-autofocus>
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" /></svg>
+          </button>
         </div>
         <div className="pv-body">{children}</div>
       </div>

@@ -263,7 +263,9 @@ export default function ReportModal({ open, onClose, initialTab = 'info' }: Repo
       <div className="pv-dialog" ref={overlayRef}>
         <div className="pv-head">
           <h3 id="pv-modal-title">부정훈련 예방 및 신고</h3>
-          <button className="pv-close" type="button" aria-label="닫기" onClick={onClose} data-autofocus>&times;</button>
+          <button className="pv-close" type="button" aria-label="닫기" onClick={onClose} data-autofocus>
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" /></svg>
+          </button>
         </div>
         <div className="pv-tabs" role="tablist">
           <button className={`pv-tab${tab === 'info' ? ' on' : ''}`} type="button" role="tab" aria-selected={tab === 'info'} onClick={() => setTab('info')}><IcShield />예방 안내</button>

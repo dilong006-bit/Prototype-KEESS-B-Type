@@ -151,10 +151,14 @@
 .pv-overlay.open{opacity:1;visibility:visible}
 .pv-dialog{background:#fff;border-radius:22px;width:100%;max-width:720px;max-height:90vh;display:flex;flex-direction:column;box-shadow:var(--shadow-3);transform:translateY(16px) scale(.985);transition:transform .35s var(--ease);overflow:hidden}
 .pv-overlay.open .pv-dialog{transform:none}
-.pv-head{display:flex;align-items:center;justify-content:space-between;padding:22px 32px;border-bottom:1px solid var(--line)}
+.pv-head{position:relative;display:flex;align-items:flex-start;justify-content:space-between;padding:22px 32px;padding-right:66px;border-bottom:1px solid var(--line)}
 .pv-head h3{font-size:19px;font-weight:800;letter-spacing:-.01em}
-.pv-close{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;border:none;background:var(--surface);color:var(--muted);font-size:22px;line-height:1;padding:0;cursor:pointer;transition:all .2s}
-.pv-close:hover{background:var(--ink);color:#fff}
+/* 닫기: 고정 top-right 앵커 → 1행/2행 헤더 무관하게 제목 첫 줄과 정렬. SVG X로 hover 시 광학 중심 정확. */
+.pv-close{position:absolute;top:18px;right:22px;display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--muted);padding:0;cursor:pointer;transition:background .2s var(--ease),color .2s var(--ease),border-color .2s var(--ease),transform .2s var(--ease)}
+.pv-close svg{width:15px;height:15px;display:block;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.pv-close:hover{background:var(--ink);color:#fff;border-color:var(--ink);transform:scale(1.06)}
+.pv-close:active{transform:scale(.95)}
+.pv-close:focus-visible{outline:2px solid var(--p1);outline-offset:2px}
 .pv-tabs{display:flex;gap:4px;padding:14px 32px 0;border-bottom:1px solid var(--line)}
 .pv-tab{display:inline-flex;align-items:center;gap:7px;padding:11px 16px;border:none;background:none;font-family:inherit;font-size:14px;font-weight:700;color:var(--muted);cursor:pointer;border-bottom:2.5px solid transparent;margin-bottom:-1px;transition:color .2s,border-color .2s}
 .pv-tab:hover{color:var(--ink)}
@@ -251,7 +255,7 @@
 .pv-answer{margin-top:12px;background:#EAF4EF;border:1px solid #cfe6db;border-radius:10px;padding:12px 14px}
 .pv-answer b{font-size:12.5px;color:#2F6F5B;display:block;margin-bottom:5px}
 .pv-answer p{font-size:13.5px!important;color:#33333c!important;line-height:1.65;margin:0!important}
-@media(max-width:560px){.pv-head,.pv-tabs,.pv-body{padding-left:20px;padding-right:20px}.pv-tabs{gap:2px}.pv-tab{padding:11px 7px;gap:0;font-size:13px;white-space:nowrap}.pv-tab svg{display:none}.pv-close{width:40px;height:40px}}
+@media(max-width:560px){.pv-tabs,.pv-body{padding-left:20px;padding-right:20px}.pv-head{padding-left:20px;padding-right:58px}.pv-tabs{gap:2px}.pv-tab{padding:11px 7px;gap:0;font-size:13px;white-space:nowrap}.pv-tab svg{display:none}.pv-close{width:38px;height:38px;top:16px;right:16px}.pv-close svg{width:16px;height:16px}}
 @media(prefers-reduced-motion:reduce){.pv-overlay,.pv-dialog,.pv-pane.on,.pv-result{transition:none;animation:none}}
 
 /* ── v26 동기화: 토스트 · 조회 카드 헤드 · pv-dl2 · 전화 힌트 · 셀렉트 화살표 ── */
