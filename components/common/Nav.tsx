@@ -86,7 +86,7 @@ export default function Nav({ current, consultHref = '#inq' }: NavProps) {
 
   return (
     <>
-      <header className={`nav${solid ? ' solid' : ''}`} id="nav">
+      <header className={`nav${solid ? ' solid' : ''}${menuOpen ? ' menu-open' : ''}`} id="nav">
         <div className="wrap nav-in">
           <Link className="logo" href={LOGO.href} onClick={onLogo} aria-label="KEESS 홈">
             {LOGO.label}
@@ -111,9 +111,9 @@ export default function Nav({ current, consultHref = '#inq' }: NavProps) {
             교육 상담
           </a>
           <button
-            className="hamb"
+            className={`hamb${menuOpen ? ' open' : ''}`}
             id="hamb"
-            aria-label="메뉴"
+            aria-label={menuOpen ? '메뉴 닫기' : '메뉴 열기'}
             aria-expanded={menuOpen}
             aria-controls="mmenu"
             onClick={() => setMenuOpen((o) => !o)}
