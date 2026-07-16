@@ -65,6 +65,8 @@
 .frow>.field{margin-top:0}.frow+.frow,.field+.frow{margin-top:16px}
 .field label{display:block;font-size:13.5px;font-weight:600;margin-bottom:7px;color:#3a3a42}
 .field label .req{color:var(--p2)}
+/* 선택 항목 라벨 보조표기 (예: 교육 대상 규모 "(교육 인원)") */
+.field label .lopt{font-weight:500;font-size:12.5px;color:var(--muted)}
 .field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:11px;padding:12px 14px;font-family:inherit;font-size:15px;background:#fff;color:var(--ink);transition:border-color .25s var(--ease)}
 .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--p1)}
 .field .err{color:var(--p2);font-size:12.5px;margin-top:6px;display:none}
@@ -89,6 +91,10 @@
 .consent.invalid .req-tag{background:#FCE8EE;color:var(--p2)}
 .consent-view{flex:none;background:none;border:none;font-family:inherit;font-size:12.5px;font-weight:600;color:var(--muted);cursor:pointer;text-decoration:underline;text-underline-offset:3px;padding:4px}
 .consent-view:hover{color:var(--p1)}
+/* 마케팅 3채널 개별 동의 (전체 동의 하위 · 체크박스 18px + gap 10px 기준 들여쓰기) */
+.mkt-sub{display:flex;flex-wrap:wrap;gap:8px 18px;padding:2px 0 6px 28px}
+.mkt-item{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;color:#3a3a42;cursor:pointer}
+.mkt-item input{flex:none;width:16px;height:16px;accent-color:var(--p1);cursor:pointer}
 .consent-text{max-height:0;overflow:hidden;transition:max-height .4s var(--ease)}
 .consent-text .ct-inner{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:4px 0 8px;font-size:12.5px;color:var(--muted);line-height:1.7;max-height:210px;overflow-y:auto}
 .consent-text .ct-inner p{margin-bottom:9px}

@@ -268,9 +268,20 @@ export const INQ = {
     sub: '기업·기관 교육 도입 문의를 남겨 주시면, 담당자가 영업일 기준 1일 내 회신드립니다. 제안서·요건 자료가 있으시면 첨부해 주세요.',
     trust: ['정부 3년 인증', 'ISMS', '동시접속 2만 운영'],
   },
-  sectors: ['기업 (B2B)', '공공·기관 (B2G)'],
-  sizes: ['~50명', '50~300명', '300~1,000명', '1,000명+'],
-  interests: ['AX·AI 전환', '리더십·조직', 'HRD 통합 솔루션', '콘텐츠 솔루션', '정부지원'],
+  // 교육 대상 규모(선택) — value = 제출 페이로드 코드(기술명세서 §D-1)
+  sizes: [
+    { value: 'under50', label: '~50명' },
+    { value: '50to300', label: '50~300명' },
+    { value: '300to1000', label: '300~1,000명' },
+    { value: 'over1000', label: '1,000명+' },
+  ],
+  // 관심 영역(선택·다중) — 4칩. '정부지원'은 상담 성격상 별도 라우트(/hrd#gov)로 분리(§D-3)
+  interests: [
+    { value: 'ax-ai', label: 'AX·AI 전환' },
+    { value: 'leadership', label: '리더십·조직' },
+    { value: 'hrd', label: 'HRD 통합 솔루션' },
+    { value: 'content', label: '콘텐츠 솔루션' },
+  ],
   success: {
     title: '상담 신청이 접수되었습니다.',
     msg: '담당자가 영업일 기준 1일 내 회신드립니다.',
